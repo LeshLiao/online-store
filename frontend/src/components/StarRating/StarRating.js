@@ -11,11 +11,11 @@ export default function StarRating({stars, size}) {
     const halfNumber = number - 0.5;
 
     return stars >= number ? (
-      <img src="/star-full.svg" style={styles} alt={number}/>
+      <img src="/star-full.png" style={styles} alt={number}/>
     ) : stars >= halfNumber ? (
-      <img src="/star-half.svg" style={styles} alt={number}/>
+      <img src="/star-half.png" style={styles} alt={number}/>
     ) : (
-      <img src="/star-empty.svg" style={styles} alt={number}/>
+      <img src="/star-empty.png" style={styles} alt={number}/>
     );
   }
 
@@ -29,5 +29,5 @@ export default function StarRating({stars, size}) {
 }
 
 StarRating.defaultProps = {
-  size:18,
+  size:12,
 };

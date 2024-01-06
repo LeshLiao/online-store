@@ -1,31 +1,35 @@
 .container {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
   margin-bottom: 1.5rem;
-
 }
 
-.container input{
+.container input {
   border-radius: 10rem 0 0 10rem;
   border: none;
-  height: 3rem;
+  height: 2rem;
   width: 20rem;
   background-color: #f1f1f1;
-  padding: 1.2rem;
+  padding-left: 1.2rem;
   font-size: 1rem;
   font-weight: 500;
   outline: none;
 }
 
+.container input::placeholder {
+  font-size: 14px;
+  opacity: 0.4;
+  color: gray;
+}
+
 .container button {
   color: gray;
-  height: 3rem;
+  height: 2rem;
   width: 5rem;
-  font-size: 1rem;
+  font-size: 14px;
   border-radius: 0 10rem 10rem 0;
   border: none;
-  background-color: red;
+  background-color: #dd8ea4;
   color: white;
   opacity: 0.8;
   outline: none;

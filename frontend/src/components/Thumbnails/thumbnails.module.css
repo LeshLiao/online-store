@@ -5,18 +5,22 @@
    flex-wrap: wrap;
    list-style-type: none;
    padding: 0;
+
 }
 
 .list li a {
   height: 22.5rem;
   width: 20rem;
-  border: 1px solid whitesmoke;
+  /*border: 1px solid rgb(242, 148, 148);*/
+  border: 1px solid #DD8EA4;
+
   border-radius: 1rem;
   margin: 0.5rem;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  color: #e72929;
+  color: #DD8EA4;
+  /*font-weight: bold;*/
 }
 
 .image{
@@ -77,9 +81,9 @@
   position: absolute;
   bottom: 0;
   left: 0.9rem;
-  background-color: white;
+  /*background-color: white;*/
   padding: 0.3rem 100% 0 0;
-  color: #414141;
+  color: #31383F;
   margin-top: 0.7rem;
   font-size: 1.1rem;
 }

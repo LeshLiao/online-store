@@ -13,7 +13,7 @@ export default function Tags({tags, forFoodPage}) {
     >
       {tags.map(tag =>(
         <Link key={tag.name} to={`/tag/${tag.name}`}>
-          {tag.name}
+          {tag.name}&nbsp;
           {!forFoodPage && `(${tag.count})`}
         </Link>
       ))}
