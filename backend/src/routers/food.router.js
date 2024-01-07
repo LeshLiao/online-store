@@ -30,12 +30,9 @@ router.get('/tag/:tag', (req,res) => {
 
 router.get('/:foodId', (req,res) => {
   const { foodId } = req.params;
-  const food = sample_foods.filter(item => item.id === foodId);
-
-  /* bug? It will return one more square bracket from JSON [ ]
-    // res.send(food);
-  */
-  res.send(food[0]); // Fixed it.
+  const food = sample_foods.find(item => item.id === foodId);
+  // console.log(JSON.stringify(food));
+  res.send(food);
 });
 
 export default router;
