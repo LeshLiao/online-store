@@ -20,8 +20,12 @@ export default function FoodPage() {
   }
 
   useEffect(() => {
+    // console.log('id='+id);
     getById(id).then(setFood);
   }, [id]);
+
+  // print json raw data
+  // console.log(JSON.stringify(food));
 
   return <>
       {!food ? (
