@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials:true,
-    origin:['https://food-store-frontend.onrender.com'],
+    origin: ["https://mern-stack-frontend-0uii.onrender.com","http://localhost:3000"],
   })
 );
 
