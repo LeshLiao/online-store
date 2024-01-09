@@ -1,9 +1,15 @@
 import { sample_foods, sample_tags } from "../data";
 import axios from 'axios';
 
+// export const getAll = async () => {
+//   const { data } = await axios.get('/api/foods');
+//   return data;
+// };
+
 export const getAll = async () => {
-  const { data } = await axios.get('/api/foods');
-  return data;
+  const response = await fetch('https://food-store-backend-mek5.onrender.com/api/foods');
+  console.log('using fetch function to get data. /api/foods')
+  return response;
 };
 
 export const search = async searchTerm => {
