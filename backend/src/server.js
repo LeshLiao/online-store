@@ -22,7 +22,6 @@ app.use(
 app.use('/api/foods', foodRouter);
 app.use('/api/users', userRouter);
 
-const PORT = 4000;
-app.listen(PORT, () => {
-  console.log('listening on PORT:' + PORT);
+app.listen(process.env.PORT, () => {
+  console.log('listening on PORT:' + process.env.PORT);
 })
