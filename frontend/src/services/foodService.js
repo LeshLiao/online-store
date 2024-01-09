@@ -17,9 +17,15 @@ export const search = async searchTerm => {
   return data;
 };
 
+// export const getAllTags = async () => {
+//   const { data } = await axios.get('/api/foods/tags');
+//   return data;
+// };
+
 export const getAllTags = async () => {
-  const { data } = await axios.get('/api/foods/tags');
-  return data;
+  const response = await fetch('https://food-store-backend-mek5.onrender.com/api/foods/tags');
+  console.log('using fetch function to get data. /api/foods/tags')
+  return response;
 };
 
 export const getAllByTag = async tag => {
