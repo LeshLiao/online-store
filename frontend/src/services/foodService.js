@@ -1,32 +1,36 @@
 import { sample_foods, sample_tags } from "../data";
 import axios from 'axios';
 
-export const getAll = async () => {
-  const { data } = await axios.get('/api/foods');
-  return data;
-};
-
 // export const getAll = async () => {
-//   const response = await fetch('https://food-store-backend-mek5.onrender.com/api/foods');
-//   console.log('using fetch function to get data. /api/foods')
-//   return response;
+//   const { data } = await axios.get('/api/foods');
+//   return data;
 // };
+
+export const getAll = async () => {
+  const response = await fetch('https://food-store-backend-mek5.onrender.com/api/foods');
+  const json = await response.json();
+  console.log('using fetch function to get data. /api/foods');
+  console.log(json);
+  return json;
+};
 
 export const search = async searchTerm => {
   const { data } = await axios.get('/api/foods/search/' + searchTerm);
   return data;
 };
 
-export const getAllTags = async () => {
-  const { data } = await axios.get('/api/foods/tags');
-  return data;
-};
-
 // export const getAllTags = async () => {
-//   const response = await fetch('https://food-store-backend-mek5.onrender.com/api/foods/tags');
-//   console.log('using fetch function to get data. /api/foods/tags')
-//   return response;
+//   const { data } = await axios.get('/api/foods/tags');
+//   return data;
 // };
+
+export const getAllTags = async () => {
+  const response = await fetch('https://food-store-backend-mek5.onrender.com/api/foods/tags');
+  const json = await response.json();
+  console.log('using fetch function to get data. /api/foods/tags');
+  console.log(json);
+  return json;
+};
 
 export const getAllByTag = async tag => {
   if (tag === 'All') return getAll();
