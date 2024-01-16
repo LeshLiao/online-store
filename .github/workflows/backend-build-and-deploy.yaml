@@ -37,8 +37,8 @@ jobs:
         working-directory: ./backend
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
-          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-repo/react-backend-img:latest .
-          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-repo/react-backend-img:latest
+          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:latest .
+          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:latest
 
       - name: deploy to gke
         env:
