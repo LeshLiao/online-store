@@ -16,9 +16,10 @@ jobs:
         working-directory: ./backend
         run: |
           touch .env
-          echo SECRET_MONGO_URI=${{ secrets.SECRET_MONGO_URI }} >> .env
-          echo SECRET_JWT_SECRET=${{ secrets.SECRET_JWT_SECRET }} >> .env
-          echo SECRET_PORT=${{ secrets.SECRET_PORT }} >> .env
+          echo MONGO_URI=${{ secrets.SECRET_MONGO_URI }} >> .env
+          echo JWT_SECRET=${{ secrets.SECRET_JWT_SECRET }} >> .env
+          echo PORT=${{ secrets.SECRET_PORT }} >> .env
+          cat .env
 
       - name: install the gcloud cli
         uses: google-github-actions/setup-gcloud@v0
@@ -34,8 +35,8 @@ jobs:
         working-directory: ./backend
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
-          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img-05:latest .
-          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img-05:latest
+          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img-06:latest .
+          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img-06:latest
 
       - name: deploy to gke
         env:
