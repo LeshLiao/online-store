@@ -12,6 +12,13 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v2
 
+      - name: 'Create .env file'
+        run: |
+          touch .env
+          echo SECRET_MONGO_URI=${{ secrets.SECRET_MONGO_URI }} >> .env
+          echo SECRET_JWT_SECRET=${{ secrets.SECRET_JWT_SECRET }} >> .env
+          echo SECRET_PORT=${{ secrets.SECRET_PORT }} >> .env
+
       - name: install the gcloud cli
         uses: google-github-actions/setup-gcloud@v0
         with:
@@ -24,12 +31,6 @@ jobs:
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
         working-directory: ./backend
-        with:
-          context: .
-          build-args: |
-            SECRET_MONGO_URI=${{ secrets.SECRET_MONGO_URI }}
-            SECRET_JWT_SECRET=${{ secrets.SECRET_JWT_SECRET }}
-            SECRET_PORT=${{ secrets.SECRET_PORT }}
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
           docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img-02:latest .
