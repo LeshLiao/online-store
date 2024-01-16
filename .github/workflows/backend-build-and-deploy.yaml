@@ -1,9 +1,11 @@
-name: Deploy food-store
+name: Deploy food-store backend
 
 on:
   push:
     branches:
       - "main"
+    paths:
+      - backend/**
 
 jobs:
   deploy:
@@ -35,13 +37,13 @@ jobs:
         working-directory: ./backend
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
-          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img-06:latest .
-          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img-06:latest
+          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/backend-repo/react-backend-img:latest .
+          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/backend-repo/react-backend-img:latest
 
       - name: deploy to gke
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
         run: |
           gcloud container clusters get-credentials autopilot-cluster-1 --region us-east4
-          sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" resources.yaml
-          kubectl apply -f resources.yaml
+          sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" backend-resources.yaml
+          kubectl apply -f backend-resources.yaml
