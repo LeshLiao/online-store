@@ -24,6 +24,12 @@ jobs:
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
         working-directory: ./backend
+        with:
+          context: .
+          build-args: |
+            SECRET_MONGO_URI=${{ secrets.SECRET_MONGO_URI }}
+            SECRET_JWT_SECRET=${{ secrets.SECRET_JWT_SECRET }}
+            SECRET_PORT=${{ secrets.SECRET_PORT }}
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
           docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img-02:latest .
