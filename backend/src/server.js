@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(
   cors({
     credentials:true,
-    origin: ["https://food-store-frontend.onrender.com","http://localhost:3000"],
+    origin: ["https://food-store-frontend.onrender.com","http://localhost:3000","34.48.64.164:3000"],
   })
 );
 
