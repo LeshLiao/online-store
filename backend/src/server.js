@@ -18,6 +18,7 @@ app.use(
     origin: ["https://food-store-frontend.onrender.com","http://localhost:3000","34.48.64.164:3000"],
   })
 );
+// test 07
 
 app.use('/api/foods', foodRouter);
 app.use('/api/users', userRouter);
