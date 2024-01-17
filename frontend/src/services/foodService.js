@@ -2,6 +2,7 @@ import { sample_foods, sample_tags } from "../data";
 import axios from 'axios';
 
 export const getAll = async () => {
+  console.log('get data /api/foods');
   const { data } = await axios.get('/api/foods');
   return data;
 };
