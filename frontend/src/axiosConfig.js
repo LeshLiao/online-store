@@ -9,5 +9,5 @@ import axios from 'axios';
 
 // axios.defaults.baseURL = 'https://food-store-backend-mek5.onrender.com';
 
-axios.defaults.baseURL = '34.48.58.245:4000';
-// test 07
+axios.defaults.baseURL = 'http://34.48.58.245:4000';
+// test 08
