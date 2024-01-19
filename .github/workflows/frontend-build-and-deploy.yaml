@@ -40,4 +40,5 @@ jobs:
         run: |
           gcloud container clusters get-credentials autopilot-cluster-1 --region us-east4
           sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" frontend-resources.yaml
+          export IMAGE_SHA_TAG=$TAG
           kubectl apply -f frontend-resources.yaml
