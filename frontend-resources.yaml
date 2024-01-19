@@ -29,5 +29,5 @@ spec:
     spec:
       containers:
         - name: react-frontend-app
-          image: us-central1-docker.pkg.dev/GOOGLE_PROJECT/food-store-02/react-frontend-img:$(IMAGE_SHA_TAG)
+          image: us-central1-docker.pkg.dev/GOOGLE_PROJECT/food-store-02/react-frontend-img:${{ github.sha }}
           imagePullPolicy: "Always"
