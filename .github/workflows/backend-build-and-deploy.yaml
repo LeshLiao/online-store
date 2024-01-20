@@ -48,8 +48,6 @@ jobs:
           gcloud auth configure-docker us-central1-docker.pkg.dev
           docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:$TAG .
           docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:$TAG
-          docker build . --tag gcr.io/$GOOGLE_PROJECT/${{ env.REPO_NAME }}:$TAG
-          docker push gcr.io/$GOOGLE_PROJECT/${{ env.REPO_NAME }}:$TAG
 
       - name: Deploy to GKE
         env:
@@ -65,7 +63,7 @@ jobs:
         id: deploy
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          image: gcr.io/${{ secrets.GOOGLE_PROJECT }}/react-backend-img:${{ env.VERSION_SHA_TAG }}
+          image: us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/food-store-02/react-backend-img:${{ env.VERSION_SHA_TAG }}
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           platform: managed
