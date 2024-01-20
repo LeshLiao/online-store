@@ -13,6 +13,7 @@ env:
   SERVICE: react-backend-cloud-run-service # Cloud Run service name
   REGION: us-central1 # Cloud Run service region
   VERSION_SHA_TAG: ${{ github.sha }}
+  REPO_NAME: backend-repo-cloud-run
 
 jobs:
   deploy:
@@ -47,6 +48,8 @@ jobs:
           gcloud auth configure-docker us-central1-docker.pkg.dev
           docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:$TAG .
           docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:$TAG
+          docker build . --tag gcr.io/$GOOGLE_PROJECT/${{ env.REPO_NAME }}:$TAG
+          docker push gcr.io/$GOOGLE_PROJECT/${{ env.REPO_NAME }}:$TAG
 
       - name: Deploy to GKE
         env:
