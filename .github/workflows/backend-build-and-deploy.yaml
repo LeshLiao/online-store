@@ -13,14 +13,13 @@ env:
   SERVICE: react-backend-cloud-run-service # Cloud Run service name
   REGION: us-central1 # Cloud Run service region
   VERSION_SHA_TAG: ${{ github.sha }}
-  REPO_NAME: backend-repo-cloud-run
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: code checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: 'Create .env file'
         working-directory: ./backend
@@ -32,7 +31,7 @@ jobs:
           cat .env
 
       - name: install the gcloud cli
-        uses: google-github-actions/setup-gcloud@v0
+        uses: 'google-github-actions/setup-gcloud@v2'
         with:
           project_id: ${{ secrets.GOOGLE_PROJECT }}
           service_account_key: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
@@ -63,11 +62,10 @@ jobs:
         id: deploy
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          image: us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/food-store-02/react-backend-img:${{ env.VERSION_SHA_TAG }}
+          image: us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/food-store-02/react-backend-img
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
-          platform: managed
-          allow-unauthenticated: true
+          tag: ${{ env.VERSION_SHA_TAG }}
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
