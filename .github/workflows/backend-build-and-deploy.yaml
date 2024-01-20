@@ -10,9 +10,9 @@ on:
       - backend-resources.yaml
 
 env:
-  SERVICE: react-backend-cloud-run-service # Cloud Run service name
-  REGION: us-central1 # Cloud Run service region
-  VERSION_SHA_TAG: ${{ github.sha }}
+  SERVICE: react-backend-cloud-run-service
+  REGION: us-central1
+  TAG: ${{ github.sha }}
 
 jobs:
   deploy:
@@ -21,7 +21,7 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v3
 
-      - name: 'Create .env file'
+      - name: create .env file
         working-directory: ./backend
         run: |
           touch .env
@@ -41,31 +41,29 @@ jobs:
       - name: build and push the docker image
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
-          TAG: ${{ github.sha }}
         working-directory: ./backend
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
-          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:$TAG .
-          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:$TAG
+          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:${{ env.TAG }} .
+          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:${{ env.TAG }}
 
-      - name: Deploy to GKE
+      - name: deploy to GKE
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
-          IMAGE_SHA_TAG: ${{ github.sha }}
         run: |
           gcloud container clusters get-credentials autopilot-cluster-1 --region us-east4
           sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" backend-resources.yaml
-          sed -i "s/IMAGE_SHA_TAG/$IMAGE_SHA_TAG/g" backend-resources.yaml
+          sed -i "s/IMAGE_SHA_TAG/${{ env.TAG }}/g" backend-resources.yaml
           kubectl apply -f backend-resources.yaml
 
-      - name: Deploy to Cloud Run
+      - name: deploy to cloud run
         id: deploy
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
-          image: us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/food-store-02/react-backend-img:${{ env.VERSION_SHA_TAG }}
-          service: ${{ env.SERVICE }}
-          region: ${{ env.REGION }}
+          image: us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/food-store-02/react-backend-img:${{ env.TAG }}
+          service: react-backend-cloud-run-service
+          region: us-central1
 
       # If required, use the Cloud Run url output in later steps
-      - name: Show Output
+      - name: show output
         run: echo ${{ steps.deploy.outputs.url }}
