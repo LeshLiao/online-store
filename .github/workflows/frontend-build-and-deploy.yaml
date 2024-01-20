@@ -1,4 +1,4 @@
-name: Deploy food-store frontend
+name: Deploy frontend
 
 on:
   push:
@@ -8,6 +8,10 @@ on:
       - frontend/**
       - .github/workflows/frontend-build-and-deploy.yaml
       - frontend-resources.yaml
+
+env:
+  TAG: ${{ github.sha }}
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -26,19 +30,18 @@ jobs:
       - name: build and push the docker image
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
-          TAG: ${{ github.sha }}
         working-directory: ./frontend
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
-          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-frontend-img:$TAG .
-          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-frontend-img:$TAG
+          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-frontend-img:${{ env.TAG }} .
+          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-frontend-img:${{ env.TAG }}
 
-      - name: deploy to gke
+      - name: deploy to GKE
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
-          IMAGE_SHA_TAG: ${{ github.sha }}
         run: |
           gcloud container clusters get-credentials autopilot-cluster-1 --region us-east4
           sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" frontend-resources.yaml
-          sed -i "s/IMAGE_SHA_TAG/$IMAGE_SHA_TAG/g" frontend-resources.yaml
+          sed -i "s/IMAGE_SHA_TAG/${{ env.TAG }}/g" frontend-resources.yaml
           kubectl apply -f frontend-resources.yaml
+

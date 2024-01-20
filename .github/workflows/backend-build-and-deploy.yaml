@@ -1,4 +1,4 @@
-name: Deploy food-store backend
+name: Deploy backend
 
 on:
   push:

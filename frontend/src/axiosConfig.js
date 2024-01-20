@@ -9,4 +9,8 @@ import axios from 'axios';
 
 // axios.defaults.baseURL = 'https://food-store-backend-mek5.onrender.com';
 
-axios.defaults.baseURL = 'http://34.86.56.229:4000';
+// GKE
+// axios.defaults.baseURL = 'http://34.86.56.229:4000';
+
+// Google cloud run
+axios.defaults.baseURL = 'https://react-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app';
