@@ -10,7 +10,7 @@ on:
       - backend-resources.yaml
 
 env:
-  SERVICE: react-backend-img # Cloud Run service name
+  SERVICE: react-backend-cloud-run-service # Cloud Run service name
   REGION: us-central1 # Cloud Run service region
   VERSION_SHA_TAG: ${{ github.sha }}
 
