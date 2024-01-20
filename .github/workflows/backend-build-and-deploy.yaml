@@ -62,10 +62,11 @@ jobs:
         id: deploy
         uses: 'google-github-actions/deploy-cloudrun@v2'
         with:
+          image: gcr.io/${{ secrets.GOOGLE_PROJECT }}/react-backend-img:${{ env.VERSION_SHA_TAG }}
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
-          image: us-central1-docker.pkg.dev/GOOGLE_PROJECT/food-store-02/react-backend-img
-          tag: ${{ env.VERSION_SHA_TAG }}
+          platform: managed
+          allow-unauthenticated: true
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
