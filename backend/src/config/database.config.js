@@ -16,7 +16,7 @@ export const dbconnect = async () => {
     await seedUsers();
     await seedFoods();
     console.log('MongoDB connect successfully!');
-    console.log('test Jan16 0141');
+    console.log('test Jan19 19:53');
   } catch (error) {
     console.log(error);
   }

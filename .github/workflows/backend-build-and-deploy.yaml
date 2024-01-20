@@ -8,6 +8,11 @@ on:
       - backend/**
       - .github/workflows/backend-build-and-deploy.yaml
       - backend-resources.yaml
+
+env:
+  SERVICE: react-backend-img # Cloud Run service name
+  REGION: us-central1 # Cloud Run service region
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -42,7 +47,7 @@ jobs:
           docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:$TAG .
           docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-backend-img:$TAG
 
-      - name: deploy to gke
+      - name: Deploy to GKE
         env:
           GOOGLE_PROJECT: ${{ secrets.GOOGLE_PROJECT }}
           IMAGE_SHA_TAG: ${{ github.sha }}
@@ -51,3 +56,16 @@ jobs:
           sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" backend-resources.yaml
           sed -i "s/IMAGE_SHA_TAG/$IMAGE_SHA_TAG/g" backend-resources.yaml
           kubectl apply -f backend-resources.yaml
+
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@main
+        with:
+          service: ${{ env.SERVICE }}
+          region: ${{ env.REGION }}
+          IMAGE_SHA_TAG: ${{ github.sha }}
+          image: us-central1-docker.pkg.dev/GOOGLE_PROJECT/food-store-02/react-backend-img:IMAGE_SHA_TAG
+
+      # If required, use the Cloud Run url output in later steps
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}
