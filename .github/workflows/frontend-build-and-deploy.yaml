@@ -56,3 +56,9 @@ jobs:
       # If required, use the Cloud Run url output in later steps
       - name: show output
         run: echo ${{ steps.deploy.outputs.url }}
+
+      - name: Deploy production to render.com
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_DEPLOY_HOOK_SERVICE_ID }} # Can be found as part of the Deploy Hook
+          api-key: ${{ secrets.RENDER_API_KEY }} # Create your API key in Render Dashboard > Account Settings

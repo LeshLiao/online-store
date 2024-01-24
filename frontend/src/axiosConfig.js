@@ -12,5 +12,5 @@ import axios from 'axios';
 // GKE
 // axios.defaults.baseURL = 'http://34.86.56.229:4000';
 
-// Google cloud run
+// Google cloud run (Backend)
 axios.defaults.baseURL = 'https://react-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app';
