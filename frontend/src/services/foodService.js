@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const getAll = async () => {
   // test 12
-  console.log('get data /api/foods');
+  console.log('HEY,get data /api/foods');
   const { data } = await axios.get('/api/foods');
   return data;
 };
