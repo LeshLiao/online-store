@@ -10,7 +10,10 @@ on:
       - frontend-resources.yaml
 
 env:
+  SERVICE: online-store-frontend-cloud-run-service
+  REGION: us-central1
   TAG: ${{ github.sha }}
+  REPO: online-store
 
 jobs:
   deploy:
@@ -33,8 +36,8 @@ jobs:
         working-directory: ./frontend
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
-          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-frontend-img:${{ env.TAG }} .
-          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/food-store-02/react-frontend-img:${{ env.TAG }}
+          docker build -t us-central1-docker.pkg.dev/$GOOGLE_PROJECT/${{ env.REPO }}/react-frontend-img:${{ env.TAG }} .
+          docker push us-central1-docker.pkg.dev/$GOOGLE_PROJECT/${{ env.REPO }}/react-frontend-img:${{ env.TAG }}
 
       # - name: deploy to GKE
       #   env:
@@ -45,17 +48,17 @@ jobs:
       #     sed -i "s/IMAGE_SHA_TAG/${{ env.TAG }}/g" frontend-resources.yaml
       #     kubectl apply -f frontend-resources.yaml
 
-      - name: deploy to cloud run
-        id: deploy
-        uses: 'google-github-actions/deploy-cloudrun@v2'
-        with:
-          image: us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/food-store-02/react-frontend-img:${{ env.TAG }}
-          service: react-frontend-cloud-run-service
-          region: us-central1
+      # - name: deploy to cloud run
+      #   id: deploy
+      #   uses: 'google-github-actions/deploy-cloudrun@v2'
+      #   with:
+      #     image: us-central1-docker.pkg.dev/${{ secrets.GOOGLE_PROJECT }}/${{ env.REPO }}/react-frontend-img:${{ env.TAG }}
+      #     service: ${{ env.SERVICE }}
+      #     region: ${{ env.REGION }}
 
-      # If required, use the Cloud Run url output in later steps
-      - name: show output
-        run: echo ${{ steps.deploy.outputs.url }}
+      # # If required, use the Cloud Run url output in later steps
+      # - name: show output
+      #   run: echo ${{ steps.deploy.outputs.url }}
 
       - name: Deploy production to render.com
         uses: johnbeynon/render-deploy-action@v0.0.8
