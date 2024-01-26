@@ -55,6 +55,7 @@ jobs:
       #     gcloud container clusters get-credentials autopilot-cluster-1 --region us-east4
       #     sed -i "s/GOOGLE_PROJECT/$GOOGLE_PROJECT/g" backend-resources.yaml
       #     sed -i "s/IMAGE_SHA_TAG/${{ env.TAG }}/g" backend-resources.yaml
+      #     sed -i "s/REPO_NAME/${{ env.REPO }}/g" backend-resources.yaml
       #     kubectl apply -f backend-resources.yaml
 
       - name: deploy to cloud run
