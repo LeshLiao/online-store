@@ -17,7 +17,7 @@ app.use(
     credentials:true,
     origin: ["https://food-store-frontend.onrender.com","http://localhost:3000",
     "http://34.86.110.189:3000","https://react-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app",
-    "https://online-store-hxxg.onrender.com"],
+    "https://online-store-hxxg.onrender.com","https://www.palettex.ca/"],
   })
 );
 // test 10
