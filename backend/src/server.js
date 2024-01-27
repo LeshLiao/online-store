@@ -12,12 +12,16 @@ dbconnect();
 const app = express();
 app.use(express.json());
 
+
+// NOTE: DO NOT add back slash / end of your DNS.
+// EX:   https://aa.bb.cc/  is not allowed.
+// EX:   https://aa.bb.cc   is correct!
 app.use(
   cors({
     credentials:true,
     origin: ["https://food-store-frontend.onrender.com","http://localhost:3000",
     "http://34.86.110.189:3000","https://react-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app",
-    "https://online-store-hxxg.onrender.com","https://www.palettex.ca/"],
+    "https://online-store-hxxg.onrender.com","https://www.palettex.ca"],
   })
 );
 // test 10
