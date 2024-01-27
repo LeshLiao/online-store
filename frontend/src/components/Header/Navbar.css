@@ -1,34 +1,46 @@
+:root {
+  --mobile-nav-height: 2.7rem;
+}
+
 .navbar {
-  /* background: linear-gradient(90deg, rgb(76, 75, 75) 0%, rgb(26, 23, 23) 100%); */
-  background: linear-gradient(180deg, #3B3B3B 0%, rgba(1, 1, 1, .8) 54%, #303030 100%);
-
-  /* TODO */
-  /* height: 2.7rem;  */
-
+  background: linear-gradient(180deg,  rgb(32, 32, 32) 0%, rgba(9, 9, 9, 0.8) 50%
+  ,  rgba(52, 52, 52, 0.8) 90%, rgba(44, 44, 44, 0.1) 100%);
+  height: var(--mobile-nav-height);
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content:space-between;
   font-size: 0.8rem;
-  /* sticky the nav bar */
-  /* position: sticky; */
-  /* top: 0; */
-  /* z-index: 999; */
   position: fixed;
+  top: 0;
 }
 
-.navbar-container {
+.left-container {
+  /* border: 1px solid red; */
+  width: 126px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  /* height: 80px; */
-  /* max-width: 1500px; */
+  padding-left: 0.5rem;
 }
 
+.center-container {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+}
+
+.right-container {
+  /* border: 1px solid red; */
+  width: 126px;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  padding-right: 0.5rem;
+}
+
+/* PaletteX desktop*/
 .navbar-logo {
   color: #fff;
   justify-self: start;
-  margin-left: 20px;
   cursor: pointer;
   text-decoration: none;
   font-size: 1.5rem;
@@ -43,30 +55,24 @@
 
 .nav-menu {
   display: flex;
-  /* grid-template-columns: repeat(4, auto); */
-  justify-content: center;
-
-  grid-gap: 1rem;
+  justify-content:space-between;
+  /* grid-gap: 1.9rem; */
   list-style: none;
   text-align: center;
-  /* width: 60vw; */
-  width: min(100%, 62.5rem);
-  /* justify-content: end; */
-  /* margin-right: 2rem; */
+  /* width: min(100%, 62.5rem); */
+  width: 40rem;
 }
 
-.nav-item {
-
-  padding-top: 0.5rem;
-}
-
-.nav-links {
+.nav-links, .account-icon-desktop, .cart-icon{
   color: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 1rem 1rem;
   height: 100%;
+  margin-top: 0.2rem;
+  /* width: 4rem; */
 }
 
 .nav-links:hover {
@@ -84,27 +90,38 @@
 
 .menu-icon {
   display: none;
+  color: aliceblue;
+}
+
+.cart-icon {
+  color: aliceblue;
+}
+
+.navbar-mobile-logo {
+  display: none;
+}
+
+.account-icon-mobile {
+  display: none;
 }
 
 @media screen and (max-width: 960px) {
-  .navbar-container {
-    height: 80px;
-  }
-
-  .NavbarItems {
-    position: relative;
-  }
 
   .nav-menu {
     display: flex;
     flex-direction: column;
+    justify-content:flex-start;
+    padding-top: 1rem;
+    /* justify-content: center; */
     width: 100%;
-    height: 90vh;
+    height: 95vh;
     position: absolute;
-    top: 80px;
+    /* top: 80px; */
+    top: var(--mobile-nav-height);
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
+    grid-gap: 1.8rem;
   }
 
   .nav-menu.active {
@@ -113,6 +130,7 @@
     opacity: 1;
     transition: all 0.5s ease;
     z-index: 1;
+    /* top: 80px; */
   }
 
   .nav-links {
@@ -129,23 +147,18 @@
   }
 
   .navbar-logo {
-    /* position: absolute; */
-    /* top: 0; */
-    /* left: 0; */
-    /* transform: translate(25%, 50%); */
+    display: none;
     justify-content: center;
   }
 
-  .menu-icon {
+  .navbar-mobile-logo {
     display: block;
-    position: absolute;
-    /* top: 0.5rem; */
-    left: 1.7rem;
-
     color: aliceblue;
-    /* transform: translate(-100%, 60%); */
-    /* font-size: 1.8rem; */
-    cursor: pointer;
+    font-size: 1.3rem;
+  }
+
+  .menu-icon {
+    display:contents;
   }
 
   .fa-times {
@@ -172,5 +185,19 @@
     background: #fff;
     color: #242424;
     transition: 250ms;
+  }
+
+  .account-icon-desktop {
+    display: none;
+  }
+
+  .account-icon-mobile {
+    display: block;
+    color: aliceblue;
+  }
+
+  .cart-icon {
+    padding: 0;
+    margin-top: 0rem;
   }
 }

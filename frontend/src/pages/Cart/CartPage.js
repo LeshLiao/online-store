@@ -11,7 +11,7 @@ export default function CartPage() {
 
   return (
   <>
-      <Title title="Cart Page" margin="1.5rem 0 0 2.5rem" />
+      <Title title="Cart Page" margin="5rem 0 0 2.5rem" />
 
       {cart.items.length === 0 ? (
         <NotFound message="Cart Page Is Empty!" />
