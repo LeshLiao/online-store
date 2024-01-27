@@ -1,4 +1,4 @@
-import { sample_foods, sample_tags } from "../data";
+// import { sample_foods, sample_tags } from "../data";
 import axios from 'axios';
 
 export const getAll = async () => {

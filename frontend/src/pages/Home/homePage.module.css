@@ -1,0 +1,14 @@
+
+.container {
+  /* margin-inline: auto; */
+  /* background-color: gray; */
+
+  /* width: min(100%, 62.5rem); */
+  /* width: min(100%, 91rem); */
+
+  /* height: 5rem; */
+  /* border: 2px solid red; */
+  /* display:contents; */
+  align-items: center;
+  justify-content: center;
+}
