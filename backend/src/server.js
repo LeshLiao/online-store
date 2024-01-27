@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 
 
-// NOTE: DO NOT add back slash / end of your DNS.
+// NOTE: DO NOT add slash / end of your DNS.
 // EX:   https://aa.bb.cc/  is not allowed.
 // EX:   https://aa.bb.cc   is correct!
 app.use(
