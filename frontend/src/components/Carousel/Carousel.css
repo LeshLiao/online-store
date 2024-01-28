@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -51,4 +52,11 @@
 
 .Carousel__ItemSet {
   /* border: 1px solid red; */
+}
+
+.item-css {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }

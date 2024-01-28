@@ -14,17 +14,17 @@ import Frame from '../Frame/Frame'
 export default function AllCarousel({items}) {
     return (
       <div className='carousel-container'>
-      <div className="my-carousel">
-      <Carousel cols={5} gap={10}>
-      {
-        items.map(item => (
-          <Carousel.Item>
-            <Frame id={item.id} imageUrl={item.imageUrl} title={item.name} price={item.price}/>
-          </Carousel.Item>
-        ))
-      }
-      </Carousel>
-    </div>
-    </div>
+        <div className="my-carousel">
+          <Carousel cols={5} gap={10}>
+          {
+            items.map(item => (
+              <Carousel.Item>
+                <Frame id={item.id} imageUrl={item.imageUrl} title={item.name} price={item.price}/>
+              </Carousel.Item>
+            ))
+          }
+          </Carousel>
+        </div>
+      </div>
     )
   }

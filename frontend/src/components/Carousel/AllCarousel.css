@@ -10,8 +10,8 @@
 
 .my-carousel {
   /* border: 1px solid red; */
-  width: 90%;
-  padding: 20px;
+  width: 100%;
+  /* padding: 20px; */
   box-sizing: border-box;
 }
 

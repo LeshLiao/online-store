@@ -4,7 +4,7 @@ import './Carousel.css'
 import LeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import RightIcon from '@mui/icons-material/ArrowCircleRight';
 
-const Item = ({ children }) => <div>{children}</div>
+const Item = ({ children }) => <div className='item-css'>{children}</div>
 
 const CAROUSEL_ITEM = 'CAROUSEL_ITEM'
 const Carousel = ({ cols = 1, gap = 10, children }) => {
@@ -35,14 +35,11 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
 
   return (
     <div className="Carousel">
-      {/* <span
-        className="Carousel__btn--prev"
-        hidden={currentPage <= 0}
-        onClick={handlePrev}
-      /> */}
-      <div className='prev-button' hidden={currentPage <= 0}
-        onClick={handlePrev}>
-        <LeftIcon fontSize='large'/>
+      <div className='left-container'>
+        <div className='prev-button' hidden={currentPage <= 0}
+          onClick={handlePrev}>
+          <LeftIcon fontSize='large'/>
+        </div>
       </div>
       <div className="Carousel__railWrapper">
         <div
@@ -68,13 +65,10 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
           ))}
         </div>
       </div>
-      {/* <span
-        className="Carousel__btn--next"
-        hidden={currentPage === page - 1}
-        onClick={handleNext}
-      /> */}
-      <div className='next-button' hidden={currentPage === page - 1} onClick={handleNext}>
-        <RightIcon fontSize='large'/>
+      <div className='right-container'>
+        <div className='next-button' hidden={currentPage === page - 1} onClick={handleNext}>
+          <RightIcon fontSize='large'/>
+        </div>
       </div>
     </div>
   )
