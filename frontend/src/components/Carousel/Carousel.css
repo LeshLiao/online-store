@@ -1,0 +1,54 @@
+.Carousel {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.Carousel__railWrapper {
+  overflow: hidden;
+
+  /* border: 1px solid blue; */
+}
+
+.Carousel__rail {
+  display: grid;
+  position: relative;
+  transition: left 1s cubic-bezier(0.2, 1, 0.3, 1) 0s;
+}
+
+.Carousel__btn--prev,
+.Carousel__btn--next {
+  position: absolute;
+  top: calc(50% - 6px);
+  height: 30px;
+  width: 30px;
+  background: transparent;
+  border-top: 2px solid #000;
+  border-right: 2px solid #000;
+  z-index: 10;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.Carousel__btn--prev {
+  left: -15px;
+  transform: rotate(-135deg);
+}
+
+.Carousel__btn--next {
+  right: -15px;
+  transform: rotate(45deg);
+}
+
+.prev-button{
+  cursor: pointer;
+}
+
+.next-button {
+  cursor: pointer;
+}
+
+.Carousel__ItemSet {
+  /* border: 1px solid red; */
+}

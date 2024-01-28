@@ -7,6 +7,13 @@ import Search from '../../components/Search/Search';
 import Tags from '../../components/Tags/Tags';
 import NotFound from '../../components/NotFound/NotFound';
 import Hero from './Hero';
+import AllCarousel from '../../components/Carousel/AllCarousel'
+import Frame from '../../components/Frame/Frame';
+import { sample_item } from '../../test/mock-data.js';
+import Title from '../../components/Title/Title';
+import PicSection from '../../components/PicSection/PicSection';
+import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails';
+
 const initialState = {foods: [], tags:[]};
 
 const reducer = (state, action) => {
@@ -40,10 +47,15 @@ export default function HomePage() {
   return (
     <div className={classes.container}>
       <Hero></Hero>
-      <Search/>
-      <Tags tags={tags}/>
-      {foods.length === 0 && <NotFound linkText={'Reset Search'}/>}
-      <Thumbnails foods={foods}/>
+      <Title title="New In" fontSize="3rem"/>
+      <AllCarousel items={sample_item}/>
+      <PicSection imageUrl={"/images/section/section-2.PNG"}/>
+      {/* <img className={classes.section_image} src={`/images/section/section-2.PNG`} alt="images"/> */}
+      {/* <Search/> */}
+      {/* <Tags tags={tags}/> */}
+      {/* {foods.length === 0 && <NotFound linkText={'Reset Search'}/>} */}
+      {/* <Thumbnails foods={foods}/> */}
+      <PaintingThumbnails items={sample_item}/>
     </div>
   )
 }

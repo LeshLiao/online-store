@@ -1,0 +1,14 @@
+.section-image {
+  background-image: url("../../img/section-2.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+  border: 1px solid red;
+}
+
+@media screen and (max-width: 960px) {
+  .section-image {
+    height: 50vh;
+  }
+}

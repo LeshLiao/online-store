@@ -1,0 +1,22 @@
+.carousel-container {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-margin-top: 5%;
+  margin-bottom: 10%;
+  /* height: 5rem; */
+}
+
+.my-carousel {
+  /* border: 1px solid red; */
+  width: 90%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.item {
+  background: #f4f4f4;
+  text-align: center;
+  /* height: 10rem; */
+}
