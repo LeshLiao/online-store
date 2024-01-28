@@ -32,8 +32,8 @@ function Navbar() {
             <li className='nav-item'><Link to='/prints' className='nav-links' onClick={closeMoMenu}>Prints</Link></li>
             <li className='nav-item'><Link to='/frames' className='nav-links' onClick={closeMoMenu}>Frames</Link></li>
             <li className='nav-item'><Link to='/about'className='nav-links' onClick={closeMoMenu}>About</Link></li>
-            <li className='nav-item'>
-              <Link to='/account' className='account-icon-mobile' onClick={closeMoMenu}><AccountIcon /></Link>
+            <li className='account-icon-mobile'>
+              <Link to='/account' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link>
             </li>
           </ul>
         </div>

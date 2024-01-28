@@ -40,6 +40,7 @@
 
 /* PaletteX desktop*/
 .navbar-logo {
+  font-family: 'Philosopher', sans-serif;
   color: #fff;
   justify-self: start;
   cursor: pointer;
@@ -56,7 +57,8 @@
 
 .nav-menu {
   display: flex;
-  justify-content:space-between;
+  justify-content:space-around;
+
   /* grid-gap: 1.9rem; */
   list-style: none;
   text-align: center;
@@ -64,16 +66,26 @@
   width: 40rem;
 }
 
-.nav-links, .account-icon-desktop, .cart-icon{
+.nav-links {
+  font-family: 'Philosopher', sans-serif;
+  /* border: 1px solid blue; */
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  padding: 1rem 1rem;
-  height: 100%;
-  margin-top: 0.2rem;
+  padding: 0.5rem 0 0 0;
+  /* height: 100%; */
+  /* margin-top: 0.3rem; */
   /* width: 4rem; */
+}
+
+.account-icon-desktop, .cart-icon{
+  /* border: 1px solid blue; */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.5rem 0 0;
 }
 
 .nav-links:hover {
@@ -112,8 +124,7 @@
     display: flex;
     flex-direction: column;
     justify-content:flex-start;
-    padding-top: 1rem;
-    /* justify-content: center; */
+    padding-top: 2.5rem;
     width: 100%;
     height: 95vh;
     position: absolute;
@@ -122,11 +133,16 @@
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
-    grid-gap: 1.8rem;
+    font-size: 1rem;
+    grid-gap: 3rem;
   }
 
   .nav-menu.active {
     background: #242222;
+
+    background: linear-gradient(180deg,  rgba(73, 73, 73, 0.9) 0%, rgba(27, 27, 27, 0.8) 1%
+    ,  rgba(2, 2, 2, 0.9) 20%, rgba(2, 2, 2, 0.9) 100%);
+
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
@@ -139,6 +155,7 @@
     /* padding: 2rem; */
     width: 100%;
     display: table;
+    /* padding: 1rem; */
   }
 
   .nav-links:hover {
@@ -194,6 +211,9 @@
 
   .account-icon-mobile {
     display: block;
+  }
+
+  .account-icon-mobile-link {
     color: aliceblue;
   }
 

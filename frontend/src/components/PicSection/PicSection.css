@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
   height: 100vh;
   background-size: cover;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 @media screen and (max-width: 960px) {
