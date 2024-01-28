@@ -3,13 +3,13 @@ export const sample_item = [
     id: '1',
     name: 'Enigmatic Dreamscape',
     price: 8,
-    imageUrl: '/images/painting/1.PNG',
+    imageUrl: '/images/painting/1.png',
   },
   {
     id: '2',
     name: 'Whimsical Wonderland',
     price: 15,
-    imageUrl: '/images/painting/2.PNG',
+    imageUrl: '/images/painting/2.png',
   },
   {
     id: '3',
