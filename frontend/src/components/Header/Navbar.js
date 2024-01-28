@@ -14,8 +14,8 @@ function Navbar() {
   return (
     <>
       <nav className='navbar'>
-        <div className='left-container'>
-          <div className='menu-icon' onClick={handleClick}>
+        <div className='left-container' onClick={handleClick}>
+          <div className='menu-icon'>
               <MenuRoundedIcon fontSize='medium'/>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
