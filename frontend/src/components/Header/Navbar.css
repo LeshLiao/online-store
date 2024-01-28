@@ -1,5 +1,6 @@
 :root {
   --mobile-nav-height: 2.7rem;
+  --google-font-family: 'Philosopher', sans-serif;
 }
 
 .navbar {
@@ -40,7 +41,7 @@
 
 /* PaletteX desktop*/
 .navbar-logo {
-  font-family: 'Philosopher', sans-serif;
+  font-family: var(--google-font-family);
   color: #fff;
   justify-self: start;
   cursor: pointer;
@@ -67,7 +68,7 @@
 }
 
 .nav-links {
-  font-family: 'Philosopher', sans-serif;
+  font-family: var(--google-font-family);
   /* border: 1px solid blue; */
   color: #fff;
   display: flex;
@@ -165,11 +166,13 @@
   }
 
   .navbar-logo {
+    font-family: var(--google-font-family);
     display: none;
     justify-content: center;
   }
 
   .navbar-mobile-logo {
+    font-family: var(--google-font-family);
     display: block;
     color: aliceblue;
     font-size: 1.3rem;
