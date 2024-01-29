@@ -7,14 +7,16 @@ import Frame from '../Frame/Frame'
 
 export default function PaintingThumbnails({items}) {
   return (
-    <ul className={classes.list}>
-      {
-        items.map(item => (
-          <li key={item.id}>
-            <Frame id={item.id} imageUrl={item.imageUrl} title={item.name} price={item.price}/>
-          </li>
-        ))
-      }
-    </ul>
+    <div className={classes.container}>
+      <ul className={classes.list}>
+        {
+          items.map(item => (
+            <li key={item.id}>
+              <Frame id={item.id} imageUrl={item.imageUrl} title={item.name} price={item.price}/>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   )
 }

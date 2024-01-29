@@ -15,7 +15,7 @@ export default function Frame({id, imageUrl, title, price}) {
           <img className="image" src={`${imageUrl}`} alt="food-1"/>
         </div>
         <span className='text'>{`${title}`}</span>
-        <span className='price'>{`CAD$ ${price}`}</span>
+        <span className='price'>{`From $${price}.00`}</span>
       </div>
     // </Link>
   )

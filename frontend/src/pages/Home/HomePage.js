@@ -47,7 +47,7 @@ export default function HomePage() {
   return (
     <div className={classes.container}>
       <Hero></Hero>
-      <Title title="New In" fontSize="3rem"/>
+      <Title title="NEW IN"/>
       <AllCarousel items={sample_item}/>
       <PicSection imageUrl={"/images/section/section-2.PNG"}/>
       {/* <img className={classes.section_image} src={`/images/section/section-2.PNG`} alt="images"/> */}
@@ -55,6 +55,7 @@ export default function HomePage() {
       {/* <Tags tags={tags}/> */}
       {/* {foods.length === 0 && <NotFound linkText={'Reset Search'}/>} */}
       {/* <Thumbnails foods={foods}/> */}
+      <Title title="BESTSELLERS"/>
       <PaintingThumbnails items={sample_item}/>
     </div>
   )
