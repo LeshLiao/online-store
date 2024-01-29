@@ -7,7 +7,6 @@ import CartIcon from '@mui/icons-material/ShoppingCartRounded';
 
 function Navbar() {
   const [click, setClick] = useState(false);
-
   const handleClick = () => setClick(!click);
   const closeMoMenu = () => setClick(false);
   const scrollToTop = () => { window.scroll(0, 0) };
@@ -43,7 +42,6 @@ function Navbar() {
           <Link to='/account' className='account-icon-desktop' onClick={closeMoMenu}><AccountIcon /></Link>
           <Link to='/cart' className='cart-icon' onClick={closeMoMenu}><CartIcon /></Link>
         </div>
-
       </nav>
     </>
   );

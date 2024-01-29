@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react';
 import './Carousel.css'
-// import NextPlanIcon from '@mui/icons-material/NextPlan';
 import LeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import RightIcon from '@mui/icons-material/ArrowCircleRight';
 
@@ -26,18 +25,26 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
   const page = Math.ceil(itemList.length / cols)
 
   const handlePrev = useCallback(() => {
-    setCurrentPage(p => p - 1)
-  }, [])
+    if (currentPage <= 0) {
+      setCurrentPage(page - 1);
+    } else {
+      setCurrentPage(p => p - 1)
+    }
+  }, [currentPage])
 
   const handleNext = useCallback(() => {
-    setCurrentPage(p => p + 1)
-  }, [])
+    if (currentPage === page - 1) {
+      setCurrentPage(0);
+    } else {
+      setCurrentPage(p => p + 1);
+    }
+  }, [currentPage]);
 
   return (
     <div className="Carousel">
       <div className='left-container'>
-        <div className='prev-button' hidden={currentPage <= 0}
-          onClick={handlePrev}>
+        {/* <div className='prev-button' hidden={currentPage <= 0} onClick={handlePrev}> */}
+        <div className='prev-button' onClick={handlePrev}>
           <LeftIcon fontSize='large'/>
         </div>
       </div>
@@ -66,7 +73,8 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
         </div>
       </div>
       <div className='right-container'>
-        <div className='next-button' hidden={currentPage === page - 1} onClick={handleNext}>
+        {/* <div className='next-button' hidden={currentPage === page - 1} onClick={handleNext}> */}
+        <div className='next-button' onClick={handleNext}>
           <RightIcon fontSize='large'/>
         </div>
       </div>
