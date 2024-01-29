@@ -40,7 +40,7 @@
 }
 
 /* PaletteX desktop*/
-.navbar-logo {
+.navbar-desktop-logo {
   font-family: var(--google-font-family);
   color: #fff;
   justify-self: start;
@@ -166,7 +166,7 @@
     border-radius: 0;
   }
 
-  .navbar-logo {
+  .navbar-desktop-logo {
     font-family: var(--google-font-family);
     display: none;
     justify-content: center;
