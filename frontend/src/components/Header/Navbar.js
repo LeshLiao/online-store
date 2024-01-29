@@ -25,7 +25,7 @@ function Navbar() {
           <Link to='/' className='navbar-mobile-logo' onClick={() => { closeMoMenu(); scrollToTop(); }}>PaletteX</Link>
           {/* Desktop */}
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className='nav-item'><Link to='/new' className='nav-links' onClick={closeMoMenu}>New</Link></li>
+            <li className='nav-item'><Link to='/new' className='nav-links' onClick={closeMoMenu}>New In</Link></li>
             <li className='nav-item'><Link to='/digital' className='nav-links' onClick={closeMoMenu}>Digital</Link></li>
             <li className='nav-item'><Link to='/gallery' className='nav-links' onClick={closeMoMenu}>Gallery</Link></li>
             {/* <Link to='/' className='navbar-desktop-logo' onClick={() => {this.forceUpdate()}}>PaletteX</Link> */}
