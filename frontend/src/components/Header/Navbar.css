@@ -131,6 +131,8 @@
     transition: all 0.5s ease;
     font-size: 1rem;
     grid-gap: 3rem;
+    background: linear-gradient(180deg,  rgba(44, 44, 44, 0.1) 0%, rgba(27, 27, 27, 0.9) 3%
+    ,  rgba(2, 2, 2, 0.9) 20%, rgba(2, 2, 2, 0.9) 100%);
   }
 
   .nav-menu.active {

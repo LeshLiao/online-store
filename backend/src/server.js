@@ -19,9 +19,13 @@ app.use(express.json());
 app.use(
   cors({
     credentials:true,
-    origin: ["https://food-store-frontend.onrender.com","http://localhost:3000",
-    "http://34.86.110.189:3000","https://react-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app",
-    "https://online-store-hxxg.onrender.com","https://www.palettex.ca"],
+    origin: [
+    "http://localhost:3000",
+    "https://www.palettex.ca",
+    "https://food-store-frontend.onrender.com",
+    "https://react-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app",
+    "https://online-store-hxxg.onrender.com",
+    "https://online-store-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app"],
   })
 );
 // test 10
