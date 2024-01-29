@@ -28,7 +28,6 @@ app.use(
     "https://online-store-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app"],
   })
 );
-// test 10
 
 app.use('/api/foods', foodRouter);
 app.use('/api/users', userRouter);
