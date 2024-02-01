@@ -54,7 +54,7 @@ export default function HomePage() {
       {/* <Search/> */}
       {/* <Tags tags={tags}/> */}
       {/* {foods.length === 0 && <NotFound linkText={'Reset Search'}/>} */}
-      {/* <Thumbnails foods={foods}/> */}
+      <Thumbnails foods={foods}/>
       <Title title="BESTSELLERS"/>
       <PaintingThumbnails items={sample_item}/>
     </div>
