@@ -57,7 +57,7 @@ export const sample_foods = [
   {
     id: '6',
     name: 'Vegetables Pizza',
-    price: 9,
+    price: 1,
     cookTime: '40-50',
     favorite: false,
     origins: ['italy'],

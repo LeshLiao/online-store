@@ -1,8 +1,10 @@
 import { connect, set } from 'mongoose';
 import { UserModel } from '../models/user.model.js';
 import { FoodModel } from '../models/food.model.js';
+import { ItemModel } from '../models/item.model.js';
 import { sample_users } from '../data.js';
 import { sample_foods } from '../data.js';
+import { sample_items } from '../test/mock-data-02.js';
 import bcrypt from 'bcryptjs';
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 set('strictQuery', true);
@@ -15,6 +17,7 @@ export const dbconnect = async () => {
     });
     await seedUsers();
     await seedFoods();
+    await initItems();
     console.log('MongoDB connect successfully!');
   } catch (error) {
     console.log(error);
@@ -49,4 +52,19 @@ async function seedFoods() {
   }
 
   console.log('Foods seed Is Done!');
+}
+
+async function initItems() {
+  const items = await ItemModel.countDocuments();
+  if (items > 0) {
+    console.log('items seed is already done!');
+    return;
+  }
+
+  for (const item of sample_items) {
+    // food.imageUrl = `/foods/${food.imageUrl}`;
+    await ItemModel.create(item);
+  }
+
+  console.log('items seed Is Done!');
 }

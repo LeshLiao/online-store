@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors'
 import foodRouter from './routers/food.router.js'
 import userRouter from './routers/user.router.js'
+import itemRouter from './routers/item.router.js'
 import fetch from "node-fetch";
 
 // Paypal
@@ -37,8 +38,7 @@ app.use(
 
 app.use('/api/foods', foodRouter);
 app.use('/api/users', userRouter);
-
-
+app.use('/api/items', itemRouter);
 
 /**
  * Generate an OAuth 2.0 access token for authenticating with PayPal REST APIs.
