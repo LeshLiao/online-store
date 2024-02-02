@@ -6,6 +6,7 @@ import CartPage from './pages/Cart/CartPage';
 import LoginPage from './pages/Login/LoginPage';
 import PaymentPage from './pages/Payment/PaymentPage';
 import { PaymentProvider } from './context/PaymentContext';
+import PaymentSuccessful from './pages/Payment/PaymentSuccessful';
 
 export default function AppRoutes() {
   return (
@@ -18,6 +19,7 @@ export default function AppRoutes() {
         <Route path="/cart" element={<CartPage/>}/>
         <Route path="/account" element={<LoginPage/>}/>
         <Route path="/payment" element={<PaymentPage/>}/>
+        <Route path='/success' element={<PaymentSuccessful/>}/>
       </Routes>
     </PaymentProvider>
   );
