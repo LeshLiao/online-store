@@ -10,10 +10,10 @@ export default function MyPaypalButton(obj) {
   const style = {"layout":"vertical"};
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
-
+  const base_url = 'https://online-store-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app';
     function createOrder() {
     // replace this url with your server
-    return fetch("http://localhost:4000/api/orders", {
+    return fetch(`${base_url}/api/orders`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function MyPaypalButton(obj) {
     }
     function onApprove(data) {
     // replace this url with your server
-    return fetch(`http://localhost:4000/api/orders/${data.orderID}/capture`, {
+    return fetch(`${base_url}/api/orders/${data.orderID}/capture`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
