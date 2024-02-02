@@ -5,6 +5,7 @@ import express from 'express';
 import cors from 'cors'
 import foodRouter from './routers/food.router.js'
 import userRouter from './routers/user.router.js'
+import fetch from "node-fetch";
 
 // Paypal
 const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PORT = 8888 } = process.env;
