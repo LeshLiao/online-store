@@ -8,8 +8,9 @@ import userRouter from './routers/user.router.js'
 import fetch from "node-fetch";
 
 // Paypal
-const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PORT = 8888 } = process.env;
-const base = "https://api-m.sandbox.paypal.com";
+const { BUSINESS_PAYPAL_CLIENT_ID, BUSINESS_PAYPAL_CLIENT_SECRET, PORT = 8888 } = process.env;
+// const base = "https://api-m.sandbox.paypal.com";
+const base = "https://api-m.paypal.com";
 
 import { dbconnect } from './config/database.config.js';
 dbconnect();
@@ -45,11 +46,11 @@ app.use('/api/users', userRouter);
  */
 const generateAccessToken = async () => {
   try {
-    if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
+    if (!BUSINESS_PAYPAL_CLIENT_ID || !BUSINESS_PAYPAL_CLIENT_SECRET) {
       throw new Error("MISSING_API_CREDENTIALS");
     }
     const auth = Buffer.from(
-      PAYPAL_CLIENT_ID + ":" + PAYPAL_CLIENT_SECRET,
+      BUSINESS_PAYPAL_CLIENT_ID + ":" + BUSINESS_PAYPAL_CLIENT_SECRET,
     ).toString("base64");
     const response = await fetch(`${base}/v1/oauth2/token`, {
       method: "POST",

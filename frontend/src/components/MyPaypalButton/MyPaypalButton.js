@@ -81,7 +81,7 @@ export default function MyPaypalButton(obj) {
 
     return (
         <>
-            <PayPalScriptProvider options={{ clientId: "AQMg4knitBn2NwW8ZpxYw7hrKy437qHv_rsWVy6sP7b2_yQErnOmX2jlSKZCrx3S5Byjf0IMPBvghH9U", components: "buttons", currency: "CAD" }}>
+            <PayPalScriptProvider options={{ clientId: "AVy5AdpDkb3sg9FaXabV4YJCcJNHS0g8N-TmP_-GMi13TIHEpyI973XNe-GLBZX5zEYnm6-lA2pR4l1V", components: "buttons", currency: "CAD" }}>
                 <ButtonWrapper showSpinner={false} />
             </PayPalScriptProvider>
         </>

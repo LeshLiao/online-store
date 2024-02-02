@@ -31,6 +31,8 @@ jobs:
           echo PORT=${{ secrets.SECRET_PORT }} >> .env
           echo PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID }} >> .env
           echo PAYPAL_CLIENT_SECRET=${{ secrets.PAYPAL_CLIENT_SECRET }} >> .env
+          echo BUSINESS_PAYPAL_CLIENT_ID=${{ secrets.BUSINESS_PAYPAL_CLIENT_ID }} >> .env
+          echo BUSINESS_PAYPAL_CLIENT_SECRET=${{ secrets.BUSINESS_PAYPAL_CLIENT_SECRET }} >> .env
           cat .env
 
       - name: install the gcloud cli
