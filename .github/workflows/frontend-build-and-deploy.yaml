@@ -26,6 +26,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: eslint
     steps:
       - name: Deploy production to render.com
         uses: johnbeynon/render-deploy-action@v0.0.8
