@@ -40,6 +40,8 @@ jobs:
           eslint-args: '--ignore-path=.gitignore --quiet'
           extensions: 'js,jsx,ts,tsx'
           annotations: true
+          all-files: true
+
       - name: check current test_path-4
         run: echo "$PWD" && echo "test_path-4"
 
