@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import React from 'react'
+import { useParams } from 'react-router-dom'
 
-export default function ItemPage() {
-  const {id} = useParams();
+export default function ItemPage () {
+  const { id } = useParams()
 
   return (
   <>

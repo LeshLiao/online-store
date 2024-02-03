@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 // import { usePayment } from '../../context/PaymentContext';
-import './PaymentSuccessful.css';
+import './PaymentSuccessful.css'
 import successIcon from '../../img/success-icon.png'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
-export default function PaymentSuccessful() {
+export default function PaymentSuccessful () {
   // const { paymentValue } = usePayment();
 
   // useEffect(() => {
@@ -24,5 +24,5 @@ export default function PaymentSuccessful() {
         </div>
       </div>
     </>
-  );
+  )
 }

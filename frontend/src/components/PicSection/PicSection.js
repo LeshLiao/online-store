@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './PicSection.css';
+import './PicSection.css'
 
 export class PicSection extends Component {
-  render() {
+  render () {
     return (
       <>
         <div className='section-image'></div>

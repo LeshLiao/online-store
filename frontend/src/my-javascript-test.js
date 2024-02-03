@@ -1,14 +1,9 @@
-console.log('hihi')
-
-const axiosRequest = require('axios');
-let error_api = 'https://httpstat.us/404';
-let boredapi_api = 'https://www.boredapi.com/api/activity';
+const axiosRequest = require('axios')
+// const errorApi = 'https://httpstat.us/404'
+const boredApi = 'https://www.boredapi.com/api/activity'
 
 axiosRequest
-  .get(boredapi_api)
+  .get(boredApi)
   .then(response => {
     console.log(`You could ${response.data.activity}`)
-  })
-  .catch(error => {
-    console.log('error!')
   })

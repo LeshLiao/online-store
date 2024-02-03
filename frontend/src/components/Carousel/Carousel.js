@@ -1,9 +1,15 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react'
 import './Carousel.css'
-import LeftIcon from '@mui/icons-material/ArrowCircleLeft';
-import RightIcon from '@mui/icons-material/ArrowCircleRight';
+import LeftIcon from '@mui/icons-material/ArrowCircleLeft'
+import RightIcon from '@mui/icons-material/ArrowCircleRight'
+import PropTypes from 'prop-types'
 
 const Item = ({ children }) => <div className='item-css'>{children}</div>
+
+// Add PropTypes validation for 'children'
+Item.propTypes = {
+  children: PropTypes.node.isRequired
+}
 
 const CAROUSEL_ITEM = 'CAROUSEL_ITEM'
 const Carousel = ({ cols = 1, gap = 10, children }) => {
@@ -26,7 +32,7 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
 
   const handlePrev = useCallback(() => {
     if (currentPage <= 0) {
-      setCurrentPage(page - 1);
+      setCurrentPage(page - 1)
     } else {
       setCurrentPage(p => p - 1)
     }
@@ -34,11 +40,11 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
 
   const handleNext = useCallback(() => {
     if (currentPage === page - 1) {
-      setCurrentPage(0);
+      setCurrentPage(0)
     } else {
-      setCurrentPage(p => p + 1);
+      setCurrentPage(p => p + 1)
     }
-  }, [currentPage]);
+  }, [currentPage])
 
   return (
     <div className="Carousel">
@@ -80,6 +86,13 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
       </div>
     </div>
   )
+}
+
+// Add PropTypes validation for the 'cols' and 'gap' props
+Carousel.propTypes = {
+  cols: PropTypes.number,
+  gap: PropTypes.number,
+  children: PropTypes.node.isRequired
 }
 
 Carousel.Item = ({ children }) => children

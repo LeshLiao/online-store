@@ -1,4 +1,4 @@
-export const sample_foods = [
+export const sampleFoods = [
   {
     id: '1',
     name: 'Pizza Pepperoni',
@@ -8,7 +8,7 @@ export const sample_foods = [
     origins: ['italy'],
     stars: 4.5,
     imageUrl: 'food-1.jpg',
-    tags: ['FastFood', 'Pizza', 'Lunch'],
+    tags: ['FastFood', 'Pizza', 'Lunch']
   },
   {
     id: '2',
@@ -19,7 +19,7 @@ export const sample_foods = [
     origins: ['persia', 'middle east', 'china'],
     stars: 5,
     imageUrl: 'food-2.jpg',
-    tags: ['SlowFood', 'Lunch'],
+    tags: ['SlowFood', 'Lunch']
   },
   {
     id: '3',
@@ -30,7 +30,7 @@ export const sample_foods = [
     origins: ['germany', 'us'],
     stars: 3.5,
     imageUrl: 'food-3.jpg',
-    tags: ['FastFood', 'Hamburger'],
+    tags: ['FastFood', 'Hamburger']
   },
   {
     id: '4',
@@ -41,7 +41,7 @@ export const sample_foods = [
     origins: ['belgium', 'france'],
     stars: 3,
     imageUrl: 'food-4.jpg',
-    tags: ['FastFood', 'Fry'],
+    tags: ['FastFood', 'Fry']
   },
   {
     id: '5',
@@ -52,7 +52,7 @@ export const sample_foods = [
     origins: ['india', 'asia'],
     stars: 3.5,
     imageUrl: 'food-5.jpg',
-    tags: ['SlowFood', 'Soup'],
+    tags: ['SlowFood', 'Soup']
   },
   {
     id: '6',
@@ -63,11 +63,11 @@ export const sample_foods = [
     origins: ['italy'],
     stars: 4.0,
     imageUrl: 'food-6.jpg',
-    tags: ['FastFood', 'Pizza', 'Lunch'],
-  },
-];
+    tags: ['FastFood', 'Pizza', 'Lunch']
+  }
+]
 
-export const sample_tags = [
+export const sampleTags = [
   { name: 'All', count: 6 },
   { name: 'FastFood', count: 4 },
   { name: 'Pizza', count: 2 },
@@ -75,5 +75,5 @@ export const sample_tags = [
   { name: 'SlowFood', count: 2 },
   { name: 'Hamburger', count: 1 },
   { name: 'Fry', count: 1 },
-  { name: 'Soup', count: 1 },
-];
+  { name: 'Soup', count: 1 }
+]

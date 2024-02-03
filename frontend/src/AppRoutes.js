@@ -1,15 +1,15 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import HomePage from './pages/Home/HomePage'
-import FoodPage from './pages/Food/FoodPage';
-import CartPage from './pages/Cart/CartPage';
-import LoginPage from './pages/Login/LoginPage';
-import PaymentPage from './pages/Payment/PaymentPage';
-import { PaymentProvider } from './context/PaymentContext';
-import PaymentSuccessful from './pages/Payment/PaymentSuccessful';
-import ItemPage from './pages/Item/ItemPage';
+import FoodPage from './pages/Food/FoodPage'
+import CartPage from './pages/Cart/CartPage'
+import LoginPage from './pages/Login/LoginPage'
+import PaymentPage from './pages/Payment/PaymentPage'
+import { PaymentProvider } from './context/PaymentContext'
+import PaymentSuccessful from './pages/Payment/PaymentSuccessful'
+import ItemPage from './pages/Item/ItemPage'
 
-export default function AppRoutes() {
+export default function AppRoutes () {
   return (
     <PaymentProvider>
       <Routes>
@@ -24,5 +24,5 @@ export default function AppRoutes() {
         <Route path='/success' element={<PaymentSuccessful/>}/>
       </Routes>
     </PaymentProvider>
-  );
+  )
 }

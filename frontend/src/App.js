@@ -1,13 +1,14 @@
-import AppRoutes from "./AppRoutes";
-import Header from "./components/Header/Header";
+import AppRoutes from './AppRoutes'
+import Header from './components/Header/Header'
+import React from 'react'
 
-function App() {
+function App () {
   return (
     <>
       <Header/>
       <AppRoutes/>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

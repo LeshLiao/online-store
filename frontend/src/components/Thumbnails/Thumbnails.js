@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import classes from './thumbnails.module.css'
 import StarRating from '../StarRating/StarRating'
 import Price from '../Price/Price'
+import PropTypes from 'prop-types' // Import PropTypes
 
-export default function Thumbnails({foods}) {
+export default function Thumbnails ({ foods }) {
   return (
-    /*<div>Thumbnails{foods.length}</div>*/
+    /* <div>Thumbnails{foods.length}</div> */
     <ul className={classes.list}>
       {
         foods.map(food => (
@@ -49,4 +50,20 @@ export default function Thumbnails({foods}) {
       }
     </ul>
   )
+}
+
+// Add PropTypes validation
+Thumbnails.propTypes = {
+  foods: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      favorite: PropTypes.bool.isRequired,
+      stars: PropTypes.number.isRequired,
+      origins: PropTypes.arrayOf(PropTypes.string).isRequired,
+      cookTime: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired
+    })
+  ).isRequired
 }

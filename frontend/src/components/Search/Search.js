@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import classes from './search.module.css'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'
 
-export default function Search() {
-  const [term, setTerm] = useState('');
-  const navigate = useNavigate();
-  const {searchTerm} = useParams();
+export default function Search () {
+  const [term, setTerm] = useState('')
+  const navigate = useNavigate()
+  const { searchTerm } = useParams()
 
   useEffect(() => {
-    setTerm(searchTerm ?? '');
-  }, [searchTerm]);
+    setTerm(searchTerm ?? '')
+  }, [searchTerm])
 
   const search = async () => {
-    term ? navigate('/search/' + term) : navigate('/'); /* if search is empty, get all*/
-  };
+    term ? navigate('/search/' + term) : navigate('/') /* if search is empty, get all */
+  }
 
   return (
     <div className={classes.container}>

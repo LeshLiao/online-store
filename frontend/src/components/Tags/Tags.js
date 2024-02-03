@@ -1,17 +1,17 @@
 import React from 'react'
 import classes from './tags.module.css'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-
-export default function Tags({tags, forFoodPage}) {
+export default function Tags ({ tags, forFoodPage }) {
   return (
     <div
       className={classes.container}
       style={{
-        justifyContent: forFoodPage ? 'start' : 'center',
+        justifyContent: forFoodPage ? 'start' : 'center'
       }}
     >
-      {tags.map(tag =>(
+      {tags.map(tag => (
         <Link key={tag.name} to={`/tag/${tag.name}`}>
           {tag.name}&nbsp;
           {!forFoodPage && `(${tag.count})`}
@@ -19,5 +19,17 @@ export default function Tags({tags, forFoodPage}) {
       ))}
 
     </div>
-  );
+  )
+}
+
+// Add PropTypes validation
+Tags.propTypes = {
+  tags: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      count: PropTypes.number.isRequired
+      // Add other required or optional properties based on your actual data structure
+    })
+  ).isRequired,
+  forFoodPage: PropTypes.bool
 }

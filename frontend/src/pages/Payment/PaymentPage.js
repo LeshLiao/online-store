@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import Title from '../../components/Title/Title';
-import MyPaypalButton from "../../components/MyPaypalButton/MyPaypalButton"
-import { usePayment } from '../../context/PaymentContext';
-import './PaymentPage.css';
+import React, { useEffect } from 'react'
+// import Title from '../../components/Title/Title'
+import MyPaypalButton from '../../components/MyPaypalButton/MyPaypalButton'
+import { usePayment } from '../../context/PaymentContext'
+import './PaymentPage.css'
 
-export default function PaymentPage() {
-  const { paymentValue } = usePayment();
+export default function PaymentPage () {
+  const { paymentValue } = usePayment()
 
   useEffect(() => {
-    console.log('paymentValue=' + paymentValue);
-  }, [paymentValue]);
+    console.log('paymentValue=' + paymentValue)
+  }, [paymentValue])
 
   return (
     <>
@@ -27,7 +27,7 @@ export default function PaymentPage() {
           </div>
           <div className='description'>
             <span><strong>Satisfaction Guaranteed</strong></span><br></br>
-            <span>If you're not completely happy with your purchase, contact our PaletteX Guides, 24/7/365, and we'll make it right.</span>
+            <span>If you&apos;re not completely happy with your purchase, contact our PaletteX Guides, 24/7/365, and we&apos;ll make it right.</span>
           </div>
           <div className='button-container'>
             <MyPaypalButton total_amount={paymentValue} />
@@ -36,5 +36,5 @@ export default function PaymentPage() {
       </div>
 
     </>
-  );
+  )
 }

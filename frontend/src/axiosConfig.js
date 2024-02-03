@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 
-//axios.defaults.baseURL =
+// axios.defaults.baseURL =
 //  process.env.NODE_ENV !== 'production' ? 'http://localhost:5000' : '/';
 
 // It's because I deploy frontend and backend to different server.(static site and web service)
@@ -13,4 +13,4 @@ import axios from 'axios';
 // axios.defaults.baseURL = 'http://34.86.56.229:4000';
 
 // Google cloud run (Backend)
-axios.defaults.baseURL = 'https://online-store-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app';
+axios.defaults.baseURL = 'https://online-store-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app'

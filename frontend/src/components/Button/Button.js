@@ -1,6 +1,8 @@
-import classes from './button.module.css';
+import React from 'react'
+import classes from './button.module.css'
+import PropTypes from 'prop-types'
 
-export default function Button({
+export default function Button ({
   type,
   text,
   onClick,
@@ -8,7 +10,7 @@ export default function Button({
   backgroundColor,
   fontSize,
   width,
-  height,
+  height
 }) {
   return (
     <div className={classes.container}>
@@ -18,7 +20,7 @@ export default function Button({
           backgroundColor,
           fontSize,
           width,
-          height,
+          height
         }}
         type={type}
         onClick={onClick}
@@ -26,7 +28,7 @@ export default function Button({
         {text}
       </button>
     </div>
-  );
+  )
 }
 
 Button.defaultProps = {
@@ -36,5 +38,16 @@ Button.defaultProps = {
   color: 'white',
   fontSize: '1.3rem',
   width: '12rem',
-  height: '3.5rem',
-};
+  height: '3.5rem'
+}
+
+Button.propTypes = {
+  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  text: PropTypes.string,
+  onClick: PropTypes.func,
+  color: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  fontSize: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string
+}

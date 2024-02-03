@@ -1,28 +1,29 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Carousel from './Carousel'
 import './AllCarousel.css'
 import Frame from '../Frame/Frame'
+import PropTypes from 'prop-types'
 
-export default function AllCarousel({items}) {
+export default function AllCarousel ({ items }) {
   const [matches, setMatches] = useState(
-    window.matchMedia("(min-width: 768px)").matches
+    window.matchMedia('(min-width: 768px)').matches
   )
 
   const fitCol = () => {
     if (matches) {
-      return 4;
+      return 4
     } else {
-      return 1;
+      return 1
     }
   }
 
   useEffect(() => {
     window
-    .matchMedia("(min-width: 960px)")
-    .addEventListener('change', e => setMatches( e.matches ));
-  }, []);
+      .matchMedia('(min-width: 960px)')
+      .addEventListener('change', e => setMatches(e.matches))
+  }, [])
 
-    return (
+  return (
       <div className='carousel-container'>
         <div className="my-carousel">
           <Carousel cols={fitCol()} gap={10}>
@@ -36,5 +37,15 @@ export default function AllCarousel({items}) {
           </Carousel>
         </div>
       </div>
-    )
-  }
+  )
+}
+
+// Add PropTypes validation for the 'items' prop
+AllCarousel.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      itemId: PropTypes.string.isRequired
+      // Add other required or optional properties based on your actual data structure
+    })
+  ).isRequired
+}

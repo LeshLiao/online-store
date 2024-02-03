@@ -1,13 +1,12 @@
 import React from 'react'
-import classes from './header.module.css'
-import { Link } from 'react-router-dom';
-import { useCart } from '../../hooks/useCart';
-import { useAuth } from '../../hooks/useAuth';
-import Navbar from './Navbar';
-export default function Header() {
-  const { user, logout } = useAuth();
-
-  const { cart } = useCart();
+// import classes from './header.module.css'
+// import { Link } from 'react-router-dom'
+// import { useCart } from '../../hooks/useCart'
+// import { useAuth } from '../../hooks/useAuth'
+import Navbar from './Navbar'
+export default function Header () {
+  // const { user, logout } = useAuth()
+  // const { cart } = useCart()
 
   // return (
   //   <header className={classes.header}>
@@ -48,5 +47,4 @@ export default function Header() {
     </>
 
   )
-
 }
