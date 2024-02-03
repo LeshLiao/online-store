@@ -28,9 +28,9 @@ export default function AllCarousel({items}) {
           <Carousel cols={fitCol()} gap={10}>
           {
             items.map(item => (
-              <Carousel.Item key={item.id}>
-                <Frame id={item.id} imageUrl={item.imageUrl} title={item.name} price={item.price}/>
-              </Carousel.Item>
+              <Carousel.Item key={item.itemId}>
+                <Frame item={item}/>
+                </Carousel.Item>
             ))
           }
           </Carousel>

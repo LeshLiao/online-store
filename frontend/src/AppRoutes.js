@@ -7,6 +7,7 @@ import LoginPage from './pages/Login/LoginPage';
 import PaymentPage from './pages/Payment/PaymentPage';
 import { PaymentProvider } from './context/PaymentContext';
 import PaymentSuccessful from './pages/Payment/PaymentSuccessful';
+import ItemPage from './pages/Item/ItemPage';
 
 export default function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ export default function AppRoutes() {
         <Route path="/search/:searchTerm" element={<HomePage/>}/>
         <Route path="/tag/:tag" element={<HomePage/>}/>
         <Route path="/food/:id" element={<FoodPage/>}/>
+        <Route path="/item/:id" element={<ItemPage/>}/>
         <Route path="/cart" element={<CartPage/>}/>
         <Route path="/account" element={<LoginPage/>}/>
         <Route path="/payment" element={<PaymentPage/>}/>

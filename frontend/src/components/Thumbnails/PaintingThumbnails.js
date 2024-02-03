@@ -11,8 +11,8 @@ export default function PaintingThumbnails({items}) {
       <ul className={classes.list}>
         {
           items.map(item => (
-            <li key={item.id}>
-              <Frame id={item.id} imageUrl={item.imageUrl} title={item.name} price={item.price}/>
+            <li key={item.itemId}>
+              <Frame item={item}/>
             </li>
           ))
         }

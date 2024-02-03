@@ -1,6 +1,7 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import classes from './homePage.module.css'
 import { getAll, getAllByTag, getAllTags, search } from '../../services/foodService';
+import { getAllItems } from '../../services/itemService';
 import Thumbnails from '../../components/Thumbnails/Thumbnails';
 import { useParams } from 'react-router-dom';
 import Search from '../../components/Search/Search';
@@ -8,8 +9,8 @@ import Tags from '../../components/Tags/Tags';
 import NotFound from '../../components/NotFound/NotFound';
 import Hero from './Hero';
 import AllCarousel from '../../components/Carousel/AllCarousel'
-import Frame from '../../components/Frame/Frame';
-import { sample_item } from '../../test/mock-data.js';
+// import { sample_item } from '../../test/mock-data.js';
+// import { sample_items } from '../../test/mock-data-02.js';
 import Title from '../../components/Title/Title';
 import PicSection from '../../components/PicSection/PicSection';
 import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails';
@@ -17,6 +18,7 @@ import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails';
 const initialState = {foods: [], tags:[]};
 
 const reducer = (state, action) => {
+  console.log(state);
   switch (action.type) {
     case 'FOODS_LOADED':
       return { ...state, foods: action.payload };
@@ -31,6 +33,7 @@ export default function HomePage() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const {foods ,tags} = state;
   const {searchTerm, tag} = useParams();
+  const [items, setItems] = useState([]);
 
   useEffect( () => {
     getAllTags().then(tags => dispatch({type: 'TAGS_LOADED', payload:tags}));
@@ -40,23 +43,24 @@ export default function HomePage() {
     : searchTerm
     ? search(searchTerm)
     : getAll();
-
     loadedFoods.then(foods => dispatch({type:'FOODS_LOADED', payload: foods}));
   }, [searchTerm,tag]);
+
+  useEffect(() => {
+    getAllItems().then(items => setItems(items));
+  }, []);
 
   return (
     <div className={classes.container}>
       <Hero></Hero>
       <Title title="NEW IN"/>
-      <AllCarousel items={sample_item}/>
+      <AllCarousel items={items}/>
       <PicSection imageUrl={"/images/section/section-2.PNG"}/>
-      {/* <img className={classes.section_image} src={`/images/section/section-2.PNG`} alt="images"/> */}
       {/* <Search/> */}
-      {/* <Tags tags={tags}/> */}
-      {/* {foods.length === 0 && <NotFound linkText={'Reset Search'}/>} */}
-      <Thumbnails foods={foods}/>
+      <Tags tags={tags}/>
+      {/* <Thumbnails foods={foods}/> */}
       <Title title="BESTSELLERS"/>
-      <PaintingThumbnails items={sample_item}/>
+      <PaintingThumbnails items={items}/>
     </div>
   )
 }

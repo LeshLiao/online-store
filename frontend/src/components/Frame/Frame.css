@@ -28,6 +28,7 @@
 .text {
   width: 160px;
   font-size: 0.8rem;
+  color: rgb(46, 46, 46);
 }
 
 .price {
@@ -35,4 +36,5 @@
   font-size: 0.9rem;
   margin-top: 9px;
   font-weight: bold;
+  color: rgb(33, 33, 33);
 }
