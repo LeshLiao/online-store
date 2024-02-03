@@ -13,7 +13,7 @@ import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails'
 // import { sampleItems } from '../../test/mock-data-02.js';
 // import NotFound from '../../components/NotFound/NotFound'
 // import Search from '../../components/Search/Search'
-import Thumbnails from '../../components/Thumbnails/Thumbnails' // test lint ERROR
+// import Thumbnails from '../../components/Thumbnails/Thumbnails'
 
 const initialState = { foods: [], tags: [] }
 
