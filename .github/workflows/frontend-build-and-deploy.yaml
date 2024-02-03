@@ -25,15 +25,10 @@ jobs:
           node-version: 16
       - name: npm ci
         working-directory: ./frontend
-        run: npm ci # or yarn install
-      - uses: sibiraj-s/action-eslint@v3
-        with:
-          working-directory: ./frontend
-          # token: ${{ secrets.GITHUB_TOKEN }} # optional
-          eslint-args: '--ignore-path=.gitignore --quiet'
-          extensions: 'js,jsx,ts,tsx'
-          annotations: true
-          all-files: true
+        run: npm ci
+      - name: run eslint
+        working-directory: ./frontend
+        run: npm run lint
 
   deploy:
     runs-on: ubuntu-latest
