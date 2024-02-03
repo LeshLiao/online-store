@@ -20,30 +20,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: check current test_path-1
-        run: echo "$PWD" && echo "test_path-1"
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: check current test_path-2
-        run: echo "$PWD" && echo "test_path-2"
-
-      - name: npm ci
-        working-directory: ./frontend
-        run: npm ci # or yarn install
-      - name: check current test_path-3
-        run: echo "$PWD" && echo "test_path-3"
-
+      - run: npm ci # or yarn install
       - uses: sibiraj-s/action-eslint@v3
         with:
           working-directory: ./frontend
+          # token: ${{ secrets.GITHUB_TOKEN }} # optional
           eslint-args: '--ignore-path=.gitignore --quiet'
           extensions: 'js,jsx,ts,tsx'
           annotations: true
           all-files: true
-
-      - name: check current test_path-4
-        run: echo "$PWD" && echo "test_path-4"
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,9 +45,6 @@ jobs:
 
       - name: code checkout
         uses: actions/checkout@v3
-
-      - name: check current test_path-5
-        run: echo "$PWD" && echo "test_path-5"
 
       - name: install the gcloud cli
         uses: google-github-actions/setup-gcloud@v0
