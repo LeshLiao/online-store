@@ -16,17 +16,18 @@ env:
   REPO: online-store
 
 jobs:
-  eslint:
+  build-and-eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: stefanoeb/eslint-action@1.0.2
-        with:
-          files: frontend/
+    - uses: actions/checkout@v2
+    - name: Install modules
+      run: yarn
+    - name: Run ESLint
+      run: eslint . --ext .js,.jsx,.ts,.tsx
 
   deploy:
     runs-on: ubuntu-latest
-    needs: eslint
+    needs: build-and-eslint
     steps:
       - name: Deploy production to render.com
         uses: johnbeynon/render-deploy-action@v0.0.8
