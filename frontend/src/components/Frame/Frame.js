@@ -7,7 +7,7 @@ export default function Frame ({ item }) {
   const imgUrl = `/images/painting/${item.imageFolder}/${item.thumbnailUrl}`
 
   return (
-    <Link to={`/item/${item.itemId}`}>
+    <Link to={`/item/${item._id}`}>
       <div className='frame'>
         <div className='container'>
           <img className="image" src={`${imgUrl}`} alt="item-pic"/>
@@ -22,7 +22,7 @@ export default function Frame ({ item }) {
 // Add PropTypes validation for the 'item' prop
 Frame.propTypes = {
   item: PropTypes.shape({
-    itemId: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired, // TBC: ObjectId or Object or string
     imageFolder: PropTypes.string.isRequired,
     thumbnailUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
