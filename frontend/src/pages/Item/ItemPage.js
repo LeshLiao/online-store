@@ -15,6 +15,10 @@ export default function ItemPage () {
     getItemById(id).then(setItem)
   }, [id])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
   <>
     <div className='top-container'></div>

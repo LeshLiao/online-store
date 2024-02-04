@@ -49,6 +49,7 @@
   outline: none; }
 
 .carousel {
+  /* border: 1px solid blue; */
   position: relative;
   width: 100%; }
   .carousel * {
@@ -101,7 +102,7 @@
       border: 3px solid #ccc;
       outline: none; }
     .carousel .thumb.selected, .carousel .thumb:hover {
-      border: 3px solid #333; }
+      border: 1px solid #b6b6b6; } /* selected border */
     .carousel .thumb img {
       vertical-align: top; }
   .carousel.carousel-slider {
@@ -120,7 +121,8 @@
   .carousel .slider-wrapper {
     overflow: hidden;
     margin: auto;
-    width: 100%;
+    /* width: 100%; */
+    width: 70%;
     -webkit-transition: height 0.15s ease-in;
     -moz-transition: height 0.15s ease-in;
     -ms-transition: height 0.15s ease-in;
@@ -153,6 +155,7 @@
     padding: 0;
     position: relative;
     list-style: none;
+    /* width: 100%; } */
     width: 100%; }
     .carousel .slider.animated {
       -webkit-transition: all 0.35s ease-in-out;
@@ -166,7 +169,7 @@
     position: relative;
     text-align: center; }
     .carousel .slide img {
-      width: 100%;
+      width: 90%;
       vertical-align: top;
       border: 0; }
     .carousel .slide iframe {
@@ -175,6 +178,7 @@
       margin: 0 40px 40px;
       border: 0; }
     .carousel .slide .legend {
+      display: none; /* Take it out */
       -webkit-transition: all 0.5s ease-in-out;
       -moz-transition: all 0.5s ease-in-out;
       -ms-transition: all 0.5s ease-in-out;
