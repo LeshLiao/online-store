@@ -20,6 +20,7 @@ export default function ItemCartPage () {
       : (
         <div className={classes.container}>
           <ul className={classes.list}>
+            {console.log(cart.items)}
             {cart.items.map(item => (
               <li key={item.myItem.id}>
                 <div>
