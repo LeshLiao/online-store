@@ -1,5 +1,5 @@
 import React from 'react'
-import './Frame.css'
+import classes from './frame.module.css'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -8,12 +8,12 @@ export default function Frame ({ item }) {
 
   return (
     <Link to={`/item/${item._id}`}>
-      <div className='frame'>
-        <div className='container'>
-          <img className="image" src={`${imgUrl}`} alt="item-pic"/>
+      <div className={classes.frame}>
+        <div className={classes.container}>
+          <img className={classes.image} src={`${imgUrl}`} alt="item-pic"/>
         </div>
-        <span className='text'>{`${item.name}`}</span>
-        <span className='price'>{`From $${item.price}`}</span>
+        <div className={classes.text}>{`${item.name}`}</div>
+        <div className={classes.price}>{`From $${item.price}`}</div>
       </div>
     </Link>
   )

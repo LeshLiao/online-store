@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import './Carousel.css'
+import classes from './carousel.module.css'
 import LeftIcon from '@mui/icons-material/ArrowCircleLeft'
 import RightIcon from '@mui/icons-material/ArrowCircleRight'
 import PropTypes from 'prop-types'
@@ -47,16 +47,16 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
   }, [currentPage])
 
   return (
-    <div className="Carousel">
-      <div className='left-container'>
+    <div className={classes.Carousel}>
+      <div className={classes.left_container}>
         {/* <div className='prev-button' hidden={currentPage <= 0} onClick={handlePrev}> */}
-        <div className='prev-button' onClick={handlePrev}>
+        <div className={classes.prev_button} onClick={handlePrev}>
           <LeftIcon fontSize='large'/>
         </div>
       </div>
-      <div className="Carousel__railWrapper">
+      <div className={classes.Carousel__railWrapper}>
         <div
-          className="Carousel__rail"
+          className={classes.Carousel__rail}
           style={{
             gridTemplateColumns: `repeat(${page}, 100%)`,
             left: `calc(${-100 * currentPage}% - ${gap * currentPage}px)`,
@@ -66,7 +66,7 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
           {itemSetList.map((set, i) => (
             <div
               key={i}
-              className="Carousel__ItemSet"
+              className={classes.Carousel__ItemSet}
               style={{
                 display: 'grid',
                 gridTemplateColumns: `repeat(${cols}, 1fr)`,
@@ -78,9 +78,9 @@ const Carousel = ({ cols = 1, gap = 10, children }) => {
           ))}
         </div>
       </div>
-      <div className='right-container'>
+      <div className={classes.right_container}>
         {/* <div className='next-button' hidden={currentPage === page - 1} onClick={handleNext}> */}
-        <div className='next-button' onClick={handleNext}>
+        <div className={classes.next_button} onClick={handleNext}>
           <RightIcon fontSize='large'/>
         </div>
       </div>

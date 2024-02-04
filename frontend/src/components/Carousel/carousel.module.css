@@ -42,11 +42,11 @@
   transform: rotate(45deg);
 }
 
-.prev-button{
+.prev_button{
   cursor: pointer;
 }
 
-.next-button {
+.next_button {
   cursor: pointer;
 }
 
@@ -54,7 +54,7 @@
   /* border: 1px solid red; */
 }
 
-.item-css {
+.item_css {
   /* border: 1px solid red; */
   display: flex;
   flex-direction: row;

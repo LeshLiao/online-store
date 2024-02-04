@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Carousel from './Carousel'
-import './AllCarousel.css'
+import classes from './all_carousel.module.css'
 import Frame from '../Frame/Frame'
 import PropTypes from 'prop-types'
 
@@ -24,8 +24,8 @@ export default function AllCarousel ({ items }) {
   }, [])
 
   return (
-      <div className='carousel-container'>
-        <div className="my-carousel">
+      <div className={classes.carousel_container}>
+        <div className={classes.my_carousel}>
           <Carousel cols={fitCol()} gap={10}>
           {
             items.map(item => (
@@ -45,7 +45,6 @@ AllCarousel.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       itemId: PropTypes.string.isRequired
-      // Add other required or optional properties based on your actual data structure
     })
   ).isRequired
 }
