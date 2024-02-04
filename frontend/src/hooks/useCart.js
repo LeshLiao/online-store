@@ -43,31 +43,31 @@ export default function CartProvider ({ children }) {
   // console.log('cartItems=')
   // console.log(cartItems)
 
-  const removeFromCart = foodId => {
-    const filteredCartItems = cartItems.filter(item => item.food.id !== foodId)
+  const removeFromCart = itemId => {
+    const filteredCartItems = cartItems.filter(item => item.myItem.id !== itemId)
     setCartItems(filteredCartItems)
   }
 
-  const addToCart = food => {
-    const cartItem = cartItems.find(item => item.food.id === food.id)
+  const addToCart = myItem => {
+    const cartItem = cartItems.find(item => item.myItem.id === myItem.id)
     if (cartItem) {
       changeQuantity(cartItem, cartItem.quantity + 1)
     } else {
-      setCartItems([...cartItems, { food, quantity: 1, price: food.price }])
+      setCartItems([...cartItems, { myItem, quantity: 1, price: myItem.price }])
     }
   }
 
   const changeQuantity = (cartItem, newQauntity) => {
-    const { food } = cartItem
+    const { myItem } = cartItem
 
     const changedCartItem = {
       ...cartItem,
       quantity: newQauntity,
-      price: food.price * newQauntity
+      price: myItem.price * newQauntity
     }
 
     setCartItems(
-      cartItems.map(item => (item.food.id === food.id ? changedCartItem : item))
+      cartItems.map(item => (item.myItem.id === myItem.id ? changedCartItem : item))
     )
   }
 

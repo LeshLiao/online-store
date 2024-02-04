@@ -31,8 +31,7 @@ const reducer = (state, action) => {
 
 export default function HomePage () {
   const [state, dispatch] = useReducer(reducer, initialState)
-  // const { foods, tags } = state
-  const { tags } = state
+  const { tags } = state // const { foods, tags } = state
   const { searchTerm, tag } = useParams()
   const [items, setItems] = useState([])
 

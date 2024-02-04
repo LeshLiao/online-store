@@ -27,7 +27,7 @@ Tags.propTypes = {
   tags: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      count: PropTypes.number.isRequired
+      count: PropTypes.number
       // Add other required or optional properties based on your actual data structure
     })
   ).isRequired,

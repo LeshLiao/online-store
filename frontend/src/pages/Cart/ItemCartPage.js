@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './cartPage.module.css'
+import classes from './item_cart_page.module.css'
 import { useCart } from '../../hooks/useCart'
 import Title from '../../components/Title/Title'
 import { Link } from 'react-router-dom'
@@ -7,13 +7,13 @@ import Price from '../../components/Price/Price'
 import NotFound from '../../components/NotFound/NotFound'
 import { usePayment } from '../../context/PaymentContext'
 
-export default function CartPage () {
+export default function ItemCartPage () {
   const { cart, removeFromCart, changeQuantity } = useCart()
   const { setPayment } = usePayment()
 
   return (
   <>
-    <Title title="Cart Page" margin="5rem 0 0 2.5rem" />
+    <Title title="ITEM Cart Page" margin="5rem 0 0 2.5rem" />
 
     {cart.items.length === 0
       ? (<NotFound message="Cart Page Is Empty!" />)
@@ -23,11 +23,12 @@ export default function CartPage () {
             {cart.items.map(item => (
               <li key={item.myItem.id}>
                 <div>
-                  <img src={`${item.myItem.imageUrl}`} alt={item.myItem.name} />
-                  {/* <img src={`/foods/${item.myItem.imageUrl}`} alt={item.myItem.name} /> */}
+                  <img src={`/images/painting/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`} alt={item.myItem.name} />
+
+                  {/* <img src={'/images/painting/001/001.jpg'} alt={item.myItem.name} /> */}
                 </div>
                 <div>
-                  <Link to={`/food/${item.myItem.id}`}>
+                  <Link to={`/item/${item.myItem._id}`}>
                     <span className={classes.item_name}>{item.myItem.name}</span>
                   </Link>
                 </div>
@@ -68,7 +69,7 @@ export default function CartPage () {
 
           <div className={classes.checkout}>
             <div>
-              <div className={classes.foods_count}>{cart.totalCount}</div>
+              <div className={classes.items_count}>{cart.totalCount}</div>
               <div className={classes.total_price}>
                 <Price price={cart.totalPrice} />
               </div>

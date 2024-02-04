@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { getItemById } from '../../services/itemService'
 import DownloadIcon from '@mui/icons-material/CloudDownload'
 import CropOriginalIcon from '@mui/icons-material/CropOriginal'
 import './ItemPage.css'
 import DemoCarousel from '../../components/Carousel/DemoCarousel'
+import { useCart } from '../../hooks/useCart'
 
 export default function ItemPage () {
+  const { addToCart } = useCart()
+  const navigate = useNavigate()
   const { id } = useParams()
   const [item, setItem] = useState({})
+
+  const handleAddToCart = () => {
+    addToCart(item)
+    navigate('/cart')
+  }
 
   useEffect(() => {
     // console.log('id='+id);
@@ -34,7 +42,7 @@ export default function ItemPage () {
           <div className='item-name'>{item.name}</div>
           <h4 className='stars'>STARS:{item.stars}</h4>
           <div className='options'>{item.sizeOptions}</div>
-          <button className='add-button'>Add to cart</button>
+          <button className='add-button' onClick={handleAddToCart}>Add to Cart</button>
           <h4>Item Detail</h4>
           <div className='digital-download'><DownloadIcon/>Digital Download</div>
           <div className='download-link'><CropOriginalIcon/>Digital file type(s): 5 PNG</div>
