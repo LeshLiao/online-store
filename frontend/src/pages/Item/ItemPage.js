@@ -4,6 +4,7 @@ import { getItemById } from '../../services/itemService'
 import DownloadIcon from '@mui/icons-material/CloudDownload'
 import CropOriginalIcon from '@mui/icons-material/CropOriginal'
 import './ItemPage.css'
+import DemoCarousel from '../../components/Carousel/DemoCarousel'
 
 export default function ItemPage () {
   const { id } = useParams()
@@ -20,7 +21,7 @@ export default function ItemPage () {
     <div className='container'>
 
       <div className='left-block'>
-
+        <DemoCarousel/>
       </div>
       <div className='right-block'>
         <div className='inner-block'>
