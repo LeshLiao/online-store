@@ -39,6 +39,12 @@
   padding-right: 0.5rem;
 }
 
+.desktop_username {
+  margin-top: 0.5rem;
+  margin-left: 0.8rem;
+  font-size: 0.7rem;
+}
+
 /* PaletteX desktop*/
 .navbar-desktop-logo {
   font-family: var(--google-font-family);
@@ -76,7 +82,7 @@
   padding: 0.5rem 0 0 0;
 }
 
-.account-icon-desktop, .cart-icon{
+.account-icon-desktop, .cart-icon, .desktop_exit_btn{
   /* border: 1px solid blue; */
   color: #fff;
   display: flex;
@@ -199,7 +205,7 @@
     transition: 250ms;
   }
 
-  .account-icon-desktop {
+  .account-icon-desktop, .desktop_username, .desktop_exit_btn {
     display: none;
   }
 

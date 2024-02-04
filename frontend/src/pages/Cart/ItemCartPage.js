@@ -23,8 +23,17 @@ export default function ItemCartPage () {
             {cart.items.map(item => (
               <li key={item.myItem.id}>
                 <div>
-                  <img src={`/images/painting/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`} alt={item.myItem.name} />
-
+                  {item.myItem && item.myItem.imageFolder && item.myItem.thumbnailUrl
+                    ? (
+                      <img
+                        src={`/images/painting/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`}
+                        alt={item.myItem.name}
+                      />
+                      )
+                    : (
+                      <span>Image Not Found</span>
+                      )}
+                  {/* <img src={`/images/painting/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`} alt={item.myItem.name} /> */}
                   {/* <img src={'/images/painting/001/001.jpg'} alt={item.myItem.name} /> */}
                 </div>
                 <div>
