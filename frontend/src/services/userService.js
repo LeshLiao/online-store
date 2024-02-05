@@ -16,13 +16,11 @@ export const logout = () => {
 }
 
 export async function register (userData) {
-  try {
-    console.log('register()')
-    console.log(userData)
-    const response = await axios.post('/api/users/register', userData)
-    return response.data // Assuming your API returns relevant data on success
-  } catch (error) {
-    console.error('Error during registration:', error.response.data)
-    throw new Error('Error during registration: ' + error.message)
-  }
+  const response = await axios.post('/api/users/register', userData)
+  return response
+}
+
+export const getAllTags = async () => {
+  const { data } = await axios.get('/api/foods/tags')
+  return data
 }

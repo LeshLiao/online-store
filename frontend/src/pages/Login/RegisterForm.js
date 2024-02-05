@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 // import { TextField, Button, Container, Stack } from '@mui/material'
 import { TextField, Button, Stack } from '@mui/material'
-// import { Link, useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import countries from '../../components/Common/IsoCountryList'
-// import { register } from '../../services/userService'
+import { register } from '../../services/userService'
 import { toast } from 'react-toastify'
 
 const RegisterForm = () => {
@@ -25,7 +24,6 @@ const RegisterForm = () => {
   function handleSubmit (event) {
     event.preventDefault()
 
-    // Prepare the data to be sent to the backend
     const userData = {
       firstName,
       lastName,
@@ -36,31 +34,14 @@ const RegisterForm = () => {
       country
     }
 
-    // // TODO:refactor
-    // register(userData)
-    //   .then(response => {
-    //     toast.success(response)
-    //     const navigate = useNavigate()
-    //     navigate('/')
-    //   })
-    //   .catch(error => {
-    //     toast.error(error)
-    //   })
-
-    fetch('http://localhost:4000/api/users/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userData)
+    register(userData).then((response) => {
+      toast.success(response.data.status)
+      const navigate = useNavigate()
+      navigate('/')
+    }, (error) => {
+      toast.error(error.response.data)
     })
-      .then(response => response.json())
-      .then(data => {
-        toast.success('Registration successful:', data)
-      })
-      .catch(error => {
-        toast.success('Error during registration:', error)
-      })
+
     // console.log(firstName, lastName, email, dateOfBirth, password, gender, country)
   }
 
