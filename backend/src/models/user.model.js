@@ -1,12 +1,14 @@
-
 import { model, Schema } from 'mongoose';
 
 export const UserSchema = new Schema(
   {
-    name: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    address: { type: String, required: true },
+    gender: { type: Number, required: true },
+    country: { type: Number, required: true },
+    address: { type: String, required: false },
     isAdmin: { type: Boolean, default: false },
     isBlocked: { type: Boolean, default: false },
   },

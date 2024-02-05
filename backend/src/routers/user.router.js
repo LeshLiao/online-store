@@ -23,6 +23,43 @@ router.post(
   })
 );
 
+router.post("/register", async (req, res) => {
+  const { firstName, lastName, email, password, gender, country} = req.body;
+  try {
+    const isExist = await UserModel.findOne({ email });
+
+    if (isExist) {
+      res.status(BAD_REQUEST).send(`User Exists: ${email}`);
+      return;
+    }
+
+    const encryptedPassword = await bcrypt.hash(password, 10);
+
+    await UserModel.create({
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: encryptedPassword,
+      gender: gender,
+      country: country
+    });
+
+    res.send({ status: "Registration Successful!" });
+  } catch (error) {
+    res.send({ status: "Registration Error." });
+  }
+});
+
+// firstName: { type: String, required: true },
+// lastName: { type: String, required: true },
+// email: { type: String, required: true, unique: true },
+// password: { type: String, required: true },
+// gender: { type: Number, required: true },
+// country: { type: Number, required: true },
+// address: { type: String, required: false },
+// isAdmin: { type: Boolean, default: false },
+// isBlocked: { type: Boolean, default: false },
+
 const generateTokenResponse = user => {
 
   const token = jwt.sign(

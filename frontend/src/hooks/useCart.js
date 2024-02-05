@@ -71,6 +71,12 @@ export default function CartProvider ({ children }) {
     )
   }
 
+  const emptyCart = () => {
+    setCartItems([])
+    window.localStorage.clear()
+    console.log('clear localStorage')
+  }
+
   return (
 
   <CartContext.Provider
@@ -81,7 +87,8 @@ export default function CartProvider ({ children }) {
         },
         removeFromCart,
         changeQuantity,
-        addToCart
+        addToCart,
+        emptyCart
       }
     }
   >

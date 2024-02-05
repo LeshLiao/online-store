@@ -8,6 +8,7 @@ import { PaymentProvider } from './context/PaymentContext'
 import PaymentSuccessful from './pages/Payment/PaymentSuccessful'
 import ItemPage from './pages/Item/ItemPage'
 import ItemCartPage from './pages/Cart/ItemCartPage'
+import RegisterPage from './pages/Login/RegisterPage'
 
 export default function AppRoutes () {
   return (
@@ -19,9 +20,10 @@ export default function AppRoutes () {
         <Route path="/food/:id" element={<FoodPage/>}/>
         <Route path="/item/:id" element={<ItemPage/>}/>
         <Route path="/cart" element={<ItemCartPage/>}/>
-        <Route path="/account" element={<LoginPage/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
         <Route path="/payment" element={<PaymentPage/>}/>
         <Route path='/success' element={<PaymentSuccessful/>}/>
+        <Route path='/register' element={<RegisterPage/>}/>
       </Routes>
     </PaymentProvider>
   )

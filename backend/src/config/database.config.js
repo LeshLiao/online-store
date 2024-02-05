@@ -15,7 +15,7 @@ export const dbconnect = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    await seedUsers();
+    // await seedUsers();
     await seedFoods();
     await initItems();
     console.log('MongoDB connect successfully!');

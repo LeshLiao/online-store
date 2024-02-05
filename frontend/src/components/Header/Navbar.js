@@ -43,7 +43,7 @@ function Navbar () {
             <li className='nav-item'><Link to='/frames' className='nav-links' onClick={closeMoMenu}>Frames</Link></li>
             <li className='nav-item'><Link to='/about'className='nav-links' onClick={closeMoMenu}>About</Link></li>
             <li className='account-icon-mobile'>
-              {/* <Link to='/account' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link> */}
+              {/* <Link to='/login' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link> */}
               {
                 user
                   ? <div>
@@ -51,7 +51,7 @@ function Navbar () {
                       {/* <a href="/#" onClick={logout}><ExitToAppIcon/></a> */}
                       <a href="/#" onClick={logoutAndCloseMenu}><ExitToAppIcon/></a>
                     </div>
-                  : <Link to='/account' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link>
+                  : <Link to='/login' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link>
               }
             </li>
           </ul>
@@ -63,7 +63,7 @@ function Navbar () {
                 ? <div className='desktop_exit_btn'>
                     <a href="/#" onClick={logout}><ExitToAppIcon/></a>
                   </div>
-                : <Link to='/account' className='account-icon-desktop' onClick={closeMoMenu}><AccountIcon /></Link>
+                : <Link to='/login' className='account-icon-desktop' onClick={closeMoMenu}><AccountIcon /></Link>
             }
           </div>
           <Link to='/cart' className='cart-icon' onClick={closeMoMenu}><CartIcon /></Link>

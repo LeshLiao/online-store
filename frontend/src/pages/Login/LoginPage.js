@@ -7,6 +7,8 @@ import Title from '../../components/Title/Title'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
 import { EMAIL } from '../../constants/patterns'
+import { useCart } from '../../hooks/useCart'
+
 export default function LoginPage () {
   const {
     handleSubmit,
@@ -18,6 +20,7 @@ export default function LoginPage () {
   const { user, login } = useAuth()
   const [params] = useSearchParams()
   const returnUrl = params.get('returnUrl')
+  const { emptyCart } = useCart()
 
   useEffect(() => {
     if (!user) return
@@ -56,9 +59,12 @@ export default function LoginPage () {
           <Button type="submit" text="Login" />
 
           <div className={classes.register}>
-            New user? &nbsp;
+            New user?
             <Link to={`/register${returnUrl ? '?returnUrl=' + returnUrl : ''}`}>
               Register here
+            </Link>
+            <Link to='/' onClick={emptyCart}>
+              Clear cart
             </Link>
           </div>
         </form>

@@ -16,8 +16,12 @@
   justify-content: center;
 }
 
-.register {
+.register, .register a:visited, .register a:link {
+  color: rgb(81, 81, 81);
+  font-size: 0.8rem;
   display: flex;
-  justify-content: center;
+  justify-content:space-around;
   align-items: center;
 }
+
+
