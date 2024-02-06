@@ -42,8 +42,11 @@ export default function ItemCartPage () {
                     <span className={classes.item_name}>{item.myItem.name}</span>
                   </Link>
                 </div>
-
                 <div>
+                  <Price price={item.myItem.price} />
+                </div>
+                <div>
+                  x &nbsp;
                   <select
                     value={item.quantity}
                     onChange={e => changeQuantity(item, Number(e.target.value))}
@@ -62,7 +65,7 @@ export default function ItemCartPage () {
                 </div>
 
                 <div>
-                  <Price price={item.price} />
+                  = <Price price={item.subtotal} />
                 </div>
 
                 <div>

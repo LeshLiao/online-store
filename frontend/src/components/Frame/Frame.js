@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './frame.module.css'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Price from '../Price/Price'
 
 export default function Frame ({ item }) {
   const imgUrl = `/images/painting/${item.imageFolder}/${item.thumbnailUrl}`
@@ -13,7 +14,7 @@ export default function Frame ({ item }) {
           <img className={classes.image} src={`${imgUrl}`} alt="item-pic"/>
         </div>
         <div className={classes.text}>{`${item.name}`}</div>
-        <div className={classes.price}>{`From $${item.price}`}</div>
+        <div className={classes.price}>From <Price price={item.price} /></div>
       </div>
     </Link>
   )

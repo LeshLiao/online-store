@@ -6,6 +6,7 @@ import CropOriginalIcon from '@mui/icons-material/CropOriginal'
 import './ItemPage.css'
 import DemoCarousel from '../../components/Carousel/DemoCarousel'
 import { useCart } from '../../hooks/useCart'
+import Price from '../../components/Price/Price'
 
 export default function ItemPage () {
   const { addToCart } = useCart()
@@ -19,17 +20,18 @@ export default function ItemPage () {
   }
 
   useEffect(() => {
-    // console.log('id='+id);
+    console.log('useEffect()')
     getItemById(id).then(setItem)
-  }, [id])
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
   }, [])
+
+  // useEffect(() => {
+  // window.scrollTo(0, 0)
+  // }, [])
 
   return (
   <>
     <div className='top-container'></div>
+    {console.log('render()')}
     <div className='container'>
 
       <div className='left-block'>
@@ -37,7 +39,7 @@ export default function ItemPage () {
       </div>
       <div className='right-block'>
         <div className='inner-block'>
-          <h2 className='item-price'>CA${item.price}.00</h2>
+          <h2 className='item-price'><Price price={item.price}/></h2>
           <div className='special-discount'>70% off sale for the next 21 hours</div>
           <div className='item-name'>{item.name}</div>
           <h4 className='stars'>STARS:{item.stars}</h4>

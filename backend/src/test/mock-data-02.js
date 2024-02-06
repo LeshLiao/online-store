@@ -2,7 +2,7 @@ export const sample_items = [
   {
     itemId: '001',
     name:"Rural Pastoral Scene: Vintage Artwork Featuring Sheep Grazing in a Countryside Meadow, Rustic Landscape Painting, Vintage Sheep Illustration, Meadow Serenity Print",
-    price: 1,
+    price: 0.1,
     stars: 3,
     thumbnailUrl: "001.jpg",
     imageFolder: "001",
@@ -13,7 +13,7 @@ export const sample_items = [
   {
     itemId: '002',
     name:"Wildflower Trio: Set of 3 Framed Botanical Prints on Canvas, Minimalist Floral Illustrations in Neutral Tones, Contemporary Farmhouse Wall Art, Modern Botanical ",
-    price: 2,
+    price: 0.12,
     stars: 4,
     thumbnailUrl: "002.jpg",
     imageFolder: "002",

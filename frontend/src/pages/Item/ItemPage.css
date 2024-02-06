@@ -11,7 +11,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content:space-around;
-  height: 2000px;
+  /* height: 2000px; */
 }
 
 .left-block {

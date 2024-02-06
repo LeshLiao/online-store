@@ -16,7 +16,7 @@ export default function CartProvider ({ children }) {
   const [totalCount, setTotalCount] = useState(initCart.totalCount)
 
   useEffect(() => {
-    const totalPrice = sum(cartItems.map(item => item.price))
+    const totalPrice = sum(cartItems.map(item => item.subtotal))
     const totalCount = sum(cartItems.map(item => item.quantity))
     setTotalPrice(totalPrice)
     setTotalCount(totalCount)
@@ -53,7 +53,7 @@ export default function CartProvider ({ children }) {
     if (cartItem) {
       changeQuantity(cartItem, cartItem.quantity + 1)
     } else {
-      setCartItems([...cartItems, { myItem, quantity: 1, price: myItem.price }])
+      setCartItems([...cartItems, { myItem, quantity: 1, subtotal: myItem.price }])
     }
   }
 
@@ -63,7 +63,7 @@ export default function CartProvider ({ children }) {
     const changedCartItem = {
       ...cartItem,
       quantity: newQauntity,
-      price: myItem.price * newQauntity
+      subtotal: myItem.price * newQauntity
     }
 
     setCartItems(

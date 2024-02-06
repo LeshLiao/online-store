@@ -8,7 +8,7 @@ export const PaymentProvider = ({ children }) => {
   const [paymentValue, setPaymentValue] = useState(null)
 
   const setPayment = (value) => {
-    setPaymentValue(value)
+    setPaymentValue(Math.round(value * 100) / 100)
   }
 
   return (

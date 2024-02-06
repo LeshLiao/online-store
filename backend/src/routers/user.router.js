@@ -1,5 +1,4 @@
 import { Router } from 'express'
-// import { sample_users } from '../data.js';
 import jwt from 'jsonwebtoken';
 import { BAD_REQUEST } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
@@ -49,16 +48,6 @@ router.post("/register", async (req, res) => {
     res.send({ status: "Registration Error." });
   }
 });
-
-// firstName: { type: String, required: true },
-// lastName: { type: String, required: true },
-// email: { type: String, required: true, unique: true },
-// password: { type: String, required: true },
-// gender: { type: Number, required: true },
-// country: { type: Number, required: true },
-// address: { type: String, required: false },
-// isAdmin: { type: Boolean, default: false },
-// isBlocked: { type: Boolean, default: false },
 
 const generateTokenResponse = user => {
 
