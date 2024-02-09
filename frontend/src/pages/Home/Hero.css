@@ -1,12 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+
+}
+
+.main {
+  width: 100%;
+  height: 100vh;
+}
+
+video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  Color: white;
+}
 
 .hero {
-  background-image: url("../../img/hero.png");
+  background-image: url("../../img/hero02.png");
   background-position: center;
   background-repeat: no-repeat;
   /* height: 816px; */
   height: 100vh;
   background-size: cover;
   /* border: 1px solid red; */
+}
+
+.its_time_to_text {
+  font-size: 1rem;
+  font-weight:500;
+}
+
+.change_your_text {
+  font-size: 1.8rem;
+  font-weight:600;
+}
+
+.wallpaper_text {
+  font-size: 1rem;
+  font-weight:500;
 }
 
 /* @media screen and (max-width: 960px) {

@@ -5,7 +5,7 @@ import { getAllItems } from '../../services/itemService'
 import { useParams } from 'react-router-dom'
 import Tags from '../../components/Tags/Tags'
 import Hero from './Hero'
-import AllCarousel from '../../components/Carousel/AllCarousel'
+// import AllCarousel from '../../components/Carousel/AllCarousel'
 import Title from '../../components/Title/Title'
 import PicSection from '../../components/PicSection/PicSection'
 import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails'
@@ -53,14 +53,14 @@ export default function HomePage () {
   return (
     <div className={classes.container}>
       <Hero></Hero>
-      <Title title="NEW IN"/>
-      <AllCarousel items={items}/>
+      <PaintingThumbnails items={items}/>
+      {/* <Title title="NEW IN"/> */}
+      {/* <AllCarousel items={items}/> */}
       <PicSection imageUrl={'/images/section/section-2.PNG'}/>
       {/* <Search/> */}
       <Tags tags={tags}/>
       {/* <Thumbnails foods={foods}/> */}
       <Title title="BESTSELLERS"/>
-      <PaintingThumbnails items={items}/>
     </div>
   )
 }

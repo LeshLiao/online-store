@@ -1,8 +1,9 @@
 .frame {
-  /* border: 1px solid blueviolet; */
-  height: 310px;
+  border: 1px solid blueviolet;
+  /* height: 310px; */
   width: 180px;
-  background-color: rgb(255,255,255);
+  /* background-color: rgb(255,255,255); */
+  background-color: gray;
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
@@ -13,7 +14,7 @@
 }
 
 .container {
-  /* border: 1px solid red; */
+  border: 1px solid red;
   display: flex;
   align-items: center;
   width: 160px;

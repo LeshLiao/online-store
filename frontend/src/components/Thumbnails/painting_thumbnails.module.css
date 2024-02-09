@@ -1,7 +1,7 @@
 
 .container {
   display: block;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   height: 150vh;
   margin: 2% 10% 15% 10%;
   width: 80%;
