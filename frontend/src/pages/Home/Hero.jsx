@@ -6,7 +6,7 @@ export class Hero extends Component {
   render () {
     return (
       <div className="main">
-        <video src={videoBg} autoPlay loop muted/>
+        <video src={videoBg} autoPlay loop muted playsInline/>
         <div className="content">
           <br/><br/>
           <div className='its_time_to_text'>IT&apos;S TIME TO</div><br/>
