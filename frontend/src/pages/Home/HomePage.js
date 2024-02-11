@@ -53,10 +53,10 @@ export default function HomePage () {
   return (
     <div className={classes.container}>
       <Hero></Hero>
+      <PicSection/>
       <PaintingThumbnails items={items}/>
       {/* <Title title="NEW IN"/> */}
       {/* <AllCarousel items={items}/> */}
-      <PicSection imageUrl={'/images/section/section-2.PNG'}/>
       {/* <Search/> */}
       <Tags tags={tags}/>
       {/* <Thumbnails foods={foods}/> */}
