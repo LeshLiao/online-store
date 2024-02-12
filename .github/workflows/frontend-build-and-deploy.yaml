@@ -24,15 +24,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: npm install
+      - name: install
         working-directory: ${{ env.DIRECTORY }}
-        run: npm install
-      - name: npm ci
-        working-directory: ${{ env.DIRECTORY }}
-        run: npm ci
+        run: yarn install
       - name: run eslint
         working-directory: ${{ env.DIRECTORY }}
-        run: npm run lint
+        run: yarn run eslint .
 
   deploy:
     runs-on: ubuntu-latest
