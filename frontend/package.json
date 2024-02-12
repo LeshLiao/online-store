@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.6",
@@ -19,11 +20,9 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
+    "react-spring-3d-carousel": "^1.3.4",
     "react-toastify": "^9.1.3",
-    "web-vitals": "^2.1.4",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "react-spring": "9.3.2",
-    "react-spring-3d-carousel": "1.2.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -60,4 +59,3 @@
     "eslint-plugin-react": "^7.33.2"
   }
 }
-
