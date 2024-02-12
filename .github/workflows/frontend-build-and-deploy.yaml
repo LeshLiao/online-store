@@ -24,6 +24,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: npm install
+        working-directory: ${{ env.DIRECTORY }}
+        run: npm install
       - name: npm ci
         working-directory: ${{ env.DIRECTORY }}
         run: npm ci
