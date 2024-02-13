@@ -5,16 +5,28 @@ import classes from './item_page.module.css'
 import { v4 as uuidv4 } from 'uuid'
 import Carousel3D from '../../components/Carousel/Carousel3D'
 import Card from '../../components/Carousel/Card'
+// import CarouselSwipe from '../../components/Carousel/CarouselSwipe'
 
 export default function ItemPage () {
-  const { id } = useParams()
+  const { index } = useParams()
   const [items, setItems] = useState([])
   const [phones, setPhones] = useState([])
 
   useEffect(() => {
-    console.log('useEffect()')
-    getAllItems().then(items => setItems(items))
-  }, [id])
+    console.log('useEffect(),index=' + index)
+    getAllItems().then(items => {
+      const firstArr = []
+      const secondArr = []
+      for (let i = 0; i < index; i++) {
+        firstArr.push(items[i])
+      }
+      for (let i = index; i < items.length; i++) {
+        secondArr.push(items[i])
+      }
+      const arr3 = [...secondArr, ...firstArr]
+      setItems(arr3)
+    })
+  }, [index])
 
   useEffect(() => {
     const updatedPhones = items.map(item => ({
@@ -38,12 +50,14 @@ export default function ItemPage () {
       <div className={classes.left_block}>
         <Carousel3D
         cards={phones}
-        height="700px"
-        width="50%"
+        height="600px"
+        width="30%"
         margin="0 auto"
         offset={2}
         showArrows={false}
+        index={Number(index)}
         />
+        {/* <CarouselSwipe cards={phones} index={Number(index)}/> */}
       </div>
       <div className={classes.right_block}>
         <div className={classes.inner_block}>

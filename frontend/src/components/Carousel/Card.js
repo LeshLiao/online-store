@@ -29,10 +29,11 @@ function Card ({ itemImage, item }) {
       onMouseEnter={() => setShown(true)}
       onMouseLeave={() => setShown(false)}
     >
-      <img src={itemImage} alt="photo" />
+
       {item.freeDownload
-        ? <button>Free Download</button>
-        : <button onClick={handleAddToCart}>Add to Cart ${item.price}</button>}
+        ? <button className={Styles.button_download}>Free Download</button>
+        : <button className={Styles.button_add}onClick={handleAddToCart}>Add to Cart ${item.price}</button>}
+        <img src={itemImage} alt="photo" />
     </animated.div>
   )
 }

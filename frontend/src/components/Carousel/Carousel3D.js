@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react'
 import Carousel from 'react-spring-3d-carousel'
 import { config } from 'react-spring'
 import PropTypes from 'prop-types' // Import prop-types package
+// import Styles from './Carousel3D.module.css'
 
 export default function Carousel3D (props) {
-  // const table = props.cards.map((element, index) => {
-  //   return { ...element, onClick: () => setGoToSlide(index) }
-  // })
-
   const [offsetRadius, setOffsetRadius] = useState(2)
   const [showArrows, setShowArrows] = useState(false)
   const [goToSlide, setGoToSlide] = useState(null)
-  // const [cards] = useState(table)
   const [cards, setCards] = useState([])
 
   useEffect(() => {
@@ -26,17 +22,16 @@ export default function Carousel3D (props) {
   }, [props.cards, props.offset, props.showArrows])
 
   return (
-    <div
-      style={{ width: props.width, height: props.height, margin: props.margin }}
-    >
-      {console.log('3D_cards:')}
-      {console.log(cards)}
+    <div style={{ width: props.width, height: props.height, margin: props.margin }}>
+    {/* <div className={Styles.carousel_container}> */}
+      {/* {console.log('3D_cards:')} */}
+      {/* {console.log(cards)} */}
       <Carousel
         slides={cards}
         goToSlide={goToSlide}
         offsetRadius={offsetRadius}
         showNavigation={showArrows}
-        animationConfig={config.gentle}
+        animationConfig={config.default}
       />
     </div>
   )
@@ -49,7 +44,8 @@ Carousel3D.propTypes = {
   showArrows: PropTypes.bool,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
-  margin: PropTypes.string
+  margin: PropTypes.string,
+  index: PropTypes.number
 }
 
 // Default prop values for Carousel component

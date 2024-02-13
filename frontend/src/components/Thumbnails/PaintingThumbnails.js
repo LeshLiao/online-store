@@ -10,9 +10,9 @@ export default function PaintingThumbnails ({ items }) {
     <div className={classes.container}>
       <ul className={classes.list}>
         {
-          items.map(item => (
+          items.map((item, index) => (
             <li key={item.itemId}>
-              <Frame item={item}/>
+              <Frame item={item} index={index}/>
             </li>
           ))
         }

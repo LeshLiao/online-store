@@ -1,17 +1,16 @@
 .card {
-  margin: 0;
   /* border: 2px solid gray; */
-
+  margin: 0;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: center;
-  /* background-color: bisque; */
-  /* width: 16rem; */
   width: 13rem;
-  height: fit-content;
+  /* width: 250px; */
+  /* height: fit-content; */
+  /* height: 90vh; */
+  /* height: 500px; */
   /* padding: 0 2rem 2rem 2rem; */
-  border-radius: 1rem;
+  /* border-radius: 1rem; */
   /* z-index: 500px; */
 }
 
@@ -23,28 +22,25 @@
   border-radius: 1rem;
 }
 
-.card h2 {
-  margin: 0;
-  margin-top: 1rem;
-}
-
-.card p {
-  margin: 0;
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.card .btnn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-button {
-  color: #f5f5f8;
-  background-color: #1b1b1f;
-  border: 1px solid #818182;
+.button_download {
+  border-style: none;
+  color: #35a69b;
+  background-color: #111111;
+  border: 1px solid #35a69b;
   height: 2rem;
   margin: 0.5rem;
-  border-radius: 1rem;
+  /* width: 150px; */
+  border-radius: 0.5rem;
+}
+
+.button_add {
+  border-style: none;
+  color: #f5f5f8;
+  color: #de8200;
+  background-color: #111111;
+  border: 1px solid #de8200;
+  height: 2rem;
+  margin: 0.5rem;
+  /* width: 150px; */
+  border-radius: 0.5rem;
 }
