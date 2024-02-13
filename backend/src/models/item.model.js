@@ -5,6 +5,7 @@ export const ItemSchema = new Schema(
     itemId: { type: String, required: true },
     name: { type: String, required: true },
     price: { type: Number, required: true },
+    freeDownload: { type: Boolean, default: false },
     stars: { type: Number, default: 3 },
     thumbnailUrl: { type: String, required: true },
     imageFolder: { type: String, required: true },
