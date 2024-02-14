@@ -32,7 +32,8 @@ app.use(
     "https://food-store-frontend.onrender.com",
     "https://react-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app",
     "https://online-store-hxxg.onrender.com",
-    "https://online-store-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app"],
+    "https://online-store-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app",
+    "https://online-store-gilt-nu.vercel.app"],
   })
 );
 
