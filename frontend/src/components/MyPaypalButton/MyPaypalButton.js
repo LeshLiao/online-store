@@ -12,7 +12,8 @@ export default function MyPaypalButton (obj) {
   const style = { layout: 'vertical' }
   //   const [successMessage, setSuccessMessage] = useState('')
   const navigate = useNavigate()
-  const baseUrl = 'https://online-store-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app'
+  // const baseUrl = 'https://online-store-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app' // Google Cloud Run
+  const baseUrl = 'https://online-store-service.onrender.com'
   function createOrder () {
     // replace this url with your server
     return fetch(`${baseUrl}/api/orders`, {

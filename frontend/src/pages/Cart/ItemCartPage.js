@@ -1,95 +1,74 @@
 import React from 'react'
 import classes from './item_cart_page.module.css'
 import { useCart } from '../../hooks/useCart'
-import Title from '../../components/Title/Title'
 import { Link } from 'react-router-dom'
 import Price from '../../components/Price/Price'
 import NotFound from '../../components/NotFound/NotFound'
 import { usePayment } from '../../context/PaymentContext'
 
 export default function ItemCartPage () {
-  const { cart, removeFromCart, changeQuantity } = useCart()
+  const { cart, removeFromCart } = useCart()
   const { setPayment } = usePayment()
 
   return (
   <>
-    <Title title="ITEM Cart Page" margin="5rem 0 0 2.5rem" />
+    {/* <Title title="My Cart" margin="5rem 0 0 2.5rem" /> */}
+    <div className={classes.top_container}></div>
 
     {cart.items.length === 0
       ? (<NotFound message="Cart Page Is Empty!" />)
       : (
         <div className={classes.container}>
+
           <ul className={classes.list}>
-            {console.log(cart.items)}
+            <div className={classes.title}>My Cart</div>
+            {/* {console.log(cart.items)} */}
             {cart.items.map(item => (
               <li key={item.myItem.id}>
-                <div>
+                <div className={classes.left_block}>
                   {item.myItem && item.myItem.imageFolder && item.myItem.thumbnailUrl
                     ? (
                       <img
-                        src={`/images/painting/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`}
+                        src={`/images/items/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`}
                         alt={item.myItem.name}
                       />
                       )
                     : (
                       <span>Image Not Found</span>
                       )}
-                  {/* <img src={`/images/painting/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`} alt={item.myItem.name} /> */}
-                  {/* <img src={'/images/painting/001/001.jpg'} alt={item.myItem.name} /> */}
                 </div>
-                <div>
-                  <Link to={`/item/${item.myItem._id}`}>
-                    <span className={classes.item_name}>{item.myItem.name}</span>
-                  </Link>
-                </div>
-                <div>
-                  <Price price={item.myItem.price} />
-                </div>
-                <div>
-                  x &nbsp;
-                  <select
-                    value={item.quantity}
-                    onChange={e => changeQuantity(item, Number(e.target.value))}
-                  >
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                  </select>
-                </div>
-
-                <div>
-                  = <Price price={item.subtotal} />
-                </div>
-
-                <div>
-                  <button
-                    className={classes.remove_button}
-                    onClick={() => removeFromCart(item.myItem.id)}
-                  >
-                    Remove
-                  </button>
+                <div className={classes.right_block}>
+                  <div className={classes.name_price_block}>
+                    <div className={classes.item_name}>{item.myItem.name}</div>
+                    <Price price={item.myItem.price} />
+                  </div>
+                  <div className={classes.catalog_remove_block}>
+                    <div className={classes.tags}>
+                      {item.myItem.tags.map(tag => (
+                        <span key={tag}>{tag}</span>
+                      ))}
+                    </div>
+                    <button
+                      className={classes.remove_button}
+                      onClick={() => removeFromCart(item.myItem.id)}>
+                      Remove
+                    </button>
+                  </div>
                 </div>
               </li>
             ))}
           </ul>
 
-          <div className={classes.checkout}>
-            <div>
-              <div className={classes.items_count}>{cart.totalCount}</div>
+          <div className={classes.checkout_container}>
+            <div className={classes.checkout_box}>
+              <div className={classes.items_count}>{cart.totalCount} Item(s)</div>
               <div className={classes.total_price}>
                 <Price price={cart.totalPrice} />
               </div>
+              <Link to="/payment" onClick={() => setPayment(cart.totalPrice)}>
+                <button>Checkout</button>
+              </Link>
             </div>
-            <Link to="/payment" onClick={() => setPayment(cart.totalPrice)}>
-              Checkout
-            </Link>
           </div>
         </div>
         )

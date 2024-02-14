@@ -16,13 +16,61 @@ export default function Carousel3D (props) {
       return { ...element, onClick: () => setGoToSlide(index) }
     })
     setCards(table)
-
     setOffsetRadius(props.offset)
     setShowArrows(props.showArrows)
   }, [props.cards, props.offset, props.showArrows])
 
+  let xDown = null
+  let yDown = null
+
+  const getTouches = (evt) => {
+    return (
+      evt.touches || evt.originalEvent.touches // browser API
+    ) // jQuery
+  }
+
+  const handleTouchStart = (evt) => {
+    const firstTouch = getTouches(evt)[0]
+    xDown = firstTouch.clientX
+    yDown = firstTouch.clientY
+    console.log('handleTouchStart')
+  }
+
+  const handleTouchMove = (evt) => {
+    console.log('handleTouchMove')
+    if (!xDown || !yDown) {
+      return
+    }
+
+    const xUp = evt.touches[0].clientX
+    const yUp = evt.touches[0].clientY
+
+    const xDiff = xDown - xUp
+    const yDiff = yDown - yUp
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      /* most significant */
+      if (xDiff > 0) {
+        setGoToSlide(goToSlide + 1) /* left swipe */
+      } else {
+        setGoToSlide(goToSlide - 1) /* right swipe */
+      }
+    } else {
+      if (yDiff > 0) {
+        /* up swipe */
+      } else {
+        /* down swipe */
+      }
+    }
+    /* reset values */
+    xDown = null
+    yDown = null
+  }
+
   return (
-    <div style={{ width: props.width, height: props.height, margin: props.margin }}>
+    <div style={{ width: props.width, height: props.height, margin: props.margin }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}>
     {/* <div className={Styles.carousel_container}> */}
       {/* {console.log('3D_cards:')} */}
       {/* {console.log(cards)} */}

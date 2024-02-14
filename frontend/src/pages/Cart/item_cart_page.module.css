@@ -3,69 +3,94 @@
   margin: 0;
   padding: 0;
 }
+.top_container {
+  /* border: 2px dashed yellow ; */
+  width: 100%;
+  height: 2.7rem;
+}
+
+.title {
+  color:aliceblue;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
 
 .container {
+  /* border: 1px solid white; */
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  margin: 1.5rem;
-  margin-top: 0.5rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  flex: 3 0;
-  justify-content: space-evenly;
-  border: 1px solid #ffbbbb;
-  border-radius: 1rem;
   list-style-type: none;
-  margin: 0.5rem;
-  padding: 0;
+  /* border: 1px solid green; */
+  width: 50%;
 }
 
 .list li {
+  /* border: 1px solid green; */
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  align-items: center;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #e4e4e4;
+  background: #272727;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0 0.5rem 0 ;
 }
-
-.list li:last-child {
-  border: none;
+.left_block {
+  margin: 0.5rem;
+  /* border: 1px solid rgb(25, 0, 255); */
+  width: 20%;
+  display:flex;
 }
-
-.list li img {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 100rem;
-  object-fit: cover;
-}
-
-.list li div {
+.right_block {
+  width: 80%;
+  /* border: 1px solid rgb(255, 0, 179); */
+  font-size: 0.7rem;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
 }
 
-.list li div:not(:first-child) {
-  flex-basis: 18%;
+img {
+  margin: 0;
+  border-radius: 0.3rem;
+  width: 100%;
+  /* object-fit: cover; */
 }
 
-.list li select {
-  width: 3rem;
-  outline: none;
-  border: none;
-  border-bottom: 1px solid lightgrey;
-  font-size: 1.1rem;
-  font-weight: 100;
+.name_price_block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #e4e4e4;
 }
+
+.item_name {
+  color: rgb(217, 217, 217);
+  /* height: 2rem; */
+  width: 80%;
+}
+
+.catalog_remove_block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #e4e4e4;
+}
+
 
 .list .remove_button {
-  border-radius: 1rem;
+  border-radius: 0.2rem;
   border: none;
-  padding: 0.5rem;
-  color: #e72929;
-  opacity: 0.7;
+  padding: 0.3rem;
+  background-color: #3d3d3d;
+  color: rgb(160, 160, 160);
   outline: none;
 }
 
@@ -74,18 +99,76 @@
   cursor: pointer;
 }
 
-.checkout {
+.checkout_container {
+  /* border: 1px solid red; */
+  width: 30%;
+  /* height: 100%; */
+  /* width: 100%; */
+  display: flex;
+  align-items: flex-end;
+}
+
+.checkout_box {
+  background: #181818;;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 13rem;
+  width: 95%;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color:#e4e4e4;
+}
+
+.checkout_info {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   flex: 1 3;
   height: 20rem;
-  border: 1px solid #ffbbbb;
-  border-radius: 1rem;
+  width: 95%;
+  border: 2px solid #8f8f8f;
+  border-radius: 0.3rem;
   padding: 0.5rem;
   margin: 0.5rem;
 }
+
+.checkout_box button {
+  border-style: none;
+  color: white;
+  background: #0273e8;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.3rem;
+}
+
+.checkout_box a {
+  width: 90%;
+  height: 2rem;
+}
+
+.checkout_box button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+}
+
+.tags span {
+  padding-right: 0.3rem;
+  font-size: 0.7rem;
+  text-decoration:underline;
+  color: #8f8f8f;
+}
+
+/*
+
 
 .checkout > div {
   font-size: 1.4rem;
@@ -107,14 +190,14 @@
 }
 
 .checkout .total_price::before {
-  content: 'Price: ';
+  content: 'Subtotal: ';
   color: grey;
 }
 
 .checkout a {
   padding: 1rem;
   color: white;
-  background: #e72929;
+  background: #0273e8;
   display: block;
   width: 99%;
   border-radius: 1rem;
@@ -125,8 +208,36 @@
 .checkout a:hover {
   opacity: 0.8;
   cursor: pointer;
-}
+} */
 
-.item_name {
-  color: black;
+
+@media screen and (max-width: 960px) {
+  .container {
+    flex-direction: column;
+    padding: 3%;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    width: 95%;
+  }
+
+  .name_price_block {
+    font-size: 0.5rem;
+  }
+
+  .checkout_container {
+    width: 95%;
+  }
+
+  .checkout_box {
+    height: 8rem;
+    width: 95%;
+  }
+
+  .checkout_box a {
+    width: 95%;
+  }
+
 }
