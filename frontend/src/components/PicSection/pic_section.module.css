@@ -1,4 +1,4 @@
-.section-image {
+.section_image {
   background-image: url("../../img/section-4.gif");
   background-position: center;
   background-repeat: no-repeat;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 960px) {
-  .section-image {
+  .section_image {
     height: 50vh;
   }
 }

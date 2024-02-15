@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, useSearchParams, Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import classes from './loginPage.module.css'
-import Title from '../../components/Title/Title'
 import Input from '../../components/Input/Input'
 import Button from '../../components/Button/Button'
 import { EMAIL } from '../../constants/patterns'
@@ -35,7 +34,8 @@ export default function LoginPage () {
   return (
     <div className={classes.container}>
       <div className={classes.details}>
-        <Title title="Login" />
+        {/* <Title title="Login" /> */}
+        <div className={classes.title}>Login</div>
         <form onSubmit={handleSubmit(submit)} noValidate>
           <Input
             type="email"

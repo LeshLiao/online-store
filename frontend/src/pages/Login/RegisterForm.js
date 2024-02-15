@@ -20,6 +20,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('')
   const [gender, setGender] = useState('')
   const [country, setCountry] = useState('')
+  const navigate = useNavigate()
 
   function handleSubmit (event) {
     event.preventDefault()
@@ -36,7 +37,6 @@ const RegisterForm = () => {
 
     register(userData).then((response) => {
       toast.success(response.data.status)
-      const navigate = useNavigate()
       navigate('/')
     }, (error) => {
       toast.error(error.response.data)

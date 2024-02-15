@@ -63,7 +63,7 @@ export default function ItemCartPage () {
             <div className={classes.checkout_box}>
               <div className={classes.items_count}>{cart.totalCount} Item(s)</div>
               <div className={classes.total_price}>
-                <Price price={cart.totalPrice} />
+                Total:<Price price={cart.totalPrice} />
               </div>
               <Link to="/payment" onClick={() => setPayment(cart.totalPrice)}>
                 <button>Checkout</button>

@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './tags.module.css'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 export default function Tags ({ tags, forFoodPage }) {
@@ -11,12 +11,12 @@ export default function Tags ({ tags, forFoodPage }) {
         justifyContent: forFoodPage ? 'start' : 'center'
       }}
     >
-      {tags.map(tag => (
+      {/* {tags.map(tag => (
         <Link key={tag.name} to={`/tag/${tag.name}`}>
           {tag.name}&nbsp;
           {!forFoodPage && `(${tag.count})`}
         </Link>
-      ))}
+      ))} */}
 
     </div>
   )

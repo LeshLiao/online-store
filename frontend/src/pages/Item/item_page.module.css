@@ -8,20 +8,30 @@
 .container {
   /* border: 1px solid rgb(13, 0, 255); */
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   justify-content:center;
   /* height: 2000px; */
 }
 
 .left_block {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width:40%;
-  height: 90vh;
+  /* height: 90vh; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.middle_block {
+  /* border: 1px solid rgb(0, 13, 255); */
+  width:40%;
+  /* height: 90vh; */
+  display: flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
 }
 
 .image {
@@ -37,9 +47,9 @@ img {
 }
 
 .right_block {
-  border: 1px solid red;
-  width: 45%;
-  /* height: 110vh; */
+  /* border: 1px solid red; */
+  width: 40%;
+  height: 0;
   display: flex;
   justify-content: center;
 }

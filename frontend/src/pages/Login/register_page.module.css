@@ -5,12 +5,16 @@
 }
 
 .container {
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 90vh;
 }
 
 .form_container {
   /* border: 1px solid red; */
   width: 380px;
+  background-color: #fff;
+  /* height: 400px; */
 }

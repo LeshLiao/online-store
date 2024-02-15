@@ -9,6 +9,7 @@ import Hero from './Hero'
 import Title from '../../components/Title/Title'
 import PicSection from '../../components/PicSection/PicSection'
 import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails'
+import FirstSection from '../../components/PicSection/FirstSection'
 // import { sampleItem } from '../../test/mock-data.js';
 // import { sampleItems } from '../../test/mock-data-02.js';
 // import NotFound from '../../components/NotFound/NotFound'
@@ -53,6 +54,7 @@ export default function HomePage () {
   return (
     <div className={classes.container}>
       <Hero></Hero>
+      <FirstSection/>
       <PicSection/>
       <PaintingThumbnails items={items}/>
       {/* <Title title="NEW IN"/> */}

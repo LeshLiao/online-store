@@ -48,15 +48,7 @@ export default function ItemPage () {
     <div className={classes.container}>
 
       <div className={classes.left_block}>
-        <Carousel3D
-        cards={phones}
-        height="600px"
-        width="30%"
-        margin="0 auto"
-        offset={2}
-        showArrows={false}
-        index={Number(index)}
-        />
+
         {/* <CarouselSwipe cards={phones} index={Number(index)}/> */}
       </div>
       <div className={classes.right_block}>
@@ -71,6 +63,17 @@ export default function ItemPage () {
           {/* <div className={classes.digital_download}><DownloadIcon/>Digital Download</div> */}
           {/* <div className={classes.download_link}><CropOriginalIcon/>Digital file type(s): 5 PNG</div> */}
         </div>
+      </div>
+      <div className={classes.middle_block}>
+        <Carousel3D
+          cards={phones}
+          height="600px"
+          width="60%"
+          margin="0 auto"
+          offset={3}
+          showArrows={false}
+          index={Number(index)}
+          />
       </div>
     </div>
   </>
