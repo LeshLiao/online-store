@@ -1,2 +1,1 @@
 # online-store
-# ssh
