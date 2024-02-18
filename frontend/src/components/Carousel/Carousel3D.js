@@ -79,7 +79,6 @@ export default function Carousel3D (props) {
         showNavigation={showArrows}
         animationConfig={config.default}
       />
-      <span className={Styles.resolution}></span>
     </div>
   )
 }

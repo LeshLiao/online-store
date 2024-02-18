@@ -1,10 +1,13 @@
 .card {
-  /* border: 2px solid gray; */
+  /* border: 1px solid blue; */
   margin: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 13rem;
+  height: 90vh;
+
+
   /* width: 250px; */
   /* height: fit-content; */
   /* height: 90vh; */
@@ -43,4 +46,25 @@
   margin: 0.5rem;
   /* width: 150px; */
   border-radius: 0.5rem;
+}
+
+
+@media only screen and (max-width: 320px) {
+  .card {
+    width: 9rem;
+  }
+}
+
+@media only screen and (min-width: 390px) {
+  .card {
+    /* border: 2px solid green; */
+    width: 14rem;
+  }
+}
+
+@media only screen and (min-width: 414px) {
+  .card {
+    /* border: 2px solid yellow; */
+    width: 15rem;
+  }
 }

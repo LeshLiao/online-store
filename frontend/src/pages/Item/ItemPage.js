@@ -67,9 +67,6 @@ export default function ItemPage () {
       <div className={classes.middle_block}>
         <Carousel3D
           cards={phones}
-          height="600px"
-          width="60%"
-          margin="0 auto"
           offset={3}
           showArrows={false}
           index={Number(index)}
