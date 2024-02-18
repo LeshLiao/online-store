@@ -7,3 +7,62 @@
   /* width: 150px;
   height: 85vh; */
 }
+
+.resolution::before {
+  content: 'resolution';
+  color: aliceblue;
+}
+
+/* Others small devices */
+@media only screen and (max-height: 735px) {
+  .resolution::before {
+    content: 'h <= 735';
+  }
+}
+
+/* iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus  */
+@media only screen and (min-height: 736px) and (max-height: 811px) {
+  .resolution::before {
+    content: '736 <= h <= 811';
+  }
+}
+
+/*
+  For iPhone X, iPhone Xs, iPhone 11 Pro, iPhone 12 Mini, and iPhone 13 Mini (1080×2340 pixels at 476ppi)
+*/
+@media only screen and (min-height: 812px) and (max-height: 851px) {
+  .resolution::before {
+    content: '812 <= h <= 851';
+  }
+}
+
+/*
+  For iPhone 14 Pro, iPhone 15 and iPhone 15 Pro (1179×2556 pixels at 460ppi)
+  For iPhone 12, iPhone 12 Pro, iPhone 13, iPhone 13 Pro, and iPhone 14 (1170×2532 pixels at 460ppi)
+*/
+@media only screen and (min-height: 852px) and (max-height: 895px) {
+  .resolution::before {
+    content: '852 <= h <= 895';
+  }
+}
+
+/*
+  For iPhone XR, and iPhone 11 (828×1792 pixels at 326ppi)
+  For iPhone Xs Max, and iPhone 11 Pro Max (1242×2688 pixels at 458ppi)
+*/
+@media only screen and (min-height: 896px) and (max-height: 925px) {
+  .resolution::before {
+    content: '896 <= h <= 925';
+  }
+}
+
+/*
+  For iPhone 14 Pro Max, iPhone 15 Plus and iPhone 15 Pro Max (1284×2778 pixels at 460ppi)
+  For iPhone 12 Pro Max, iPhone 13 Pro Max, and iPhone 14 Plus (1284×2778 pixels at 458ppi)
+  and more than 926px devices
+*/
+@media only screen and (min-height: 926px) {
+  .resolution::before {
+    content: '926 >= h';
+  }
+}

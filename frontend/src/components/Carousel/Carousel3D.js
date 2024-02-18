@@ -71,6 +71,7 @@ export default function Carousel3D (props) {
     <div className={Styles.carousel_container}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}>
+
       <Carousel
         slides={cards}
         goToSlide={goToSlide}
@@ -78,6 +79,7 @@ export default function Carousel3D (props) {
         showNavigation={showArrows}
         animationConfig={config.default}
       />
+      <span className={Styles.resolution}></span>
     </div>
   )
 }
