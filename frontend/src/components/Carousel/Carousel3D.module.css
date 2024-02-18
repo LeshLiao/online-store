@@ -1,11 +1,8 @@
 .carousel_container {
   /* border: 1px solid orange; */
-  height: 600px;
   width: 100%;
   margin:0 auto;
-
-  /* width: 150px; */
-  height: 90vh;
+  height: 85vh;
 }
 
 
