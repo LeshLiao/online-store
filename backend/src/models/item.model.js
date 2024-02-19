@@ -13,6 +13,7 @@ export const ItemSchema = new Schema(
     sizeOptions: { type: [String] },
     favorite: { type: Boolean, default: false },
     tags: { type: [String] },
+    downloadLink: { type: String, required: true },
   },
   {
     toJSON: {
