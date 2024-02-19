@@ -15,12 +15,12 @@ export default function ItemCartPage () {
   const navigate = useNavigate()
 
   const checkIsLogin = () => {
+    setPayment(cart.totalPrice)
     if (user) {
-      setPayment(cart.totalPrice)
       navigate('/payment')
     } else {
       toast.info('Please Login')
-      navigate('/login')
+      navigate('/login?returnUrl=/payment')
     }
   }
 

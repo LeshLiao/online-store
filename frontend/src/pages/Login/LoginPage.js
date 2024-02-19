@@ -23,7 +23,6 @@ export default function LoginPage () {
 
   useEffect(() => {
     if (!user) return
-
     returnUrl ? navigate(returnUrl) : navigate('/')
   }, [navigate, returnUrl, user])
 
@@ -35,7 +34,7 @@ export default function LoginPage () {
     <div className={classes.container}>
       <div className={classes.details}>
         {/* <Title title="Login" /> */}
-        <div className={classes.title}>Login</div>
+        <div className={classes.title}>LOGIN</div>
         <form onSubmit={handleSubmit(submit)} noValidate>
           <Input
             type="email"
@@ -56,7 +55,7 @@ export default function LoginPage () {
             error={errors.password}
           />
 
-          <Button type="submit" text="Login" />
+          <Button type="submit" text="LOGIN" />
           <div className={classes.register}>
             <div className={classes.create_account}>
               <span>{"Don't have an account?"}&nbsp;&nbsp;&nbsp;</span>
