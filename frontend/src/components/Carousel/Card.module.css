@@ -6,15 +6,6 @@
   justify-content: center;
   width: 13rem;
   height: 90vh;
-
-
-  /* width: 250px; */
-  /* height: fit-content; */
-  /* height: 90vh; */
-  /* height: 500px; */
-  /* padding: 0 2rem 2rem 2rem; */
-  /* border-radius: 1rem; */
-  /* z-index: 500px; */
 }
 
 .card img {
@@ -25,15 +16,23 @@
   border-radius: 1rem;
 }
 
-.button_download {
+.button_download:link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   border-style: none;
   color: #35a69b;
   background-color: #111111;
   border: 1px solid #35a69b;
-  height: 2rem;
+  height: 1.7rem;
   margin: 0.5rem;
-  /* width: 150px; */
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.button_download:hover {
+
 }
 
 .button_add {
@@ -46,6 +45,8 @@
   margin: 0.5rem;
   /* width: 150px; */
   border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
 }
 
 

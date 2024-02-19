@@ -31,7 +31,8 @@ function Card ({ itemImage, item }) {
     >
 
       {item.freeDownload
-        ? <button className={Styles.button_download}>Free Download</button>
+        ? <a href="https://drive.google.com/uc?id=1wwUYxSKZW_YBKDnJTu39jf3XTp8ix9Hb&export=download"
+             download="" className={Styles.button_download}>Free Download</a>
         : <button className={Styles.button_add}onClick={handleAddToCart}>Add to Cart ${item.price}</button>}
         <img src={itemImage} alt="photo" />
     </animated.div>
