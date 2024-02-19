@@ -57,12 +57,13 @@ export default function LoginPage () {
           />
 
           <Button type="submit" text="Login" />
-
           <div className={classes.register}>
-            New user?
-            <Link to={`/register${returnUrl ? '?returnUrl=' + returnUrl : ''}`}>
-              Register here
-            </Link>
+            <div className={classes.create_account}>
+              <span>{"Don't have an account?"}&nbsp;&nbsp;&nbsp;</span>
+              <Link to={`/register${returnUrl ? '?returnUrl=' + returnUrl : ''}`}>
+                <strong>Create one</strong>
+              </Link>
+            </div>
             <Link to='/' onClick={emptyCart}>
               Clear cart
             </Link>

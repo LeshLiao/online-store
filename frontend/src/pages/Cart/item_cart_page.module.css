@@ -108,8 +108,12 @@ img {
   align-items:self-end;
 }
 
+.upper_container {
+  width: 100%;
+}
+
 .checkout_box {
-  background: #181818;;
+  background: #181818;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -117,7 +121,7 @@ img {
   height: 13rem;
   width: 95%;
   border-radius: 0.3rem;
-  padding: 0.5rem;
+  padding: 1rem;
   margin: 0.5rem;
   color:#e4e4e4;
 }
@@ -141,7 +145,7 @@ img {
   color: white;
   background: #0273e8;
   width: 100%;
-  height: 100%;
+  height: 2rem;
   border-radius: 0.3rem;
 }
 
@@ -167,49 +171,20 @@ img {
   color: #8f8f8f;
 }
 
-/*
-
-
-.checkout > div {
-  font-size: 1.4rem;
-  margin: 1rem;
-  flex: 3;
+.items_count_box {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.checkout .items_count {
-  margin-bottom: 1.5rem;
+.total_price_box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
 }
-
-.checkout .items_count::before {
-  content: 'Count: ';
-  color: grey;
-}
-
-.checkout .total_price::before {
-  content: 'Subtotal: ';
-  color: grey;
-}
-
-.checkout a {
-  padding: 1rem;
-  color: white;
-  background: #0273e8;
-  display: block;
-  width: 99%;
-  border-radius: 1rem;
-  text-align: center;
-  justify-self: center;
-}
-
-.checkout a:hover {
-  opacity: 0.8;
-  cursor: pointer;
-} */
-
 
 @media screen and (max-width: 960px) {
   .container {

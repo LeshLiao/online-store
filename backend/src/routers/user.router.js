@@ -23,7 +23,8 @@ router.post(
 );
 
 router.post("/register", async (req, res) => {
-  const { firstName, lastName, email, password, gender, country} = req.body;
+  const { firstName, lastName, email, password} = req.body;
+
   try {
     const isExist = await UserModel.findOne({ email });
 
@@ -38,10 +39,8 @@ router.post("/register", async (req, res) => {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: encryptedPassword,
-      gender: gender,
-      country: country
-    });
+      password: encryptedPassword
+  });
 
     res.send({ status: "Registration Successful!" });
   } catch (error) {

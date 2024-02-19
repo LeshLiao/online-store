@@ -16,11 +16,12 @@
 
 .details {
   /* border: 1px solid red; */
-  width: 23rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: min(100%, 450px);
+  padding: 2%;
 }
 
 .details form {
@@ -37,6 +38,11 @@
   display: flex;
   justify-content:space-around;
   align-items: center;
+}
+
+.create_account {
+  display: flex;
+  flex-direction: row;
 }
 
 

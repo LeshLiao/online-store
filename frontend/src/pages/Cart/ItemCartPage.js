@@ -1,14 +1,28 @@
 import React from 'react'
 import classes from './item_cart_page.module.css'
 import { useCart } from '../../hooks/useCart'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Price from '../../components/Price/Price'
 import NotFound from '../../components/NotFound/NotFound'
 import { usePayment } from '../../context/PaymentContext'
+import { useAuth } from '../../hooks/useAuth'
+import { toast } from 'react-toastify'
 
 export default function ItemCartPage () {
   const { cart, removeFromCart } = useCart()
   const { setPayment } = usePayment()
+  const { user } = useAuth()
+  const navigate = useNavigate()
+
+  const checkIsLogin = () => {
+    if (user) {
+      setPayment(cart.totalPrice)
+      navigate('/payment')
+    } else {
+      toast.info('Please Login')
+      navigate('/login')
+    }
+  }
 
   return (
   <>
@@ -60,13 +74,17 @@ export default function ItemCartPage () {
 
           <div className={classes.checkout_container}>
             <div className={classes.checkout_box}>
-              <div className={classes.items_count}>{cart.totalCount} Item(s)</div>
-              <div className={classes.total_price}>
-                Total:<Price price={cart.totalPrice} />
+              <div className={classes.upper_container}>
+                <div className={classes.items_count_box}>
+                  <span>Item</span>
+                  <div className={classes.items_count}>{cart.totalCount}</div>
+                </div>
+                <div className={classes.total_price_box}>
+                  <div className={classes.total_price_label}>Total</div>
+                  <Price price={cart.totalPrice} />
+                </div>
               </div>
-              <Link to="/payment" onClick={() => setPayment(cart.totalPrice)}>
-                <button>Checkout</button>
-              </Link>
+              <button onClick={() => checkIsLogin()}>CHECKOUT</button>
             </div>
           </div>
         </div>

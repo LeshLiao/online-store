@@ -1,25 +1,16 @@
 import React, { useState } from 'react'
-// import { TextField, Button, Container, Stack } from '@mui/material'
 import { TextField, Button, Stack } from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
-import Box from '@mui/material/Box'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select from '@mui/material/Select'
-import countries from '../../components/Common/IsoCountryList'
 import { register } from '../../services/userService'
 import { toast } from 'react-toastify'
+import classes from './register_form.module.css'
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
-  // const [dateOfBirth, setDateOfBirth] = useState('')
   const [dateOfBirth] = useState('')
   const [password, setPassword] = useState('')
-  const [gender, setGender] = useState('')
-  const [country, setCountry] = useState('')
   const navigate = useNavigate()
 
   function handleSubmit (event) {
@@ -30,9 +21,7 @@ const RegisterForm = () => {
       lastName,
       email,
       dateOfBirth,
-      password,
-      gender,
-      country
+      password
     }
 
     register(userData).then((response) => {
@@ -47,9 +36,10 @@ const RegisterForm = () => {
 
   return (
         <React.Fragment>
-            <h3>Create Your Account</h3>
+            <div className={classes.header}>REGISTER</div>
+            <div className={classes.info}>Please fill in the information below:</div>
             <form onSubmit={handleSubmit} action={<Link to="/login" />}>
-                <Stack spacing={4} direction="column" sx={{ marginBottom: 4 }}>
+                <Stack spacing={2} direction="column" sx={{ marginBottom: 2 }}>
                     <TextField
                         type="text"
                         variant='outlined'
@@ -80,7 +70,7 @@ const RegisterForm = () => {
                     value={email}
                     fullWidth
                     required
-                    sx={{ mb: 4 }}
+                    sx={{ mb: 2 }}
                 />
                 <TextField
                     type="password"
@@ -91,9 +81,9 @@ const RegisterForm = () => {
                     value={password}
                     required
                     fullWidth
-                    sx={{ mb: 4 }}
+                    sx={{ mb: 2 }}
                 />
-                <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
+                {/* <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
                     <Box sx={{ minWidth: 150 }}>
                       <FormControl fullWidth>
                         <InputLabel id="select-label-gender">Gender</InputLabel>
@@ -128,11 +118,13 @@ const RegisterForm = () => {
                         </Select>
                       </FormControl>
                     </Box>
+                </Stack> */}
+                <Stack spacing={1} direction="row" sx={{ marginBottom: 4 }}>
+                  <Button variant="outlined" color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
                 </Stack>
-                <Button variant="outlined" color="secondary" type="submit">Register</Button>
-            </form>
-            <small>Already have an account? <Link to="/login">Login Here</Link></small>
 
+            </form>
+            <small>Already have an account? <Link to="/login"><span className={classes.login_here}>Login Here</span></Link></small>
         </React.Fragment>
   )
 }

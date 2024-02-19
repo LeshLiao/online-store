@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-// import Title from '../../components/Title/Title'
 import MyPaypalButton from '../../components/MyPaypalButton/MyPaypalButton'
 import { usePayment } from '../../context/PaymentContext'
 import classes from './payment_page.module.css'

@@ -1,0 +1,22 @@
+
+.header {
+  /* border: 1px solid red; */
+  font-size: 1.5rem;
+  text-align: center;
+  /* margin: 1rem; */
+}
+
+.info {
+  text-align: center;
+  color: rgb(114, 114, 114);
+  margin: 0.7rem;
+  font-size: 0.8rem;
+}
+
+.login_here {
+  color: #aa44bb;
+  font-size: 1rem;
+  margin: 0.5rem;
+  font-style: italic;
+  text-decoration: underline;
+}
