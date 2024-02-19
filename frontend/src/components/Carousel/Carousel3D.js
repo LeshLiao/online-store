@@ -88,8 +88,8 @@ Carousel3D.propTypes = {
   cards: PropTypes.arrayOf(PropTypes.object).isRequired,
   offset: PropTypes.number,
   showArrows: PropTypes.bool,
-  width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
+  width: PropTypes.string,
+  height: PropTypes.string,
   margin: PropTypes.string,
   index: PropTypes.number
 }

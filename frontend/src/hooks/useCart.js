@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import { toast } from 'react-toastify'
+// import { TroubleshootRounded } from '@mui/icons-material'
 
 const CartContext = createContext(null)
 const CART_KEY = 'cart'
@@ -40,12 +42,15 @@ export default function CartProvider ({ children }) {
     return storedCart ? JSON.parse(storedCart) : EMPTY_CART
   }
 
-  // console.log('cartItems=')
-  // console.log(cartItems)
-
   const removeFromCart = itemId => {
     const filteredCartItems = cartItems.filter(item => item.myItem.id !== itemId)
     setCartItems(filteredCartItems)
+  }
+
+  const checkItemIsExist = myItem => {
+    const cartItem = cartItems.find(item => item.myItem.id === myItem.id)
+    if (cartItem) return true
+    else return false
   }
 
   const addToCart = myItem => {
@@ -75,6 +80,7 @@ export default function CartProvider ({ children }) {
     setCartItems([])
     window.localStorage.clear()
     console.log('clear localStorage')
+    toast.info('The cart has been cleaned!')
   }
 
   return (
@@ -88,7 +94,8 @@ export default function CartProvider ({ children }) {
         removeFromCart,
         changeQuantity,
         addToCart,
-        emptyCart
+        emptyCart,
+        checkItemIsExist
       }
     }
   >

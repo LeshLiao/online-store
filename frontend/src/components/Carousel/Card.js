@@ -4,6 +4,7 @@ import { useSpring, animated } from 'react-spring'
 import PropTypes from 'prop-types' // Import prop-types package
 import { useCart } from '../../hooks/useCart'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Card ({ itemImage, item }) {
   const [show, setShown] = useState(false)
@@ -15,11 +16,15 @@ function Card ({ itemImage, item }) {
       : '0 2px 10px rgb(0 0 0 / 8%)'
   })
 
-  const { addToCart } = useCart()
+  const { addToCart, checkItemIsExist } = useCart()
   const navigate = useNavigate()
   const handleAddToCart = () => {
-    addToCart(item)
-    navigate('/cart')
+    if (checkItemIsExist(item)) {
+      toast.info('You have already put this item!')
+    } else {
+      addToCart(item)
+      navigate('/cart')
+    }
   }
 
   return (

@@ -12,7 +12,6 @@ export default function ItemCartPage () {
 
   return (
   <>
-    {/* <Title title="My Cart" margin="5rem 0 0 2.5rem" /> */}
     <div className={classes.top_container}></div>
 
     {cart.items.length === 0

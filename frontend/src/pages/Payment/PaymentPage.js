@@ -13,6 +13,7 @@ export default function PaymentPage () {
 
   return (
     <>
+      <div className={classes.top_container}></div>
       <div className={classes.container}>
         <div className={classes.background}>
           <div className={classes.payment_title}>Payment</div>
