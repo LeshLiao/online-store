@@ -1,10 +1,10 @@
 .frame {
   /* border: 1px solid blueviolet; */
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 10%;
+  width: 100%;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+  /* margin: 10%; */
   /* box-shadow: 3px 3px 5px 2px rgba(142, 142, 142, 0.25); */
 }
 
@@ -20,7 +20,7 @@
   margin: 0;
   object-fit: contain;
   width: 100%;
-  border-radius: 1rem;
+  border-radius: 0.7rem;
   border: 2px solid gray;
 }
 
@@ -39,4 +39,10 @@
   margin-top: 9px;
   font-weight: bold;
   color: rgb(33, 33, 33);
+}
+
+@media screen and (max-width: 960px) {
+  .image {
+    border-radius: 0.3rem;
+  }
 }
