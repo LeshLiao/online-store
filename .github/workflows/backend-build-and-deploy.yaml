@@ -35,8 +35,8 @@ jobs:
           echo MONGO_URI=${{ secrets.SECRET_MONGO_URI }} >> .env
           echo JWT_SECRET=${{ secrets.SECRET_JWT_SECRET }} >> .env
           echo PORT=${{ secrets.SECRET_PORT }} >> .env
-          echo PAYPAL_CLIENT_ID=${{ secrets.PAYPAL_CLIENT_ID }} >> .env
-          echo PAYPAL_CLIENT_SECRET=${{ secrets.PAYPAL_CLIENT_SECRET }} >> .env
+          echo SANDBOX_PAYPAL_CLIENT_ID=${{ secrets.SANDBOX_PAYPAL_CLIENT_ID }} >> .env
+          echo SANDBOX_PAYPAL_CLIENT_SECRET=${{ secrets.SANDBOX_PAYPAL_CLIENT_SECRET }} >> .env
           echo BUSINESS_PAYPAL_CLIENT_ID=${{ secrets.BUSINESS_PAYPAL_CLIENT_ID }} >> .env
           echo BUSINESS_PAYPAL_CLIENT_SECRET=${{ secrets.BUSINESS_PAYPAL_CLIENT_SECRET }} >> .env
           cat .env

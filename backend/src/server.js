@@ -9,9 +9,20 @@ import itemRouter from './routers/item.router.js'
 import fetch from "node-fetch";
 
 // Paypal
-const { BUSINESS_PAYPAL_CLIENT_ID, BUSINESS_PAYPAL_CLIENT_SECRET, PORT = 8888 } = process.env;
-// const base = "https://api-m.sandbox.paypal.com";
-const base = "https://api-m.paypal.com";
+const { BUSINESS_PAYPAL_CLIENT_ID, BUSINESS_PAYPAL_CLIENT_SECRET,
+        SANDBOX_PAYPAL_CLIENT_ID, SANDBOX_PAYPAL_CLIENT_SECRET,
+        PORT = 8888 } = process.env;
+
+let base = "https://api-m.paypal.com";
+let PAYPAL_CLIENT_ID = BUSINESS_PAYPAL_CLIENT_ID;
+let PAYPAL_CLIENT_SECRET = BUSINESS_PAYPAL_CLIENT_SECRET;
+
+const paypalSandboxMode = false;
+if (paypalSandboxMode) {
+  base = "https://api-m.sandbox.paypal.com";
+  PAYPAL_CLIENT_ID = SANDBOX_PAYPAL_CLIENT_ID;
+  PAYPAL_CLIENT_SECRET = SANDBOX_PAYPAL_CLIENT_SECRET;
+}
 
 import { dbconnect } from './config/database.config.js';
 dbconnect();
@@ -47,11 +58,11 @@ app.use('/api/items', itemRouter);
  */
 const generateAccessToken = async () => {
   try {
-    if (!BUSINESS_PAYPAL_CLIENT_ID || !BUSINESS_PAYPAL_CLIENT_SECRET) {
+    if (!PAYPAL_CLIENT_ID || !PAYPAL_CLIENT_SECRET) {
       throw new Error("MISSING_API_CREDENTIALS");
     }
     const auth = Buffer.from(
-      BUSINESS_PAYPAL_CLIENT_ID + ":" + BUSINESS_PAYPAL_CLIENT_SECRET,
+      PAYPAL_CLIENT_ID + ":" + PAYPAL_CLIENT_SECRET,
     ).toString("base64");
     const response = await fetch(`${base}/v1/oauth2/token`, {
       method: "POST",

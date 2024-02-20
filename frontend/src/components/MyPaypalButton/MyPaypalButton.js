@@ -9,11 +9,21 @@ import {
 } from '@paypal/react-paypal-js'
 
 export default function MyPaypalButton (obj) {
+  let paypalClientId = 'AVy5AdpDkb3sg9FaXabV4YJCcJNHS0g8N-TmP_-GMi13TIHEpyI973XNe-GLBZX5zEYnm6-lA2pR4l1V'
+  let baseUrl = 'https://online-store-service.onrender.com'
+
+  const paypalSandboxMode = false
+  const localhostUrl = 'http://localhost:4000'
+  const sandBoxClientId = 'AQMg4knitBn2NwW8ZpxYw7hrKy437qHv_rsWVy6sP7b2_yQErnOmX2jlSKZCrx3S5Byjf0IMPBvghH9U'
+  if (paypalSandboxMode) {
+    paypalClientId = sandBoxClientId
+    baseUrl = localhostUrl
+  }
+
   const style = { layout: 'vertical' }
   //   const [successMessage, setSuccessMessage] = useState('')
   const navigate = useNavigate()
-  // const baseUrl = 'https://online-store-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app' // Google Cloud Run
-  const baseUrl = 'https://online-store-service.onrender.com'
+
   function createOrder () {
     // replace this url with your server
     return fetch(`${baseUrl}/api/orders`, {
@@ -88,7 +98,7 @@ export default function MyPaypalButton (obj) {
 
   return (
         <>
-            <PayPalScriptProvider options={{ clientId: 'AVy5AdpDkb3sg9FaXabV4YJCcJNHS0g8N-TmP_-GMi13TIHEpyI973XNe-GLBZX5zEYnm6-lA2pR4l1V', components: 'buttons', currency: 'CAD' }}>
+            <PayPalScriptProvider options={{ clientId: paypalClientId, components: 'buttons', currency: 'CAD' }}>
                 <ButtonWrapper showSpinner={false} />
             </PayPalScriptProvider>
         </>

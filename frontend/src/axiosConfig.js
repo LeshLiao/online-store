@@ -15,5 +15,7 @@ import axios from 'axios'
 // Google cloud run (Backend)
 // axios.defaults.baseURL = 'https://online-store-backend-cloud-run-service-jeeuicbmuq-uc.a.run.app'
 
+// axios.defaults.baseURL = 'http://localhost:4000'
+
 // Render
 axios.defaults.baseURL = 'https://online-store-service.onrender.com'

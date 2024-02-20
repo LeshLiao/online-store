@@ -25,7 +25,7 @@ const RegisterForm = () => {
     }
 
     register(userData).then((response) => {
-      toast.success(response.data.status)
+      toast.info(response.data.status)
       navigate('/')
     }, (error) => {
       toast.error(error.response.data)
