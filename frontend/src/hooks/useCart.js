@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { toast } from 'react-toastify'
-// import { TroubleshootRounded } from '@mui/icons-material'
+// import { toast } from 'react-toastify'
 
 const CartContext = createContext(null)
 const CART_KEY = 'cart'
@@ -78,9 +77,8 @@ export default function CartProvider ({ children }) {
 
   const emptyCart = () => {
     setCartItems([])
-    window.localStorage.clear()
-    console.log('clear localStorage')
-    toast.info('The cart has been cleaned!')
+    localStorage.removeItem(CART_KEY)
+    // toast.info('The cart has been cleaned!')
   }
 
   return (
