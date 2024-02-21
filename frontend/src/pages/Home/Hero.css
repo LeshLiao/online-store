@@ -39,6 +39,7 @@ video {
 }
 
 .its_time_to_text {
+  padding-top: 1rem;
   font-size: 1rem;
   font-weight:500;
 }
@@ -56,5 +57,12 @@ video {
 @media screen and (max-width: 960px) {
   video {
     height: 90vh;
+  }
+  .its_time_to_text {
+    padding-top: 0rem;
+  }
+
+  .wallpaper_text {
+    padding-bottom: 3.2rem;
   }
 }
