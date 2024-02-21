@@ -5,6 +5,7 @@
   height: 100vh;
   background-size: cover;
   /* border: 1px solid red; */
+  margin-bottom: 10%;
 }
 
 @media screen and (max-width: 960px) {

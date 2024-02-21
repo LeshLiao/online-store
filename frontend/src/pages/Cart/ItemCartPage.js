@@ -29,7 +29,7 @@ export default function ItemCartPage () {
     <div className={classes.top_container}></div>
 
     {cart.items.length === 0
-      ? (<NotFound message="Cart Page Is Empty!" />)
+      ? (<NotFound message="YOUR CART IS EMPTY" />)
       : (
         <div className={classes.container}>
 
