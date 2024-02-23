@@ -59,13 +59,14 @@
 @media only screen and (min-width: 390px) {
   .card {
     /* border: 2px solid green; */
-    width: 13.5rem;
+    width: 14rem;
+    /* height: 90vh; */
   }
 }
 
-@media only screen and (min-width: 414px) {
+@media only screen and (width: 414px) {
   .card {
     /* border: 2px solid yellow; */
-    width: 14.5rem;
+    width: 13rem;
   }
 }

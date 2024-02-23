@@ -27,7 +27,6 @@
 .middle_block {
   /* border: 1px solid rgb(0, 13, 255); */
   width:40%;
-  /* height: 90vh; */
   display: flex;
   flex-direction: column;
   justify-content:center;
@@ -120,5 +119,9 @@ img {
     /* height: 110vh; */
     display: flex;
     justify-content: center;
+  }
+
+  .middle_block {
+    height: 79vh;
   }
 }
