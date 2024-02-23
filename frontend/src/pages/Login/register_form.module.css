@@ -4,19 +4,28 @@
   font-size: 1.5rem;
   text-align: center;
   /* margin: 1rem; */
+  color: aliceblue;
 }
 
 .info {
   text-align: center;
-  color: rgb(114, 114, 114);
+  color: rgb(196, 196, 196);
   margin: 0.7rem;
   font-size: 0.8rem;
 }
 
 .login_here {
-  color: #aa44bb;
-  font-size: 1rem;
+  color: #ffffff;
+  font-size: 1.1rem;
   margin: 0.5rem;
   font-style: italic;
   text-decoration: underline;
+}
+
+.already {
+  color: white;
+}
+
+.notchedOutline {
+  border-color:rgb(205, 205, 205) !important;
 }

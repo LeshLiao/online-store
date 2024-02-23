@@ -39,7 +39,7 @@ const RegisterForm = () => {
             <div className={classes.header}>REGISTER</div>
             <div className={classes.info}>Please fill in the information below:</div>
             <form onSubmit={handleSubmit} action={<Link to="/login" />}>
-                <Stack spacing={2} direction="column" sx={{ marginBottom: 2 }}>
+                <Stack spacing={2} direction="column" sx={{ marginBottom: 2 }} >
                     <TextField
                         type="text"
                         variant='outlined'
@@ -49,6 +49,20 @@ const RegisterForm = () => {
                         value={firstName}
                         fullWidth
                         required
+                        InputLabelProps={{
+                          style: { color: 'aliceblue' } // Change label color here
+                        }}
+                        InputProps={{
+                          classes: {
+                            notchedOutline: classes.notchedOutline
+                          },
+                          style: { color: 'aliceblue' }
+                        }}
+                        sx={{
+                          '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'aliceblue' // Change the focused border color
+                          }
+                        }}
                     />
                     <TextField
                         type="text"
@@ -59,6 +73,20 @@ const RegisterForm = () => {
                         value={lastName}
                         fullWidth
                         required
+                        InputLabelProps={{
+                          style: { color: 'aliceblue' } // Change label color here
+                        }}
+                        InputProps={{
+                          classes: {
+                            notchedOutline: classes.notchedOutline
+                          },
+                          style: { color: 'aliceblue' }
+                        }}
+                        sx={{
+                          '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'aliceblue' // Change the focused border color
+                          }
+                        }}
                     />
                 </Stack>
                 <TextField
@@ -70,7 +98,22 @@ const RegisterForm = () => {
                     value={email}
                     fullWidth
                     required
-                    sx={{ mb: 2 }}
+                    // sx={{ mb: 2 }}
+                    InputLabelProps={{
+                      style: { color: 'aliceblue' } // Change label color here
+                    }}
+                    InputProps={{
+                      classes: {
+                        notchedOutline: classes.notchedOutline
+                      },
+                      style: { color: 'aliceblue' }
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'aliceblue' // Change the focused border color
+                      },
+                      mb: 2
+                    }}
                 />
                 <TextField
                     type="password"
@@ -81,7 +124,21 @@ const RegisterForm = () => {
                     value={password}
                     required
                     fullWidth
-                    sx={{ mb: 2 }}
+                    InputLabelProps={{
+                      style: { color: 'aliceblue' } // Change label color here
+                    }}
+                    InputProps={{
+                      classes: {
+                        notchedOutline: classes.notchedOutline
+                      },
+                      style: { color: 'aliceblue' }
+                    }}
+                    sx={{
+                      '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: 'aliceblue' // Change the focused border color
+                      },
+                      mb: 2
+                    }}
                 />
                 {/* <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
                     <Box sx={{ minWidth: 150 }}>
@@ -119,12 +176,12 @@ const RegisterForm = () => {
                       </FormControl>
                     </Box>
                 </Stack> */}
-                <Stack spacing={1} direction="row" sx={{ marginBottom: 4 }}>
-                  <Button variant="outlined" color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
+                <Stack spacing={1} direction="row" sx={{ marginTop: 1, marginBottom: 3 }}>
+                  <Button variant="outlined" sx={{ height: '50px', color: 'aliceblue', backgroundColor: '#0089cc', borderStyle: 'none', marginTop: '1rem' }} color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
                 </Stack>
 
             </form>
-            <small>Already have an account? <Link to="/login"><span className={classes.login_here}>Login Here</span></Link></small>
+            <div className={classes.already}>Already have an account? <Link to="/login"><span className={classes.login_here}>Login Here</span></Link></div>
         </React.Fragment>
   )
 }

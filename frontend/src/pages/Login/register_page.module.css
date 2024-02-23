@@ -10,13 +10,13 @@
   flex-direction: row;
   justify-content: center;
   height: 90vh;
-  background: #FFF;
+  background: #000;
 }
 
 .form_container {
   /* border: 1px solid red; */
   width: min(100%, 450px);
-  padding: 2%;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

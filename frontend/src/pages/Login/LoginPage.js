@@ -4,7 +4,6 @@ import { useNavigate, useSearchParams, Link } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 import classes from './loginPage.module.css'
 import Input from '../../components/Input/Input'
-import Button from '../../components/Button/Button'
 import { EMAIL } from '../../constants/patterns'
 import { useCart } from '../../hooks/useCart'
 
@@ -55,7 +54,7 @@ export default function LoginPage () {
             error={errors.password}
           />
 
-          <Button type="submit" text="LOGIN" />
+          <button className={classes.login_button} type="submit">LOGIN</button>
           <div className={classes.register}>
             <div className={classes.create_account}>
               <span>{"Don't have an account?"}&nbsp;&nbsp;&nbsp;</span>
