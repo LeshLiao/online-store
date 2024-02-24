@@ -12,12 +12,16 @@ export default function MyPaypalButton (obj) {
   let paypalClientId = 'AVy5AdpDkb3sg9FaXabV4YJCcJNHS0g8N-TmP_-GMi13TIHEpyI973XNe-GLBZX5zEYnm6-lA2pR4l1V'
   let baseUrl = 'https://online-store-service.onrender.com'
 
-  const paypalSandboxMode = false
-  const localhostUrl = 'http://localhost:4000'
+  const paypalSandboxMode = true
+  const localMode = false
+
   const sandBoxClientId = 'AQMg4knitBn2NwW8ZpxYw7hrKy437qHv_rsWVy6sP7b2_yQErnOmX2jlSKZCrx3S5Byjf0IMPBvghH9U'
   if (paypalSandboxMode) {
     paypalClientId = sandBoxClientId
-    baseUrl = localhostUrl
+  }
+
+  if (localMode) {
+    baseUrl = 'http://localhost:4000'
   }
 
   const style = { layout: 'vertical' }

@@ -17,7 +17,7 @@ let base = "https://api-m.paypal.com";
 let PAYPAL_CLIENT_ID = BUSINESS_PAYPAL_CLIENT_ID;
 let PAYPAL_CLIENT_SECRET = BUSINESS_PAYPAL_CLIENT_SECRET;
 
-const paypalSandboxMode = false;
+const paypalSandboxMode = true;
 if (paypalSandboxMode) {
   base = "https://api-m.sandbox.paypal.com";
   PAYPAL_CLIENT_ID = SANDBOX_PAYPAL_CLIENT_ID;

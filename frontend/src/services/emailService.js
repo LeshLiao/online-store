@@ -8,7 +8,7 @@ export const sendEmailToUser = async (name, email, msg) => {
   }
 
   emailjs.init({
-    publicKey: 'FRIBNPvnp8lrY52gm',
+    publicKey: process.env.REACT_APP_EMAILJS_SERVICE_ID,
     // Do not allow headless browsers
     blockHeadless: true,
     blockList: {
