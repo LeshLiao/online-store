@@ -11,6 +11,13 @@
   /* border: 1px solid red; */
 }
 
+.user_email {
+  color: aliceblue;
+  font-size: 0.8rem;
+  text-align: center;
+  margin: 1rem;
+}
+
 .list li {
   /* border: 1px solid green; */
   display: flex;

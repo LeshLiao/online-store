@@ -5,7 +5,6 @@ import classes from './item_page.module.css'
 import { v4 as uuidv4 } from 'uuid'
 import Carousel3D from '../../components/Carousel/Carousel3D'
 import Card from '../../components/Carousel/Card'
-// import CarouselSwipe from '../../components/Carousel/CarouselSwipe'
 
 export default function ItemPage () {
   const { index } = useParams()
@@ -46,10 +45,7 @@ export default function ItemPage () {
     <div className={classes.top_container}></div>
     {console.log('render()')}
     <div className={classes.container}>
-
       <div className={classes.left_block}>
-
-        {/* <CarouselSwipe cards={phones} index={Number(index)}/> */}
       </div>
       <div className={classes.right_block}>
         <div className={classes.inner_block}>

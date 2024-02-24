@@ -33,11 +33,11 @@ export default function Carousel3D (props) {
     const firstTouch = getTouches(evt)[0]
     xDown = firstTouch.clientX
     yDown = firstTouch.clientY
-    console.log('handleTouchStart')
+    // console.log('handleTouchStart')
   }
 
   const handleTouchMove = (evt) => {
-    console.log('handleTouchMove')
+    // console.log('handleTouchMove')
     if (!xDown || !yDown) {
       return
     }

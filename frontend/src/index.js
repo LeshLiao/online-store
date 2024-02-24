@@ -25,7 +25,7 @@ root.render(
             closeOnClick
             rtl={false}
             pauseOnFocusLoss
-            draggable
+            draggable={false}
             pauseOnHover
             theme='colored'
             />

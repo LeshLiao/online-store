@@ -25,9 +25,10 @@ const RegisterForm = () => {
     }
 
     register(userData).then((response) => {
-      toast.info(response.data.status)
+      toast.info(response.data)
       navigate('/')
     }, (error) => {
+      console.log(error)
       toast.error(error.response.data)
     })
 

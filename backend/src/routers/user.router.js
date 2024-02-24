@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import jwt from 'jsonwebtoken';
-import { BAD_REQUEST } from '../constants/httpStatus.js';
+import { BAD_REQUEST, OK_REQUEST } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
 import { UserModel } from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
@@ -41,10 +41,9 @@ router.post("/register", async (req, res) => {
       email: email,
       password: encryptedPassword
   });
-
-    res.send({ status: "Registration Successful!" });
+    res.status(OK_REQUEST).send("Registration Successful!");
   } catch (error) {
-    res.send({ status: "Registration Error." });
+    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error!");
   }
 });
 
@@ -65,7 +64,7 @@ const generateTokenResponse = user => {
   return {
     id: user.id,
     email: user.email,
-    name: user.name,
+    firstName: user.firstName,
     address: user.address,
     isAdmin: user.isAdmin,
     token,
