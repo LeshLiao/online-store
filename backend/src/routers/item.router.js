@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import { ItemModel } from '../models/item.model.js';
+import { TransactionModel } from '../models/transaction.model.js';
+import { BAD_REQUEST, OK_REQUEST, SERVER_UNEXPECTED_ERROR } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
 
 const router = Router();
@@ -40,5 +42,35 @@ router.get(
     res.send(foods);
   })
 );
+
+router.post("/transaction", async (req, res) => {
+  const { orderId, email, firstName, lastName, detail, payment, paymentData, tax, totalPrice, totalCount, reserved} = req.body;
+
+  try {
+    const isExist = await TransactionModel.findOne({ orderId });
+
+    if (isExist) {
+      res.status(BAD_REQUEST).send(`orderId Exists: ${orderId}`);
+      return;
+    }
+
+    await TransactionModel.create({
+      orderId: orderId,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      detail: detail,
+      payment: payment,
+      paymentData: paymentData,
+      tax: tax,
+      totalPrice: totalPrice,
+      totalCount: totalCount,
+      reserved: reserved,
+  });
+    res.status(OK_REQUEST).send("Add transaction Successful");
+  } catch (error) {
+    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
+  }
+});
 
 export default router;

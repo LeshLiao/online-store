@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import jwt from 'jsonwebtoken';
-import { BAD_REQUEST, OK_REQUEST } from '../constants/httpStatus.js';
+import { BAD_REQUEST, OK_REQUEST, SERVER_UNEXPECTED_ERROR } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
 import { UserModel } from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
@@ -65,6 +65,7 @@ const generateTokenResponse = user => {
     id: user.id,
     email: user.email,
     firstName: user.firstName,
+    lastName: user.lastName,
     address: user.address,
     isAdmin: user.isAdmin,
     token,

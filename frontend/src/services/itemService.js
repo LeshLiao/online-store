@@ -38,3 +38,50 @@ export async function add (item) {
   const { data } = await axios.post('/api/items', item)
   return data
 };
+
+export async function transaction (data) {
+  const response = await axios.post('/api/items/transaction', data)
+  return response
+}
+
+export function getTransactionData (email, firstName, lastName, detail, payment, paymentData, tax, totalPrice, totalCount) {
+  const orderId = generateTransactionID()
+  const reserved = {}
+  const data = {
+    orderId,
+    email,
+    firstName,
+    lastName,
+    detail,
+    payment,
+    paymentData,
+    tax,
+    totalPrice,
+    totalCount,
+    reserved
+  }
+
+  return data
+}
+
+export function generateTransactionID () {
+  // Get current UTC time
+  const now = new Date()
+  const year = now.getUTCFullYear()
+  const month = String(now.getUTCMonth() + 1).padStart(2, '0')
+  const day = String(now.getUTCDate()).padStart(2, '0')
+  const hours = String(now.getUTCHours()).padStart(2, '0')
+  const minutes = String(now.getUTCMinutes()).padStart(2, '0')
+
+  // Generate random 8-digit hexadecimal number
+  const randomHex = Math.floor(Math.random() * 0xFFFFFFFF).toString(16).padStart(8, '0')
+
+  // Construct transaction ID
+  const transactionID = `${year}${month}${day}_${hours}${minutes}_${randomHex}`
+
+  return transactionID
+}
+
+// Example usage
+// const transactionID = generateTransactionID()
+// console.log(transactionID)

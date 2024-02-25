@@ -13,14 +13,14 @@ export default function MyPaypalButton (obj) {
   let baseUrl = 'https://online-store-service.onrender.com'
 
   const paypalSandboxMode = true
-  const localMode = false
+  const localhostMode = false
 
   const sandBoxClientId = 'AQMg4knitBn2NwW8ZpxYw7hrKy437qHv_rsWVy6sP7b2_yQErnOmX2jlSKZCrx3S5Byjf0IMPBvghH9U'
   if (paypalSandboxMode) {
     paypalClientId = sandBoxClientId
   }
 
-  if (localMode) {
+  if (localhostMode) {
     baseUrl = 'http://localhost:4000'
   }
 
@@ -68,11 +68,10 @@ export default function MyPaypalButton (obj) {
       })
     })
       .then((response) => response.json())
-      .then((orderData) => {
-        console.log('Successful!')
-        console.log(orderData)
-        navigate('/success')
-        // setSuccessMessage('Payment Successful!');
+      .then((paymentData) => {
+        console.log('=== payment Successful! ===')
+        console.log(paymentData)
+        navigate('/success', { state: { paymentData } })
       })
   }
 
