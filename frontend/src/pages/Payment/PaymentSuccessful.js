@@ -12,6 +12,7 @@ export default function PaymentSuccessful () {
   const [tempCart, setTempCart] = useState(cart)
   const location = useLocation()
   const paymentData = location.state?.paymentData || null
+  const transactionId = location.state?.transactionId || null
 
   useEffect(() => {
     const copiedCart = JSON.parse(JSON.stringify(cart))
@@ -26,7 +27,7 @@ export default function PaymentSuccessful () {
         <div className={classes.background}>
           <div className={classes.successful_title}>Payment Successful!</div>
           <img src={successIcon} alt='success-icon'/>
-            {tempCart && <TransactionInfo cart={tempCart} paymentData={paymentData} />}
+            {tempCart && <TransactionInfo cart={tempCart} paymentData={paymentData} transactionId={transactionId}/>}
             <Link className={classes.done_button_link} to='/'>
               <div className={classes.done_button}>DONE</div>
             </Link>

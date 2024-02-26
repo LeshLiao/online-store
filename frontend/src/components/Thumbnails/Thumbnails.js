@@ -41,7 +41,7 @@ export default function Thumbnails ({ foods }) {
                   </div>
                 </div>
                 <div className={classes.price}>
-                  <Price price={food.price} locale='en-CA' currency='CAD'/>
+                  <Price price={food.price} locale='en-US' currency='USD'/>
                 </div>
             </div>
             </Link>

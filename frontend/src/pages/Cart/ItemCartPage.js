@@ -76,12 +76,15 @@ export default function ItemCartPage () {
             <div className={classes.checkout_box}>
               <div className={classes.upper_container}>
                 <div className={classes.items_count_box}>
-                  <span>Item</span>
-                  <div className={classes.items_count}>{cart.totalCount}</div>
+                  <span>Subtotal</span>
+                  {/* <div className={classes.items_count}>{cart.totalCount}</div> */}
+                  <Price price={cart.totalPrice} />
                 </div>
                 <div className={classes.total_price_box}>
                   <div className={classes.total_price_label}>Total</div>
-                  <Price price={cart.totalPrice} />
+                  <div className={classes.price_container}>
+                    <div className={classes.currency}>USD</div><Price price={cart.totalPrice} />
+                  </div>
                 </div>
               </div>
               <button onClick={() => checkIsLogin()}>CHECKOUT</button>

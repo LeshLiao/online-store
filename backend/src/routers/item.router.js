@@ -44,18 +44,18 @@ router.get(
 );
 
 router.post("/transaction", async (req, res) => {
-  const { orderId, email, firstName, lastName, detail, payment, paymentData, tax, totalPrice, totalCount, reserved} = req.body;
+  const { transactionId, email, firstName, lastName, detail, payment, paymentData, tax, totalPrice, totalCount, reserved} = req.body;
 
   try {
-    const isExist = await TransactionModel.findOne({ orderId });
+    const isExist = await TransactionModel.findOne({ transactionId });
 
     if (isExist) {
-      res.status(BAD_REQUEST).send(`orderId Exists: ${orderId}`);
+      res.status(BAD_REQUEST).send(`transactionId Exists: ${transactionId}`);
       return;
     }
 
     await TransactionModel.create({
-      orderId: orderId,
+      transactionId: transactionId,
       email: email,
       firstName: firstName,
       lastName: lastName,

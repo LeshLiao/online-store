@@ -20,7 +20,7 @@ export default function PaymentPage () {
             <h4>Order Summary</h4><br></br>
             <hr></hr>
             <div className={classes.subtotal}>
-              <h4>Subtotal (CAD)</h4>
+              <h4>Subtotal (USD)</h4>
               <span>C${paymentValue}</span>
             </div>
             <br></br>

@@ -44,11 +44,10 @@ export async function transaction (data) {
   return response
 }
 
-export function getTransactionData (email, firstName, lastName, detail, payment, paymentData, tax, totalPrice, totalCount) {
-  const orderId = generateTransactionID()
+export function getTransactionData (transactionId, email, firstName, lastName, detail, payment, paymentData, tax, totalPrice, totalCount) {
   const reserved = {}
   const data = {
-    orderId,
+    transactionId,
     email,
     firstName,
     lastName,

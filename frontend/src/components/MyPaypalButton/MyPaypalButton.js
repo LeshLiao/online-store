@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import * as itemService from '../../services/itemService'
 
 import {
   PayPalScriptProvider,
@@ -40,7 +41,7 @@ export default function MyPaypalButton (obj) {
       body: JSON.stringify({
         cart: [
           {
-            currency: 'CAD',
+            currency: 'USD',
             total: obj.total_amount
           },
           {
@@ -71,7 +72,8 @@ export default function MyPaypalButton (obj) {
       .then((paymentData) => {
         console.log('=== payment Successful! ===')
         console.log(paymentData)
-        navigate('/success', { state: { paymentData } })
+        const transactionId = itemService.generateTransactionID()
+        navigate('/success', { state: { paymentData, transactionId } })
       })
   }
 
@@ -101,7 +103,7 @@ export default function MyPaypalButton (obj) {
 
   return (
         <>
-            <PayPalScriptProvider options={{ clientId: paypalClientId, components: 'buttons', currency: 'CAD' }}>
+            <PayPalScriptProvider options={{ clientId: paypalClientId, components: 'buttons', currency: 'USD' }}>
                 <ButtonWrapper showSpinner={false} />
             </PayPalScriptProvider>
         </>

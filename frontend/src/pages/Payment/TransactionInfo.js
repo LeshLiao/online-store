@@ -6,12 +6,13 @@ import * as userService from '../../services/userService'
 import * as emailService from '../../services/emailService'
 import * as itemService from '../../services/itemService'
 
-export default function TransactionInfo ({ cart, paymentData }) {
+export default function TransactionInfo ({ cart, paymentData, transactionId }) {
   const [user] = useState(userService.getUser())
   const [isDataWritten, setIsDataWritten] = useState(false)
 
   const getEmailMessage = () => {
     let message = ''
+    message += 'Transaction ID:' + transactionId + '\n\n'
     cart.items.forEach((item, index) => {
       message += `(${index + 1}) ${item.myItem.name}\nDownload link: ${item.myItem.downloadLink}\n`
     })
@@ -20,28 +21,33 @@ export default function TransactionInfo ({ cart, paymentData }) {
 
   useEffect(() => {
     if (!isDataWritten) {
-      console.log('firstName=' + user.firstName)
-      console.log('email=' + user.email)
-      console.log('getEmailMessage=')
-      console.log(getEmailMessage())
-      emailService.sendEmailToUser(user.firstName, user.email, getEmailMessage())
-      const val = itemService.getTransactionData(
-        user.email,
-        user.firstName,
-        user.lastName,
-        cart,
-        'paypal',
-        paymentData,
-        0,
-        cart.totalPrice,
-        cart.totalCount
-      )
+      const hasEmailSent = sessionStorage.getItem('sentTransactionId')
+      if (hasEmailSent !== transactionId) { // If email hasn't been sent
+        console.log('Send email, transactionId=' + transactionId)
+        emailService.sendEmailToUser(user.firstName, user.email, getEmailMessage())
+        sessionStorage.setItem('sentTransactionId', transactionId) // Store that email has been sent
 
-      itemService.transaction(val).then((response) => {
-        console.log(response.data)
-      }, (error) => {
-        console.log(error)
-      })
+        const val = itemService.getTransactionData(
+          transactionId,
+          user.email,
+          user.firstName,
+          user.lastName,
+          cart,
+          'paypal',
+          paymentData,
+          0,
+          cart.totalPrice,
+          cart.totalCount
+        )
+
+        itemService.transaction(val).then((response) => {
+          console.log(response.data)
+        }, (error) => {
+          console.log(error)
+        })
+      } else {
+        console.log('This transactionId has been sent!')
+      }
       setIsDataWritten(true)
     }
   }, [isDataWritten])
@@ -103,5 +109,6 @@ TransactionInfo.propTypes = {
     totalPrice: PropTypes.number.isRequired,
     totalCount: PropTypes.number.isRequired
   }).isRequired,
-  paymentData: PropTypes.object
+  paymentData: PropTypes.object,
+  transactionId: PropTypes.string
 }
