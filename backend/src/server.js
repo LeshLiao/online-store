@@ -48,7 +48,7 @@ app.use(
   })
 );
 
-app.use('/api/foods', foodRouter);
+// app.use('/api/foods', foodRouter);
 app.use('/api/users', userRouter);
 app.use('/api/items', itemRouter);
 

@@ -1,6 +1,5 @@
 import { connect, set } from 'mongoose';
 import { UserModel } from '../models/user.model.js';
-import { FoodModel } from '../models/food.model.js';
 import { ItemModel } from '../models/item.model.js';
 import { sample_users } from '../test/data.js';
 import { sample_foods } from '../test/data.js';
@@ -11,12 +10,12 @@ set('strictQuery', true);
 
 export const dbconnect = async () => {
   try {
-    connect(process.env.MONGO_URI, {
+    connect(process.env.MONGO_URI_ONLINE_STORE, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     // await seedUsers();
-    await seedFoods();
+    // await seedFoods();
     await initItems();
     console.log('MongoDB connect successfully!');
   } catch (error) {
@@ -39,21 +38,6 @@ async function seedUsers() {
   console.log('Users seed is done!');
 }
 
-async function seedFoods() {
-  const foods = await FoodModel.countDocuments();
-  if (foods > 0) {
-    console.log('Foods seed is already done!');
-    return;
-  }
-
-  for (const food of sample_foods) {
-    food.imageUrl = `/foods/${food.imageUrl}`;
-    await FoodModel.create(food);
-  }
-
-  console.log('Foods seed Is Done!');
-}
-
 async function initItems() {
   const items = await ItemModel.countDocuments();
   if (items > 0) {
@@ -62,7 +46,6 @@ async function initItems() {
   }
 
   for (const item of sample_items) {
-    // food.imageUrl = `/foods/${food.imageUrl}`;
     await ItemModel.create(item);
   }
 
