@@ -5,7 +5,7 @@ import { useAuth } from '../../hooks/useAuth'
 import classes from './loginPage.module.css'
 import Input from '../../components/Input/Input'
 import { EMAIL } from '../../constants/patterns'
-import { useCart } from '../../hooks/useCart'
+// import { useCart } from '../../hooks/useCart'
 
 export default function LoginPage () {
   const {
@@ -18,7 +18,7 @@ export default function LoginPage () {
   const { user, login } = useAuth()
   const [params] = useSearchParams()
   const returnUrl = params.get('returnUrl')
-  const { emptyCart } = useCart()
+  // const { emptyCart } = useCart()
 
   useEffect(() => {
     if (!user) return
@@ -29,7 +29,13 @@ export default function LoginPage () {
     await login(email, password)
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
+    <>
+    <div className={classes.top_container}></div>
     <div className={classes.container}>
       <div className={classes.details}>
         {/* <Title title="Login" /> */}
@@ -62,12 +68,13 @@ export default function LoginPage () {
                 <strong>Create one</strong>
               </Link>
             </div>
-            <Link to='/' onClick={emptyCart}>
+            {/* <Link to='/' onClick={emptyCart}>
               Clear cart
-            </Link>
+            </Link> */}
           </div>
         </form>
       </div>
     </div>
+    </>
   )
 }

@@ -178,7 +178,7 @@ const RegisterForm = () => {
                     </Box>
                 </Stack> */}
                 <Stack spacing={1} direction="row" sx={{ marginTop: 1, marginBottom: 3 }}>
-                  <Button variant="outlined" sx={{ height: '50px', color: 'aliceblue', backgroundColor: '#0089cc', borderStyle: 'none', marginTop: '1rem' }} color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
+                  <Button variant="outlined" sx={{ height: '50px', color: 'aliceblue', backgroundColor: '#0089cc', borderStyle: 'none', marginTop: '0.8rem' }} color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
                 </Stack>
 
             </form>

@@ -16,14 +16,14 @@
 
 .login_here {
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   margin: 0.5rem;
-  font-style: italic;
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 .already {
   color: white;
+  font-size: 0.8rem;
 }
 
 .notchedOutline {

@@ -10,6 +10,10 @@ export default function PaymentPage () {
     console.log('paymentValue=' + paymentValue)
   }, [paymentValue])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
       <div className={classes.top_container}></div>
@@ -19,9 +23,11 @@ export default function PaymentPage () {
           <div className={classes.detail}>
             <h4>Order Summary</h4><br></br>
             <hr></hr>
-            <div className={classes.subtotal}>
-              <h4>Subtotal (USD)</h4>
-              <span>C${paymentValue}</span>
+            <div className={classes.total}>
+              <h4>Total</h4>
+              <div className={classes.number_container}>
+                <span>${paymentValue}</span>
+              </div>
             </div>
             <br></br>
           </div>

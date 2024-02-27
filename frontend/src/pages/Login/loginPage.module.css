@@ -1,11 +1,19 @@
+.top_container {
+  /* border: 2px dashed yellow ; */
+  width: 100%;
+  height: 2.7rem;
+}
+
 .container {
-  /* border: 1px solid red; */
+  /* border: 1px solid green; */
   color: aliceblue;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin-top: 3rem;
+  align-items: baseline;
+  /* height: 100%; */
+  height: 100vh;
+  margin-top: 2rem;
 }
 
 .title {
@@ -15,13 +23,13 @@
 }
 
 .details {
-  /* border: 1px solid red; */
+  /* border: 1px solid yellow; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: min(100%, 450px);
-  /* padding: 2%; */
+  padding-bottom: 5%;
 }
 
 .details form {
@@ -50,7 +58,7 @@
   background-color: #0089cc;
   color: aliceblue;
   padding: 0.8rem;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   margin: 1.1rem 0.5rem 1.5rem 0.5rem;
   font-size: 1rem;
   border-style: none;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from './item_cart_page.module.css'
 import { useCart } from '../../hooks/useCart'
 import { useNavigate } from 'react-router-dom'
@@ -23,6 +23,10 @@ export default function ItemCartPage () {
       navigate('/login?returnUrl=/payment')
     }
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
   <>
