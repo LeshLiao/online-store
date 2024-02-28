@@ -113,21 +113,37 @@ const generateTokenResponse = user => {
 router.get("/:id/verify/:token", async (req, res) => {
 
   try {
+    console.log('verify 00')
+
 		const user = await UserModel.findOne({ _id: req.params.id });
-		if (!user) return res.status(400).send({ message: "Invalid link" });
+		if (!user) {
+      console.log('verify: Invalid link 01')
+      return res.status(400).send({ message: "Invalid link" });
+    }
+
+    console.log('verify 02')
 
     const token = await TokenModel.findOneAndDelete({
       userId: user._id,
       token: req.params.token,
     });
 
-		if (!token) return res.status(400).send({ message: "Invalid link" });
+		if (!token) {
+      console.log('verify: Invalid link 03')
+      return res.status(400).send({ message: "Invalid link" });
+    }
+    console.log('verify 04')
 
 		await UserModel.updateOne({ _id: user._id, verified: true });
 
+    console.log('verify 05')
+
 		res.status(200).send({ message: "Email verified successfully" });
 
+    console.log('verify 06')
   } catch (error) {
+    console.log('error:')
+    console.log(error)
     res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
   }
 });
