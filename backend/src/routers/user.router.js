@@ -3,7 +3,9 @@ import jwt from 'jsonwebtoken';
 import { BAD_REQUEST, OK_REQUEST, SERVER_UNEXPECTED_ERROR } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
 import { UserModel } from '../models/user.model.js';
+import { TokenModel } from '../models/token.model.js';
 import bcrypt from 'bcryptjs';
+import crypto from 'crypto';
 
 const router = Router();
 
@@ -13,12 +15,34 @@ router.post(
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
 
-    if (user && (await bcrypt.compare(password, user.password))) {
-      res.send(generateTokenResponse(user));
-      return;
+    if (!user)
+			return res.status(401).send({ message: "Invalid Email" });
+
+    if (!(await bcrypt.compare(password, user.password)))
+      return res.status(401).send({ message: "Invalid Password" });
+
+    if (!user.verified) {
+      let verifiedToken = await TokenModel.findOne({ userId: user._id });
+      if (!verifiedToken) {
+        verifiedToken = await TokenModel.create({
+          email: email,
+          userId: user._id,
+          token: crypto.randomBytes(32).toString("hex"),
+        });
+      }
+
+      return res.status(OK_REQUEST).send({
+        message: "An Email sent to your account please verify",
+        uid: user._id,
+        firstName: user.firstName,
+        email: user.email,
+        token: verifiedToken.token,
+        needVerified: true
+      });
     }
 
-    res.status(BAD_REQUEST).send('Username or password is invalid');
+    const userToken = generateTokenResponse(user);
+		return res.status(OK_REQUEST).send({ loginSucceed: true, token: userToken, message: "logged in successfully" });
   })
 );
 
@@ -35,15 +59,29 @@ router.post("/register", async (req, res) => {
 
     const encryptedPassword = await bcrypt.hash(password, 10);
 
-    await UserModel.create({
+    let newUser = await UserModel.create({
       firstName: firstName,
       lastName: lastName,
       email: email,
       password: encryptedPassword
-  });
-    res.status(OK_REQUEST).send("Registration Successful!");
+    });
+
+    // await TokenModel.deleteOne({ email });  // delete old token if it's existed
+
+    const token = await TokenModel.create({
+      email: email,
+      userId: newUser._id,
+      token: crypto.randomBytes(32).toString("hex"),
+    });
+
+    res.status(OK_REQUEST).send({
+      message: "An Email sent to your account please verify",
+      uid: newUser._id,
+      token: token.token
+    });
+
   } catch (error) {
-    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error!");
+    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
   }
 });
 
@@ -71,5 +109,27 @@ const generateTokenResponse = user => {
     token,
   };
 };
+
+router.get("/:id/verify/:token", async (req, res) => {
+
+  try {
+		const user = await UserModel.findOne({ _id: req.params.id });
+		if (!user) return res.status(400).send({ message: "Invalid link" });
+
+    const token = await TokenModel.findOneAndDelete({
+      userId: user._id,
+      token: req.params.token,
+    });
+
+		if (!token) return res.status(400).send({ message: "Invalid link" });
+
+		await UserModel.updateOne({ _id: user._id, verified: true });
+
+		res.status(200).send({ message: "Email verified successfully" });
+
+  } catch (error) {
+    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
+  }
+});
 
 export default router;

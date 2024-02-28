@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { TextField, Button, Stack } from '@mui/material'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { register } from '../../services/userService'
-import { toast } from 'react-toastify'
 import classes from './register_form.module.css'
+import * as emailService from '../../services/emailService'
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState('')
@@ -11,7 +11,8 @@ const RegisterForm = () => {
   const [email, setEmail] = useState('')
   const [dateOfBirth] = useState('')
   const [password, setPassword] = useState('')
-  const navigate = useNavigate()
+  const [error, setError] = useState('')
+  const [msg, setMsg] = useState('')
 
   function handleSubmit (event) {
     event.preventDefault()
@@ -24,15 +25,21 @@ const RegisterForm = () => {
       password
     }
 
+    const getEmailMessage = (verifiedUid, verifiedToken) => {
+      let message = ''
+      message += 'Click this link to verify your PaletteX account:\n\n'
+      message += `https://www.palettex.ca/users/${verifiedUid}/verify/${verifiedToken}`
+      return message
+    }
+
     register(userData).then((response) => {
-      toast.info(response.data)
-      navigate('/')
+      console.log(response)
+      setMsg(response.data.message)
+      emailService.sendEmailToUser(firstName, email, getEmailMessage(response.data.uid, response.data.token))
     }, (error) => {
       console.log(error)
-      toast.error(error.response.data)
+      setError(error.response.data)
     })
-
-    // console.log(firstName, lastName, email, dateOfBirth, password, gender, country)
   }
 
   return (
@@ -177,7 +184,10 @@ const RegisterForm = () => {
                       </FormControl>
                     </Box>
                 </Stack> */}
+                {error && <div className={classes.error_msg}>{error}</div>}
+                {msg && <div className={classes.success_msg}>{msg}</div>}
                 <Stack spacing={1} direction="row" sx={{ marginTop: 1, marginBottom: 3 }}>
+
                   <Button variant="outlined" sx={{ height: '50px', color: 'aliceblue', backgroundColor: '#0089cc', borderStyle: 'none', marginTop: '0.8rem' }} color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
                 </Stack>
 

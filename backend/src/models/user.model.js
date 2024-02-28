@@ -11,6 +11,7 @@ export const UserSchema = new Schema(
     address: { type: String, required: false },
     isAdmin: { type: Boolean, default: false },
     isBlocked: { type: Boolean, default: false },
+    verified: {type: Boolean, default: false},
   },
   {
     timestamps: true,

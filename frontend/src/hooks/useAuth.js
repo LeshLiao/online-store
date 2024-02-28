@@ -11,17 +11,20 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const user = await userService.login(email, password)
-      setUser(user)
-      toast.info('Login Successful!')
+      const response = await userService.login(email, password)
+      if (!response.needVerified) {
+        userService.addUserItem(response)
+        setUser(response.token)
+      }
+      return response
     } catch (err) {
-      toast.error(err.response.data)
+      return err
     }
   }
 
   const navigate = useNavigate()
   const logout = () => {
-    userService.logout()
+    userService.removeUserItem()
     setUser(null)
     toast.info('Logout Successful!')
     navigate('/')

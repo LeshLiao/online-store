@@ -7,11 +7,15 @@ export const getUser = () =>
 
 export const login = async (email, password) => {
   const { data } = await axios.post('api/users/login', { email, password })
-  localStorage.setItem('user', JSON.stringify(data))
+  //   localStorage.setItem('user', JSON.stringify(data))
   return data
 }
 
-export const logout = () => {
+export const addUserItem = (data) => {
+  localStorage.setItem('user', JSON.stringify(data))
+}
+
+export const removeUserItem = () => {
   localStorage.removeItem('user')
 }
 

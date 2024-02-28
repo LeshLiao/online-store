@@ -8,6 +8,7 @@ import PaymentSuccessful from './pages/Payment/PaymentSuccessful'
 import ItemPage from './pages/Item/ItemPage'
 import ItemCartPage from './pages/Cart/ItemCartPage'
 import RegisterPage from './pages/Login/RegisterPage'
+import EmailVerify from './pages/Login/EmailVerify'
 
 export default function AppRoutes () {
   return (
@@ -20,6 +21,7 @@ export default function AppRoutes () {
         <Route path="/payment" element={<PaymentPage/>}/>
         <Route path='/success' element={<PaymentSuccessful/>}/>
         <Route path='/register' element={<RegisterPage/>}/>
+        <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
       </Routes>
     </PaymentProvider>
   )
