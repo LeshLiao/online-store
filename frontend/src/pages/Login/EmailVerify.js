@@ -16,7 +16,7 @@ const EmailVerify = () => {
       isMounted.current = true
       const verifyEmailUrl = async () => {
         try {
-          const url = `https://online-store-service.onrender.com:4000/api/users/${param.id}/verify/${param.token}`
+          const url = `https://online-store-service.onrender.com/api/users/${param.id}/verify/${param.token}`
           const { data } = await axios.get(url)
           console.log(data)
           setValidUrl(true)

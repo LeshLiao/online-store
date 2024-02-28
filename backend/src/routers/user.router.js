@@ -14,9 +14,12 @@ router.post(
   handler(async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
+    console.log('backend login');
+    if (!user) {
+      console.log('invalid email');
+      return res.status(401).send({ message: "Invalid Email" });
+    }
 
-    if (!user)
-			return res.status(401).send({ message: "Invalid Email" });
 
     if (!(await bcrypt.compare(password, user.password)))
       return res.status(401).send({ message: "Invalid Password" });
