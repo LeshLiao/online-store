@@ -5,7 +5,8 @@ import { useAuth } from '../../hooks/useAuth'
 import classes from './loginPage.module.css'
 import Input from '../../components/Input/Input'
 import { EMAIL } from '../../constants/patterns'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
+import Alert from '@mui/material/Alert'
 // import * as emailService from '../../services/emailService'
 
 export default function LoginPage () {
@@ -40,15 +41,18 @@ export default function LoginPage () {
     const ret = await login(email, password)
     if (ret.needVerified) {
       setMsg(ret.message)
+      setError('')
       console.log(ret.firstName + ' , ' + ret.email)
       console.log(getEmailMessage(ret.uid, ret.token))
       // emailService.sendEmailToUser(ret.firstName, ret.email, getEmailMessage(ret.uid, ret.token))
     } else if (ret.loginSucceed) {
-      toast.info(ret.message)
+      setMsg(ret.message)
+      setError('')
       returnUrl ? navigate(returnUrl) : navigate('/')
     } else {
       console.log(ret)
       setError(ret.response.data.message)
+      setMsg('')
     }
   }
 
@@ -81,8 +85,9 @@ export default function LoginPage () {
             })}
             error={errors.password}
           />
-          {error && <div className={classes.error_msg}>{error}</div>}
-          {msg && <div className={classes.success_msg}>{msg}</div>}
+          {error && <div className={classes.error_msg}><Alert severity="error">{error}</Alert></div>}
+          {msg && <div className={classes.success_msg}><Alert severity="info">{msg}</Alert></div>}
+
           <button className={classes.login_button} type="submit">LOGIN</button>
           <div className={classes.register}>
             <div className={classes.create_account}>

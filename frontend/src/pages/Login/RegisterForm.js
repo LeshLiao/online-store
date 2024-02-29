@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { register } from '../../services/userService'
 import classes from './register_form.module.css'
 import * as emailService from '../../services/emailService'
+import Alert from '@mui/material/Alert'
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState('')
@@ -35,10 +36,14 @@ const RegisterForm = () => {
     register(userData).then((response) => {
       console.log(response)
       setMsg(response.data.message)
+      setError('')
+      console.log(getEmailMessage)
       emailService.sendEmailToUser(firstName, email, getEmailMessage(response.data.uid, response.data.token))
+      // console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`) // test
     }, (error) => {
       console.log(error)
       setError(error.response.data)
+      setMsg('')
     })
   }
 
@@ -184,8 +189,8 @@ const RegisterForm = () => {
                       </FormControl>
                     </Box>
                 </Stack> */}
-                {error && <div className={classes.error_msg}>{error}</div>}
-                {msg && <div className={classes.success_msg}>{msg}</div>}
+                {error && <div className={classes.error_msg}><Alert severity="error">{error}</Alert></div>}
+                {msg && <div className={classes.success_msg}><Alert severity="info">{msg}</Alert></div>}
                 <Stack spacing={1} direction="row" sx={{ marginTop: 1, marginBottom: 3 }}>
 
                   <Button variant="outlined" sx={{ height: '50px', color: 'aliceblue', backgroundColor: '#0089cc', borderStyle: 'none', marginTop: '0.8rem' }} color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>

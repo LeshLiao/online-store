@@ -32,16 +32,5 @@
 
 .error_msg,
 .success_msg {
-	width: 370px;
-	padding: 15px;
-	margin: 5px 0;
-	font-size: 14px;
-	background-color: #f34646;
-	color: white;
-	border-radius: 5px;
-	text-align: center;
-}
-
-.success_msg {
-	background-color: #5cdd5c;
+	margin: 0.2rem 0 1rem 0;
 }

@@ -17,8 +17,9 @@ const EmailVerify = () => {
       const verifyEmailUrl = async () => {
         try {
           const url = `https://online-store-service.onrender.com/api/users/${param.id}/verify/${param.token}`
-          const { data } = await axios.get(url)
-          console.log(data)
+          const res = await axios.get(url)
+          console.log(res.data.message)
+          console.log(res.data.email)
           setValidUrl(true)
         } catch (error) {
           console.log(error)
@@ -37,7 +38,7 @@ const EmailVerify = () => {
         ? (
           <div className={styles.content}>
           <img src={success} alt="success_img" className={styles.success_img} />
-          <h3>Email verified successfully</h3>
+          <h3>Email verified successfully!</h3>
           <Link to="/login">
             <button className={styles.green_btn}>Login</button>
           </Link>
