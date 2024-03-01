@@ -17,6 +17,7 @@ const EmailVerify = () => {
       const verifyEmailUrl = async () => {
         try {
           const url = `https://online-store-service.onrender.com/api/users/${param.id}/verify/${param.token}`
+          // const url = `http://localhost:4000/api/users/${param.id}/verify/${param.token}` // debug
           const res = await axios.get(url)
           console.log(res.data.message)
           console.log(res.data.email)

@@ -54,7 +54,7 @@
   flex-direction: row;
 }
 
-.login_button {
+.login_button, .reload_button{
   background-color: #0089cc;
   color: aliceblue;
   padding: 0.8rem;

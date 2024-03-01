@@ -14,6 +14,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [msg, setMsg] = useState('')
+  const [emailSent, setEmailSent] = useState(false) // State to track if email is sent
 
   function handleSubmit (event) {
     event.preventDefault()
@@ -47,6 +48,7 @@ const RegisterForm = () => {
         if (ret.status === 200) { // Check for status 200
           setMsg('We have sent a verification link to your email\nPlease verify your email address\n' +
           response.data.email)
+          setEmailSent(true)
         } else {
           setError('Failed to send verification email')
         }
@@ -54,7 +56,15 @@ const RegisterForm = () => {
         console.error('Failed to send email:', error)
         setError('Error: Failed to send verification email')
       })
-      // debug
+
+      // === debug ===
+      // if (response.status === 200) {
+      //   setMsg('We have sent a verification link to your email\nPlease verify your email address\n' +
+      //   response.data.email)
+      //   setEmailSent(true)
+      // } else {
+      //   setError('Register error')
+      // }
       // console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`)
     }, (error) => {
       console.log(error)
@@ -65,9 +75,10 @@ const RegisterForm = () => {
 
   return (
         <React.Fragment>
-            <div className={classes.header}>REGISTER</div>
-            <div className={classes.info}>Please fill in the information below:</div>
+            {!emailSent && (<div className={classes.header}>REGISTER</div>)}
+            {!emailSent && (<div className={classes.info}>Please fill in the information below:</div>)}
             <form onSubmit={handleSubmit} action={<Link to="/login" />}>
+              {!emailSent && (
                 <Stack spacing={2} direction="column" sx={{ marginBottom: 2 }} >
                     <TextField
                         type="text"
@@ -87,11 +98,17 @@ const RegisterForm = () => {
                           },
                           style: { color: 'aliceblue' }
                         }}
+
                         sx={{
                           '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                             borderColor: 'aliceblue' // Change the focused border color
+                          },
+                          '& input:disabled': {
+                            color: 'white', // Change text color when disabled
+                            backgroundColor: 'transparent' // Change background color when disabled
                           }
                         }}
+
                     />
                     <TextField
                         type="text"
@@ -117,7 +134,8 @@ const RegisterForm = () => {
                           }
                         }}
                     />
-                </Stack>
+                </Stack>)}
+                {!emailSent && (
                 <TextField
                     type="email"
                     variant='outlined'
@@ -143,7 +161,8 @@ const RegisterForm = () => {
                       },
                       mb: 2
                     }}
-                />
+                />)}
+                {!emailSent && (
                 <TextField
                     type="password"
                     variant='outlined'
@@ -168,50 +187,14 @@ const RegisterForm = () => {
                       },
                       mb: 2
                     }}
-                />
-                {/* <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
-                    <Box sx={{ minWidth: 150 }}>
-                      <FormControl fullWidth>
-                        <InputLabel id="select-label-gender">Gender</InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          value={gender}
-                          label="Gender"
-                          onChange={e => setGender(e.target.value)}
-                        >
-                          <MenuItem value={0}>Female</MenuItem>
-                          <MenuItem value={1}>Male</MenuItem>
-                          <MenuItem value={2}>No Specified</MenuItem>
-                        </Select>
-                      </FormControl>
-                    </Box>
-                    <Box sx={{ minWidth: 210 }}>
-                      <FormControl fullWidth>
-                        <InputLabel id="select-label-country">Country</InputLabel>
-                        <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          value={country}
-                          label="Country"
-                          onChange={e => setCountry(e.target.value)}
-                        >
-                          {countries.map((country) => (
-                            <MenuItem key={country.code} value={country.code}>
-                              {country.name}
-                            </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </Box>
-                </Stack> */}
+                />)}
+
                 {error && <div className={classes.error_msg}><Alert severity="error">{error}</Alert></div>}
                 {msg && <div className={classes.success_msg}><Alert severity="info">{msg}</Alert></div>}
+                {!emailSent && (
                 <Stack spacing={1} direction="row" sx={{ marginTop: 1, marginBottom: 3 }}>
-
                   <Button variant="outlined" sx={{ height: '50px', color: 'aliceblue', backgroundColor: '#0089cc', borderStyle: 'none', marginTop: '0.8rem' }} color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
-                </Stack>
-
+                </Stack>)}
             </form>
             <div className={classes.already}>Already have an account? <Link to="/login"><span className={classes.login_here}>Login Here</span></Link></div>
         </React.Fragment>

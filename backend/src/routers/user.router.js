@@ -14,12 +14,10 @@ router.post(
   handler(async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.findOne({ email });
-    console.log('backend login');
     if (!user) {
       console.log('invalid email');
       return res.status(401).send({ message: "Invalid Email" });
     }
-
 
     if (!(await bcrypt.compare(password, user.password)))
       return res.status(401).send({ message: "Invalid Password" });
@@ -129,7 +127,7 @@ router.get("/:id/verify/:token", async (req, res) => {
       return res.status(400).send({ message: "Invalid link" });
     }
 
-    await UserModel.updateOne({_id:user._id},{$set:{verified:true}});
+    await UserModel.updateOne({ _id: user._id }, { verified: true, verifiedDate: new Date() });
 
 		res.status(200).send({ message: "Email verified successfully", email: user.email });
 

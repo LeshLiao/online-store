@@ -5,7 +5,6 @@ import { useAuth } from '../../hooks/useAuth'
 import classes from './loginPage.module.css'
 import Input from '../../components/Input/Input'
 import { EMAIL } from '../../constants/patterns'
-// import { toast } from 'react-toastify'
 import Alert from '@mui/material/Alert'
 import * as emailService from '../../services/emailService'
 
@@ -23,6 +22,7 @@ export default function LoginPage () {
   const returnUrl = params.get('returnUrl')
   const [error, setError] = useState('')
   const [msg, setMsg] = useState('')
+  const [emailSent, setEmailSent] = useState(false) // State to track if email is sent
 
   const getEmailMessage = (verifiedUid, verifiedToken) => {
     let message = ''
@@ -47,6 +47,7 @@ export default function LoginPage () {
         if (ret.status === 200) { // Check for status 200
           setMsg('We have sent a verification link to your email\nPlease verify your email address\n' +
           response.email)
+          setEmailSent(true)
         } else {
           setError('Failed to send verification email')
         }
@@ -67,6 +68,10 @@ export default function LoginPage () {
     }
   }
 
+  function refreshPage () {
+    window.location.reload(false)
+  }
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
@@ -78,6 +83,7 @@ export default function LoginPage () {
       <div className={classes.details}>
         <div className={classes.title}>LOGIN</div>
         <form onSubmit={handleSubmit(submit)} noValidate>
+          {!emailSent && (
           <Input
             type="email"
             label="Email"
@@ -86,8 +92,8 @@ export default function LoginPage () {
               pattern: EMAIL
             })}
             error={errors.email}
-          />
-
+          />)}
+          {!emailSent && (
           <Input
             type="password"
             label="Password"
@@ -95,11 +101,14 @@ export default function LoginPage () {
               required: true
             })}
             error={errors.password}
-          />
+          />)}
           {error && <div className={classes.error_msg}><Alert severity="error">{error}</Alert></div>}
           {msg && <div className={classes.success_msg}><Alert severity="info">{msg}</Alert></div>}
+          {!emailSent && (
+            <button className={classes.login_button} type="submit">LOGIN</button>
+          )}
 
-          <button className={classes.login_button} type="submit">LOGIN</button>
+          {!emailSent && (
           <div className={classes.register}>
             <div className={classes.create_account}>
               <span>{"Don't have an account?"}&nbsp;&nbsp;&nbsp;</span>
@@ -110,7 +119,8 @@ export default function LoginPage () {
             {/* <Link to='/' onClick={emptyCart}>
               Clear cart
             </Link> */}
-          </div>
+          </div>)}
+          {emailSent && (<button className={classes.reload_button} onClick={refreshPage}>LOGIN AGAIN</button>)}
         </form>
       </div>
     </div>
