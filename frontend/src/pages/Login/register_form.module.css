@@ -34,3 +34,12 @@
 .success_msg {
 	margin: 0.2rem 0 1rem 0;
 }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+   -webkit-box-shadow: 0 0 0 30px inset !important;
+   -webkit-text-fill-color: white !important;
+}
+

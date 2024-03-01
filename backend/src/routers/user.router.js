@@ -35,7 +35,6 @@ router.post(
       }
 
       return res.status(OK_REQUEST).send({
-        message: "We have sent a verification link to your email\nPlease verify your email address\n" + email,
         uid: user._id,
         firstName: user.firstName,
         email: user.email,
@@ -45,7 +44,7 @@ router.post(
     }
 
     const userToken = generateTokenResponse(user);
-		return res.status(OK_REQUEST).send({ loginSucceed: true, token: userToken, message: "logged in successfully" });
+		return res.status(OK_REQUEST).send({ loginSucceed: true, token: userToken });
   })
 );
 
@@ -78,7 +77,7 @@ router.post("/register", async (req, res) => {
     });
 
     res.status(OK_REQUEST).send({
-      message: "We have sent a verification link to your email\nPlease verify your email address\n" + email,
+      email: email,
       uid: newUser._id,
       token: token.token
     });

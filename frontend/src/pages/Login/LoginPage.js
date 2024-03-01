@@ -7,7 +7,7 @@ import Input from '../../components/Input/Input'
 import { EMAIL } from '../../constants/patterns'
 // import { toast } from 'react-toastify'
 import Alert from '@mui/material/Alert'
-// import * as emailService from '../../services/emailService'
+import * as emailService from '../../services/emailService'
 
 export default function LoginPage () {
   const {
@@ -23,12 +23,6 @@ export default function LoginPage () {
   const returnUrl = params.get('returnUrl')
   const [error, setError] = useState('')
   const [msg, setMsg] = useState('')
-  // const { emptyCart } = useCart()
-
-  // useEffect(() => {
-  //   if (!user) return
-  //   returnUrl ? navigate(returnUrl) : navigate('/')
-  // }, [navigate, returnUrl, user])
 
   const getEmailMessage = (verifiedUid, verifiedToken) => {
     let message = ''
@@ -38,20 +32,37 @@ export default function LoginPage () {
   }
 
   const submit = async ({ email, password }) => {
-    const ret = await login(email, password)
-    if (ret.needVerified) {
-      setMsg(ret.message)
+    const response = await login(email, password)
+    if (response.needVerified) {
       setError('')
-      console.log(ret.firstName + ' , ' + ret.email)
-      console.log(getEmailMessage(ret.uid, ret.token))
-      // emailService.sendEmailToUser(ret.firstName, ret.email, getEmailMessage(ret.uid, ret.token))
-    } else if (ret.loginSucceed) {
-      setMsg(ret.message)
+      setMsg('')
+      console.log(response.firstName + ' , ' + response.email)
+      console.log(getEmailMessage(response.uid, response.token))
+      emailService.sendEmailToUser(
+        response.firstName,
+        response.email,
+        getEmailMessage(response.uid, response.token)
+      ).then((ret) => { // Use .then() to handle the resolved promise
+        console.log(ret)
+        if (ret.status === 200) { // Check for status 200
+          setMsg('We have sent a verification link to your email\nPlease verify your email address\n' +
+          response.email)
+        } else {
+          setError('Failed to send verification email')
+        }
+      }).catch((error) => {
+        console.error('Failed to send email:', error)
+        setError('Error: Failed to send verification email')
+      })
+    } else if (response.loginSucceed) {
+      setMsg('Login Successful')
       setError('')
-      returnUrl ? navigate(returnUrl) : navigate('/')
+      setTimeout(() => {
+        returnUrl ? navigate(returnUrl) : navigate('/')
+      }, 1500)
     } else {
-      console.log(ret)
-      setError(ret.response.data.message)
+      console.log(response)
+      setError(response.response.data.message)
       setMsg('')
     }
   }

@@ -34,12 +34,28 @@ const RegisterForm = () => {
     }
 
     register(userData).then((response) => {
-      console.log(response)
-      setMsg(response.data.message)
       setError('')
+      setMsg('')
+      console.log(response)
       console.log(getEmailMessage)
-      emailService.sendEmailToUser(firstName, email, getEmailMessage(response.data.uid, response.data.token))
-      // console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`) // test
+      emailService.sendEmailToUser(
+        firstName,
+        email,
+        getEmailMessage(response.data.uid, response.data.token)
+      ).then((ret) => { // Use .then() to handle the resolved promise
+        console.log(ret)
+        if (ret.status === 200) { // Check for status 200
+          setMsg('We have sent a verification link to your email\nPlease verify your email address\n' +
+          response.data.email)
+        } else {
+          setError('Failed to send verification email')
+        }
+      }).catch((error) => {
+        console.error('Failed to send email:', error)
+        setError('Error: Failed to send verification email')
+      })
+      // debug
+      // console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`)
     }, (error) => {
       console.log(error)
       setError(error.response.data)

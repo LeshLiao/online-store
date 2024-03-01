@@ -25,12 +25,16 @@ export const sendEmailToUser = async (name, email, msg) => {
     }
   })
 
-  emailjs.send('service_yzbjz9c', 'template_xwwh9t9', templateParams).then(
-    (response) => {
-      console.log('sendEmailToUser SUCCESS!', response.status, response.text)
-    },
-    (error) => {
-      console.log('FAILED...', error)
-    }
-  )
+  // Return the promise chain from emailjs.send
+  return emailjs.send('service_yzbjz9c', 'template_xwwh9t9', templateParams)
+    .then(
+      (response) => {
+        console.log('sendEmailToUser SUCCESS!', response.status, response.text)
+        return response
+      },
+      (error) => {
+        console.log('sendEmailToUser FAILED:', error)
+        throw error // Throw the error to be caught by the caller
+      }
+    )
 }
