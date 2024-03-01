@@ -12,8 +12,6 @@ export const UserSchema = new Schema(
     isAdmin: { type: Boolean, default: false },
     isBlocked: { type: Boolean, default: false },
     verified: {type: Boolean, default: false},
-    verifiedDate:  { type: Date, default: 0, expires: 900 } // 15 minutes same as TokenSchema(createdAt)
-    // verifiedDate:  { type: Date, default: 0, index: { expires: 180 }}
   },
   {
     timestamps: true,

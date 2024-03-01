@@ -10,7 +10,6 @@ const RegisterForm = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
-  const [dateOfBirth] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [msg, setMsg] = useState('')
@@ -23,7 +22,6 @@ const RegisterForm = () => {
       firstName,
       lastName,
       email,
-      dateOfBirth,
       password
     }
 
@@ -59,11 +57,10 @@ const RegisterForm = () => {
 
       // === debug ===
       // if (response.status === 200) {
-      //   setMsg('We have sent a verification link to your email\nPlease verify your email address\n' +
-      //   response.data.email)
+      //   setMsg('DB ok')
       //   setEmailSent(true)
       // } else {
-      //   setError('Register error')
+      //   setError('DB error')
       // }
       // console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`)
     }, (error) => {
