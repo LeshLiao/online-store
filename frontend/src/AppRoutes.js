@@ -9,6 +9,7 @@ import ItemPage from './pages/Item/ItemPage'
 import ItemCartPage from './pages/Cart/ItemCartPage'
 import RegisterPage from './pages/Login/RegisterPage'
 import EmailVerify from './pages/Login/EmailVerify'
+import NewIn from './pages/NewIn/NewIn'
 
 export default function AppRoutes () {
   return (
@@ -22,6 +23,7 @@ export default function AppRoutes () {
         <Route path='/success' element={<PaymentSuccessful/>}/>
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
+        <Route path="/new" element={<NewIn />} />
       </Routes>
     </PaymentProvider>
   )

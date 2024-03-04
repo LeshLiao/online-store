@@ -21,6 +21,7 @@ function Navbar () {
 
   return (
     <>
+      {/* <div className='top_container'></div> */}
       <nav className='navbar'>
         <div className='left-container' onClick={handleClick}>
           <div className='menu-icon'>

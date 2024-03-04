@@ -42,18 +42,18 @@ export default function CartProvider ({ children }) {
   }
 
   const removeFromCart = itemId => {
-    const filteredCartItems = cartItems.filter(item => item.myItem.id !== itemId)
+    const filteredCartItems = cartItems.filter(item => item.myItem.itemId !== itemId)
     setCartItems(filteredCartItems)
   }
 
   const checkItemIsExist = myItem => {
-    const cartItem = cartItems.find(item => item.myItem.id === myItem.id)
+    const cartItem = cartItems.find(item => item.myItem.itemId === myItem.itemId)
     if (cartItem) return true
     else return false
   }
 
   const addToCart = myItem => {
-    const cartItem = cartItems.find(item => item.myItem.id === myItem.id)
+    const cartItem = cartItems.find(item => item.myItem.itemId === myItem.itemId)
     if (cartItem) {
       changeQuantity(cartItem, cartItem.quantity + 1)
     } else {
@@ -71,7 +71,7 @@ export default function CartProvider ({ children }) {
     }
 
     setCartItems(
-      cartItems.map(item => (item.myItem.id === myItem.id ? changedCartItem : item))
+      cartItems.map(item => (item.myItem.itemId === myItem.itemId ? changedCartItem : item))
     )
   }
 

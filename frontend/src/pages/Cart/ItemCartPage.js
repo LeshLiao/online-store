@@ -41,7 +41,7 @@ export default function ItemCartPage () {
             <div className={classes.title}>My Cart</div>
             {/* {console.log(cart.items)} */}
             {cart.items.map(item => (
-              <li key={item.myItem.id}>
+              <li key={item.myItem.itemId}>
                 <div className={classes.left_block}>
                   {item.myItem && item.myItem.imageFolder && item.myItem.thumbnailUrl
                     ? (
@@ -67,7 +67,7 @@ export default function ItemCartPage () {
                     </div>
                     <button
                       className={classes.remove_button}
-                      onClick={() => removeFromCart(item.myItem.id)}>
+                      onClick={() => removeFromCart(item.myItem.itemId)}>
                       Remove
                     </button>
                   </div>

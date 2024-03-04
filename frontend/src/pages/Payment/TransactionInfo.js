@@ -62,7 +62,7 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
           : (
               <ul className={classes.list}>
                 {cart.items.map(item => (
-                  <li key={item.myItem.id}>
+                  <li key={item.myItem.itemId}>
                     <div className={classes.left_block}>
                       {item.myItem && item.myItem.imageFolder && item.myItem.thumbnailUrl
                         ? (
