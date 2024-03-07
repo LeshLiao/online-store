@@ -24,3 +24,6 @@ yarn-error.log*
 
 # env
 .env
+
+# test data set
+/src/test/mock-data-03-ignore.js

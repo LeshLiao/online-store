@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 
 function Card ({ itemImage, item }) {
   const [show, setShown] = useState(false)
+  const [tempImage, setTempImage] = useState(itemImage)
 
   const props3 = useSpring({
     transform: show ? 'scale(1.03)' : 'scale(1)',
@@ -27,6 +28,13 @@ function Card ({ itemImage, item }) {
     }
   }
 
+  const clickImage = () => {
+    setTempImage('/images/items/0001/test.gif')
+    setTimeout(() => {
+      setTempImage('/images/items/0001/test.jpg')
+    }, 2500)
+  }
+
   return (
     <animated.div
       className={Styles.card}
@@ -38,7 +46,7 @@ function Card ({ itemImage, item }) {
       {item.freeDownload
         ? <a href={item.downloadLink} download="" className={Styles.button_download}>Free Download</a>
         : <button className={Styles.button_add}onClick={handleAddToCart}>Add to Cart ${item.price}</button>}
-        <img src={itemImage} alt="photo" />
+        <img src={tempImage} onClick={clickImage} alt="photo" />
     </animated.div>
   )
 }

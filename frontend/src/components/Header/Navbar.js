@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.css'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
@@ -10,7 +10,6 @@ import { useAuth } from '../../hooks/useAuth'
 
 function Navbar () {
   const [click, setClick] = useState(false)
-  const handleClick = () => setClick(!click)
   const closeMoMenu = () => setClick(false)
   const scrollToTop = () => { window.scroll(0, 0) }
   const { user, logout } = useAuth()
@@ -19,10 +18,34 @@ function Navbar () {
     closeMoMenu()
   }
 
+  useEffect(() => {
+    if (click) {
+      document.body.classList.add('fixed-position')
+    } else {
+      document.body.classList.remove('fixed-position')
+    }
+  }, [click])
+
+  const handleClick = () => {
+    setClick(!click)
+  }
+
+  /* When the user scrolls down, hide the navbar. When the user scrolls up, show the navbar */
+  let prevScroll = window.scrollY
+  window.onscroll = function () {
+    const currentScrollPos = window.scrollY
+    if (prevScroll > currentScrollPos || window.scrollY < 100) {
+      document.getElementById('navbar').style.top = '0'
+    } else {
+      document.getElementById('navbar').style.top = '-50px'
+    }
+    prevScroll = currentScrollPos
+  }
+
   return (
     <>
-      {/* <div className='top_container'></div> */}
-      <nav className='navbar'>
+      {/* <div className='top_container' id="top_container"></div> */}
+      <nav className='navbar' id="navbar">
         <div className='left-container' onClick={handleClick}>
           <div className='menu-icon'>
               <MenuRoundedIcon fontSize='medium'/>

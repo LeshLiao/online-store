@@ -9,9 +9,13 @@
   height: 2.7rem;
 }
 
+.fixed-position {
+  position: fixed;
+}
+
 .navbar {
-  background: linear-gradient(180deg,  rgb(32, 32, 32) 0%, rgba(9, 9, 9, 0.8) 50%
-  ,  rgba(52, 52, 52, 0.8) 90%, rgba(44, 44, 44, 0.1) 100%);
+  /* background: linear-gradient(180deg,  rgb(32, 32, 32) 0%, rgba(9, 9, 9, 0.8) 50%
+  ,  rgba(52, 52, 52, 0.8) 90%, rgba(44, 44, 44, 0.1) 100%); */
   height: var(--mobile-nav-height);
   width: 100%;
   display: flex;
@@ -20,6 +24,7 @@
   position: fixed;
   top: 0;
   z-index: 200;
+  transition: top 1.2s; /* Transition effect when sliding down (and up) */
 }
 
 .left-container {
@@ -27,7 +32,7 @@
   width: 126px;
   display: flex;
   align-items: center;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
 }
 
 .center-container {
@@ -42,7 +47,7 @@
   display: flex;
   align-items: center;
   justify-content: right;
-  padding-right: 0.5rem;
+  padding-right: 1rem;
 }
 
 .desktop_username {

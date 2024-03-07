@@ -2,3 +2,14 @@
 .title {
   color:aliceblue;
 }
+
+.container {
+  border: 1px solid red;
+  height: 200px;
+  width: 200px;
+}
+
+.btn {
+  height: 50px;
+  width: 100px;
+}

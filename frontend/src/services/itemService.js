@@ -1,6 +1,9 @@
 import axios from 'axios'
+// import { sampleItems } from '../test/mock-data-03-ignore.js'
 
 export const getAllItems = async () => {
+  // For mobile debug
+  // return sampleItems
   const { data } = await axios.get('/api/items')
   return data
 }
