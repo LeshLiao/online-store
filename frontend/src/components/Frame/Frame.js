@@ -2,6 +2,7 @@ import React from 'react'
 import classes from './frame.module.css'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import Price from '../Price/Price'
 // import Price from '../Price/Price'
 
 export default function Frame ({ item, index }) {
@@ -10,13 +11,19 @@ export default function Frame ({ item, index }) {
   return (
     <Link to={`/item/${index}`}>
       <div className={classes.frame}>
-        <img className={classes.image} src={`${imgUrl}`} alt="item-pic"/>
+        {/* <img className={classes.image} src={`${imgUrl}`} alt="item-pic"/> */}
+        <div className={classes.main_container}>
+          <div className={classes.left_container}>
+            <img className={classes.image} src={`${imgUrl}`} alt="item-pic"/>
+          </div>
+          <div className={classes.right_container}>
 
-        {/* <div className={classes.container}>
-          <img className={classes.image} src={`${imgUrl}`} alt="item-pic"/>
+            {/* <div className={classes.text}>{`${item.name}`}</div> */}
+            <div className={classes.price}><Price price={item.price} /></div>
+            <img className={classes.add_cart} src="/images/icon/add_cart_gray.png"/>
+          </div>
         </div>
-        <div className={classes.text}>{`${item.name}`}</div>
-        <div className={classes.price}>From <Price price={item.price} /></div> */}
+
       </div>
     </Link>
   )
