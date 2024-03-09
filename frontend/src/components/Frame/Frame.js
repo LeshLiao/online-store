@@ -52,6 +52,7 @@ export default function Frame ({ item, index }) {
               : <div className={classes.right_container}>
                   <div className={classes.price}><Price price={item.price} /></div>
                   <img className={classes.add_cart} onClick={handleAddToCart} src="/images/icon/add_cart_gray.png"/>
+                  <img className={classes.live_play_btn} onClick={clickImage} src="/images/icon/live_play_btn.png"/>
                 </div>
             }
         </div>

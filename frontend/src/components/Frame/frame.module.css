@@ -48,14 +48,6 @@
   overflow:hidden;
 }
 
-.price {
-  /* border: 1px solid green; */
-  font-size: 0.9rem;
-  margin: 0px 0px 10px 0px;
-  font-weight: bold;
-  color: #ffdd00;
-}
-
 .download_icon {
   width: 33px;
 }
@@ -70,12 +62,28 @@
 
 .add_cart {
   /* border: 1px solid green; */
+  margin: 0 5px 0 0;
   width: 40px;
 }
 
 .add_cart:hover {
   cursor: pointer;
 }
+
+.price {
+  /* border: 1px solid green; */
+  font-size: 0.9rem;
+  margin: 0px 0px 10px 0px;
+  font-weight: bold;
+  color: #ffdd00;
+}
+
+.live_play_btn {
+  /* border: 1px solid green; */
+  margin: 20px 3px 0 0;
+  width: 40px;
+}
+
 
 @media screen and (max-width: 960px) {
   .image {
