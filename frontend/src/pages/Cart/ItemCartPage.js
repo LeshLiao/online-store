@@ -43,10 +43,10 @@ export default function ItemCartPage () {
             {cart.items.map(item => (
               <li key={item.myItem.itemId}>
                 <div className={classes.left_block}>
-                  {item.myItem && item.myItem.imageFolder && item.myItem.thumbnailUrl
+                  {item.myItem && item.myItem.thumbnailUrl
                     ? (
                       <img
-                        src={`/images/items/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`}
+                        src={`/images/items/${item.myItem.itemId}/${item.myItem.thumbnailUrl}`}
                         alt={item.myItem.name}
                       />
                       )

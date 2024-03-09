@@ -29,9 +29,9 @@ function Card ({ itemImage, item }) {
   }
 
   const clickImage = () => {
-    setTempImage('/images/items/0001/test.gif')
+    setTempImage('/images/items/100001/test.gif')
     setTimeout(() => {
-      setTempImage('/images/items/0001/test.jpg')
+      setTempImage('/images/items/100001/test.jpg')
     }, 2500)
   }
 
@@ -44,7 +44,7 @@ function Card ({ itemImage, item }) {
     >
 
       {item.freeDownload
-        ? <a href={item.downloadLink} download="" className={Styles.button_download}>Free Download</a>
+        ? <a href={item.downloadList[0].link} download="" className={Styles.button_download}>Free Download</a>
         : <button className={Styles.button_add}onClick={handleAddToCart}>Add to Cart ${item.price}</button>}
         <img src={tempImage} onClick={clickImage} alt="photo" />
     </animated.div>

@@ -30,7 +30,7 @@ export default function ItemPage () {
   useEffect(() => {
     const updatedPhones = items.map(item => ({
       key: uuidv4(),
-      content: <Card itemImage={`/images/items/${item.imageFolder}/${item.thumbnailUrl}`}
+      content: <Card itemImage={`/images/items/${item.itemId}/${item.thumbnailUrl}`}
                      item={item}/>
     }))
     setPhones(updatedPhones)

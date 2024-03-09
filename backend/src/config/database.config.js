@@ -3,7 +3,7 @@ import { UserModel } from '../models/user.model.js';
 import { ItemModel } from '../models/item.model.js';
 import { sample_users } from '../test/data.js';
 import { sample_foods } from '../test/data.js';
-import { sample_items } from '../test/mock-data-02.js';
+import { sample_items } from '../test/mock-data-05-ignore.js';
 import bcrypt from 'bcryptjs';
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 set('strictQuery', true);

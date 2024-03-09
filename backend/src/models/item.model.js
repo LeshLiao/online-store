@@ -7,13 +7,12 @@ export const ItemSchema = new Schema(
     price: { type: Number, required: true },
     freeDownload: { type: Boolean, default: false },
     stars: { type: Number, default: 3 },
-    thumbnailUrl: { type: String, required: true },
-    imageFolder: { type: String, required: true },
-    imageList: { type: [String] },
-    sizeOptions: { type: [String] },
-    favorite: { type: Boolean, default: false },
+    photoType: {type: String, required: true},
     tags: { type: [String] },
-    downloadLink: { type: String, required: true },
+    sizeOptions: { type: [String] },
+    thumbnailUrl: { type: String, required: true },
+    imageList: { type: [Object] },
+    downloadList: { type: [Object], required: true },
   },
   {
     toJSON: {
@@ -27,3 +26,4 @@ export const ItemSchema = new Schema(
 );
 
 export const ItemModel = model('item', ItemSchema);
+// mongodb Collection naming will be 'items' (Add 's' end of name automatically)

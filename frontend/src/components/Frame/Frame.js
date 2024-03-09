@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function Frame ({ item, index }) {
-  const imgUrl = `/images/items/${item.imageFolder}/${item.thumbnailUrl}`
+  const imgUrl = `/images/items/${item.itemId}/${item.thumbnailUrl}`
   const [tempImage, setTempImage] = useState(imgUrl)
   const [isClicking, setIsClicking] = useState(false)
   const { addToCart, checkItemIsExist } = useCart()
@@ -17,9 +17,9 @@ export default function Frame ({ item, index }) {
     if (isClicking) return
 
     setIsClicking(true)
-    setTempImage('/images/items/0001/test.gif')
+    setTempImage('/images/items/100001/test.gif')
     setTimeout(() => {
-      setTempImage(`/images/items/${item.imageFolder}/${item.thumbnailUrl}`)
+      setTempImage(imgUrl)
       setIsClicking(false)
     }, 3000)
   }
@@ -46,7 +46,7 @@ export default function Frame ({ item, index }) {
             {item.freeDownload
               ? <div className={classes.right_container}>
                   <div className={classes.free_text}>Free</div>
-                  <a href={item.downloadLink} download="" className={classes.download_link}>
+                  <a href={item.downloadList[0].link} download="" className={classes.download_link}>
                     <img className={classes.download_icon} src="/images/icon/cloud_download.png"/>
                   </a>
                 </div>
@@ -64,13 +64,18 @@ export default function Frame ({ item, index }) {
 Frame.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.string.isRequired,
-    imageFolder: PropTypes.string.isRequired,
+    itemId: PropTypes.string.isRequired,
     thumbnailUrl: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     freeDownload: PropTypes.bool.isRequired,
-    downloadLink: PropTypes.string
-
+    downloadList: PropTypes.arrayOf(
+      PropTypes.shape({
+        size: PropTypes.string.isRequired,
+        ext: PropTypes.string.isRequired,
+        link: PropTypes.string.isRequired
+      })
+    ).isRequired
     // Add other required or optional properties based on your actual data structure
   }).isRequired,
   index: PropTypes.number.isRequired

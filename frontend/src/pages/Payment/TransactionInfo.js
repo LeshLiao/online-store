@@ -14,7 +14,7 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
     let message = ''
     message += 'Transaction ID:' + transactionId + '\n\n'
     cart.items.forEach((item, index) => {
-      message += `(${index + 1}) ${item.myItem.name}\nDownload link: ${item.myItem.downloadLink}\n`
+      message += `(${index + 1}) ${item.myItem.name}\nDownload link: ${item.myItem.downloadList[0].link}\n`
     })
     return message
   }
@@ -64,10 +64,10 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
                 {cart.items.map(item => (
                   <li key={item.myItem.itemId}>
                     <div className={classes.left_block}>
-                      {item.myItem && item.myItem.imageFolder && item.myItem.thumbnailUrl
+                      {item.myItem && item.myItem.thumbnailUrl
                         ? (
                           <img
-                            src={`/images/items/${item.myItem.imageFolder}/${item.myItem.thumbnailUrl}`}
+                            src={`/images/items/${item.myItem.itemId}/${item.myItem.thumbnailUrl}`}
                             alt={item.myItem.name}
                           />
                           )
@@ -80,7 +80,7 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
                         <div className={classes.item_name}>{item.myItem.name}</div>
                         {/* <Price price={item.myItem.price} /> */}
                       </div>
-                      <a href={item.myItem.downloadLink} download="" className={classes.button_download}>Download</a>
+                      <a href={item.myItem.downloadList[0].link} download="" className={classes.button_download}>Download</a>
                     </div>
                   </li>
                 ))}
@@ -99,10 +99,15 @@ TransactionInfo.propTypes = {
         myItem: PropTypes.shape({
           id: PropTypes.string.isRequired,
           name: PropTypes.string.isRequired,
-          imageFolder: PropTypes.string,
           thumbnailUrl: PropTypes.string,
           price: PropTypes.number.isRequired,
-          downloadLink: PropTypes.string.isRequired
+          downloadList: PropTypes.arrayOf(
+            PropTypes.shape({
+              size: PropTypes.string.isRequired,
+              ext: PropTypes.string.isRequired,
+              link: PropTypes.string.isRequired
+            })
+          ).isRequired
         }).isRequired
       })
     ).isRequired,
