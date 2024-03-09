@@ -25,6 +25,7 @@
   top: 0;
   z-index: 200;
   transition: top 1.2s; /* Transition effect when sliding down (and up) */
+  /* border: 1px red solid; */
 }
 
 .left-container {
@@ -142,7 +143,7 @@
     height: 100vh;
     position: absolute;
     /* top: var(--mobile-nav-height); */
-    top: 1.5rem;
+    top: 2.7rem;
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
@@ -150,6 +151,7 @@
     grid-gap: 3rem;
     background: linear-gradient(180deg,  rgba(44, 44, 44, 0.1) 0%, rgba(27, 27, 27, 0.9) 3%
     ,  rgba(2, 2, 2, 0.9) 20%, rgba(2, 2, 2, 0.9) 100%);
+    /* border: 1px solid red; */
   }
 
   .nav-menu.active {

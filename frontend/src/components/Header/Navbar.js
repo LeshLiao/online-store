@@ -58,16 +58,14 @@ function Navbar () {
           <Link to='/' className='navbar-mobile-logo' onClick={() => { closeMoMenu(); scrollToTop() }}>PaletteX</Link>
           {/* Desktop */}
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            <li className='nav-item'><Link to='/new' className='nav-links' onClick={closeMoMenu}>New In</Link></li>
-            <li className='nav-item'><Link to='/digital' className='nav-links' onClick={closeMoMenu}>Digital</Link></li>
-            <li className='nav-item'><Link to='/gallery' className='nav-links' onClick={closeMoMenu}>Gallery</Link></li>
-            {/* <Link to='/' className='navbar-desktop-logo' onClick={() => {this.forceUpdate()}}>PaletteX</Link> */}
+            {/* <li className='nav-item'><Link to='/new' className='nav-links' onClick={closeMoMenu}>New In</Link></li> */}
+            <li className='nav-item'><Link to='/live' className='nav-links' onClick={closeMoMenu}>LIVE PHOTO</Link></li>
+            {/* <li className='nav-item'><Link to='/gallery' className='nav-links' onClick={closeMoMenu}>Gallery</Link></li> */}
             <Link to='/' className='navbar-desktop-logo' onClick={() => { closeMoMenu(); scrollToTop() }}>PaletteX</Link>
-            <li className='nav-item'><Link to='/prints' className='nav-links' onClick={closeMoMenu}>Prints</Link></li>
-            <li className='nav-item'><Link to='/frames' className='nav-links' onClick={closeMoMenu}>Frames</Link></li>
-            <li className='nav-item'><Link to='/about'className='nav-links' onClick={closeMoMenu}>About</Link></li>
+            <li className='nav-item'><Link to='/static' className='nav-links' onClick={closeMoMenu}>STATIC PHOTO</Link></li>
+            {/* <li className='nav-item'><Link to='/frames' className='nav-links' onClick={closeMoMenu}>Frames</Link></li> */}
+            {/* <li className='nav-item'><Link to='/about'className='nav-links' onClick={closeMoMenu}>About</Link></li> */}
             <li className='account-icon-mobile'>
-              {/* <Link to='/login' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link> */}
               {
                 user
                   ? <div>

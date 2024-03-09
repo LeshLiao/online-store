@@ -56,6 +56,18 @@
   color: #ffdd00;
 }
 
+.download_icon {
+  width: 33px;
+}
+
+.free_text {
+  font-family: 'Philosopher', sans-serif;;
+  font-size: 0.9rem;
+  margin: 0px 0px 10px 0px;
+  font-weight: bold;
+  color: #3fe303;
+}
+
 .add_cart {
   /* border: 1px solid green; */
   width: 40px;
