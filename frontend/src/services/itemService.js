@@ -1,19 +1,26 @@
 import axios from 'axios'
-// import { sampleItems } from '../test/mock-data-03-ignore.js'
+
+// Mobile Debug
+// import * as mockModule from '../test/mock-data-03-ignore.js'
+// const readMockData = true
 
 export const getAllItems = async () => {
-  // For mobile debug
-  // return sampleItems
+  // if (readMockData) { return mockModule.sampleGetAllItems }
+
   const { data } = await axios.get('/api/items')
   return data
 }
 
 export const getAllLive = async () => {
+  // if (readMockData) { return mockModule.sampleGetAllLive }
+
   const { data } = await axios.get('/api/items/photoType/live')
   return data
 }
 
 export const getAllStatic = async () => {
+  // if (readMockData) { return mockModule.sampleGetAllStatic }
+
   const { data } = await axios.get('/api/items/photoType/static')
   return data
 }

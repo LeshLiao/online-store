@@ -10,6 +10,7 @@
 
 @media screen and (max-width: 960px) {
   .section_image {
-    height: 50vh;
+    height: 80vh;
+    margin: 15% 0 25% 0;
   }
 }

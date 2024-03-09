@@ -8,16 +8,13 @@ export default function LivePhoto () {
 
   useEffect(() => {
     getAllLive().then(items => setItems(items))
-    console.log(items)
   }, [])
   return (
     <div>
       <div className={classes.top_container}></div>
-      <h1 className={classes.title}>LivePhoto</h1>
-      <h1 className={classes.title}>LivePhoto</h1>
-      <h1 className={classes.title}>LivePhoto</h1>
-      <h1 className={classes.title}>LivePhoto</h1>
-      <h1 className={classes.title}>LivePhoto</h1>
+      <div className={classes.container}>
+        <h1 className={classes.title}>Live Photo</h1>
+      </div>
       <PaintingThumbnails items={items}/>
     </div>
   )

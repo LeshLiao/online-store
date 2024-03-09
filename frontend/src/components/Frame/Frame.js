@@ -42,19 +42,22 @@ export default function Frame ({ item, index }) {
             {/* </Link> */}
           </div>
             {/* <div className={classes.text}>{`${item.name}`}</div> */}
-            {item.freeDownload
-              ? <div className={classes.right_container}>
-                  <div className={classes.free_text}>Free</div>
-                  <a href={item.downloadList[0].link} download="" className={classes.download_link}>
-                    <img className={classes.download_icon} src="/images/icon/cloud_download.png"/>
-                  </a>
-                </div>
-              : <div className={classes.right_container}>
-                  <div className={classes.price}><Price price={item.price} /></div>
-                  <img className={classes.add_cart} onClick={handleAddToCart} src="/images/icon/add_cart_gray.png"/>
-                  <img className={classes.live_play_btn} onClick={clickImage} src="/images/icon/live_play_btn.png"/>
-                </div>
-            }
+            <div className={classes.right_container}>
+              {item.freeDownload
+                ? <div>
+                    <div className={classes.free_text}>Free</div>
+                    <a href={item.downloadList[0].link} download="" className={classes.download_link}>
+                      <img className={classes.download_icon} src="/images/icon/cloud_download.png"/>
+                    </a>
+                  </div>
+
+                : <div>
+                    <div className={classes.price}><Price price={item.price} /></div>
+                    <img className={classes.add_cart} onClick={handleAddToCart} src="/images/icon/add_cart_gray.png"/>
+                  </div>
+              }
+              {item.photoType === 'live' ? <img className={classes.live_play_btn} onClick={clickImage} src="/images/icon/live_play_btn.png"/> : <div></div>}
+            </div>
         </div>
       </div>
   )
@@ -63,13 +66,13 @@ export default function Frame ({ item, index }) {
 // Add PropTypes validation for the 'item' prop
 Frame.propTypes = {
   item: PropTypes.shape({
-    _id: PropTypes.string.isRequired,
     itemId: PropTypes.string.isRequired,
     thumbnail: PropTypes.string.isRequired,
     preview: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     freeDownload: PropTypes.bool.isRequired,
+    photoType: PropTypes.string.isRequired,
     downloadList: PropTypes.arrayOf(
       PropTypes.shape({
         size: PropTypes.string.isRequired,

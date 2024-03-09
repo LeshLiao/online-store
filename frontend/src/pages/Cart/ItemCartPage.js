@@ -57,7 +57,9 @@ export default function ItemCartPage () {
                 <div className={classes.right_block}>
                   <div className={classes.name_price_block}>
                     <div className={classes.item_name}>{item.myItem.name}</div>
-                    <Price price={item.myItem.price} />
+                    <div className={classes.item_price}>
+                      <Price price={item.myItem.price} />
+                    </div>
                   </div>
                   <div className={classes.catalog_remove_block}>
                     <div className={classes.tags}>

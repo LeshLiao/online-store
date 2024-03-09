@@ -56,14 +56,25 @@ video {
 }
 
 @media screen and (max-width: 960px) {
+  .main {
+    height: 90vh;
+  }
+
   video {
     height: 90vh;
   }
+
+  .content {
+    /* height: 90vh; */
+  }
+
   .its_time_to_text {
+    font-size: 0.8rem;
     padding-top: 0rem;
   }
 
   .wallpaper_text {
+    font-size: 0.8rem;
     padding-bottom: 3.2rem;
   }
 }

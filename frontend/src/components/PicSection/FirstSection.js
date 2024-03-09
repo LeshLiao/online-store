@@ -14,7 +14,7 @@ export class FirstSection extends Component {
             All new wallpaper app built for iOS 17, full of new features. Live Wallpapers, Depth Mode, Shuffle Mode, Wallpapers for every Focus mode.
           </div>
           <div className={classes.line}>
-            <img src="/images/section/line.png" />
+            {/* <img src="/images/section/line.png" /> */}
           </div>
         </div>
       </>

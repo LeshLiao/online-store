@@ -1,13 +1,21 @@
 import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import MyPaypalButton from '../../components/MyPaypalButton/MyPaypalButton'
 import { usePayment } from '../../context/PaymentContext'
 import classes from './payment_page.module.css'
+import { toast } from 'react-toastify'
 
 export default function PaymentPage () {
   const { paymentValue } = usePayment()
+  const navigate = useNavigate()
 
   useEffect(() => {
     console.log('paymentValue=' + paymentValue)
+    if (!paymentValue) {
+      toast.info('Payment Error, please try again!')
+      console.log('paymentValue error,navigate to /cart!')
+      navigate('/cart')
+    }
   }, [paymentValue])
 
   useEffect(() => {
