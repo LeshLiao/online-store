@@ -3,7 +3,6 @@ import { UserModel } from '../models/user.model.js';
 import { ItemModel } from '../models/item.model.js';
 import { sample_users } from '../test/data.js';
 import { sample_foods } from '../test/data.js';
-import { sample_items } from '../test/mock-data-05-ignore.js';
 import bcrypt from 'bcryptjs';
 const PASSWORD_HASH_SALT_ROUNDS = 10;
 set('strictQuery', true);
@@ -39,15 +38,21 @@ async function seedUsers() {
 }
 
 async function initItems() {
-  const items = await ItemModel.countDocuments();
-  if (items > 0) {
-    console.log('items seed is already done!');
-    return;
-  }
+  let importMockData = false;
+  let sample_items;
+  if (importMockData) {
+    const module = await import('../test/mock-data-05-ignore.js');
+    sample_items = module.sample_items;
 
-  for (const item of sample_items) {
-    await ItemModel.create(item);
-  }
+    const items = await ItemModel.countDocuments();
+    if (items > 0) {
+      console.log('Items seed is already done!');
+      return;
+    }
 
-  console.log('items seed Is Done!');
+    for (const item of sample_items) {
+      await ItemModel.create(item);
+    }
+    console.log('Items seed is done!');
+  }
 }
