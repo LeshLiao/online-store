@@ -8,16 +8,15 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function Frame ({ item, index }) {
-  const imgUrl = `/images/items/${item.itemId}/${item.thumbnailUrl}`
+  const imgUrl = `/images/items/${item.itemId}/${item.thumbnail}`
   const [tempImage, setTempImage] = useState(imgUrl)
   const [isClicking, setIsClicking] = useState(false)
   const { addToCart, checkItemIsExist } = useCart()
 
   const clickImage = () => {
-    if (isClicking) return
-
+    if (isClicking || !item.preview) return
     setIsClicking(true)
-    setTempImage('/images/items/100001/test.gif')
+    setTempImage(`/images/items/${item.itemId}/${item.preview}`)
     setTimeout(() => {
       setTempImage(imgUrl)
       setIsClicking(false)
@@ -65,7 +64,8 @@ Frame.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     itemId: PropTypes.string.isRequired,
-    thumbnailUrl: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    preview: PropTypes.string,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     freeDownload: PropTypes.bool.isRequired,

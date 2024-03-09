@@ -10,6 +10,8 @@ import ItemCartPage from './pages/Cart/ItemCartPage'
 import RegisterPage from './pages/Login/RegisterPage'
 import EmailVerify from './pages/Login/EmailVerify'
 import NewIn from './pages/NewIn/NewIn'
+import StaticPhoto from './pages/StaticPhoto/StaticPhoto'
+import LivePhoto from './pages/LivePhoto/LivePhoto'
 
 export default function AppRoutes () {
   return (
@@ -22,8 +24,10 @@ export default function AppRoutes () {
         <Route path="/payment" element={<PaymentPage/>}/>
         <Route path='/success' element={<PaymentSuccessful/>}/>
         <Route path='/register' element={<RegisterPage/>}/>
-        <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
-        <Route path="/new" element={<NewIn />} />
+        <Route path="/users/:id/verify/:token" element={<EmailVerify/>} />
+        <Route path="/new" element={<NewIn/>} />
+        <Route path="/static" element={<StaticPhoto/>} />
+        <Route path="/live" element={<LivePhoto/>} />
       </Routes>
     </PaymentProvider>
   )

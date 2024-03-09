@@ -29,8 +29,8 @@ router.get(
     const { searchTerm } = req.params;
     const searchRegex = new RegExp(searchTerm, 'i');  // case insensitive
 
-    const foods = await FoodModel.find({ name: { $regex: searchRegex } });
-    res.send(foods);
+    const items = await ItemModel.find({ name: { $regex: searchRegex } });
+    res.send(items);
   })
 );
 
@@ -38,8 +38,17 @@ router.get(
   '/tag/:tag',
   handler(async (req, res) => {
     const { tag } = req.params;
-    const foods = await FoodModel.find({ tags: tag });
-    res.send(foods);
+    const items = await ItemModel.find({ tags: tag });
+    res.send(items);
+  })
+);
+
+router.get(
+  '/photoType/:type',
+  handler(async (req, res) => {
+    const { type } = req.params;
+    const items = await ItemModel.find({ photoType: type });
+    res.send(items);
   })
 );
 

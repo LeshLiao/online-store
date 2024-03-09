@@ -73,6 +73,10 @@
   width: 40px;
 }
 
+.add_cart:hover {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 960px) {
   .image {
     border-radius: 0.8rem;

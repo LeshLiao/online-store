@@ -64,10 +64,10 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
                 {cart.items.map(item => (
                   <li key={item.myItem.itemId}>
                     <div className={classes.left_block}>
-                      {item.myItem && item.myItem.thumbnailUrl
+                      {item.myItem && item.myItem.thumbnail
                         ? (
                           <img
-                            src={`/images/items/${item.myItem.itemId}/${item.myItem.thumbnailUrl}`}
+                            src={`/images/items/${item.myItem.itemId}/${item.myItem.thumbnail}`}
                             alt={item.myItem.name}
                           />
                           )
@@ -99,7 +99,7 @@ TransactionInfo.propTypes = {
         myItem: PropTypes.shape({
           id: PropTypes.string.isRequired,
           name: PropTypes.string.isRequired,
-          thumbnailUrl: PropTypes.string,
+          thumbnail: PropTypes.string,
           price: PropTypes.number.isRequired,
           downloadList: PropTypes.arrayOf(
             PropTypes.shape({

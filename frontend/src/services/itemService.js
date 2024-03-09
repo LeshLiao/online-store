@@ -8,6 +8,16 @@ export const getAllItems = async () => {
   return data
 }
 
+export const getAllLive = async () => {
+  const { data } = await axios.get('/api/items/photoType/live')
+  return data
+}
+
+export const getAllStatic = async () => {
+  const { data } = await axios.get('/api/items/photoType/static')
+  return data
+}
+
 export const getItemById = async itemId => {
   const { data } = await axios.get('/api/items/' + itemId)
   return data

@@ -16,7 +16,7 @@ export const dbconnect = async () => {
     // await seedUsers();
     // await seedFoods();
     await initItems();
-    console.log('MongoDB connect successfully!');
+    console.log('--- MongoDB connect successfully!');
   } catch (error) {
     console.log(error);
   }
@@ -25,7 +25,7 @@ export const dbconnect = async () => {
 async function seedUsers() {
   const usersCount = await UserModel.countDocuments();
   if (usersCount > 0) {
-    console.log('Users seed is already done!');
+    console.log('--- Users seed is already done!');
     return;
   }
 
@@ -34,11 +34,12 @@ async function seedUsers() {
     await UserModel.create(user);
   }
 
-  console.log('Users seed is done!');
+  console.log('--- Users seed is done!');
 }
 
 async function initItems() {
   let importMockData = false;
+
   let sample_items;
   if (importMockData) {
     const module = await import('../test/mock-data-05-ignore.js');
@@ -46,13 +47,13 @@ async function initItems() {
 
     const items = await ItemModel.countDocuments();
     if (items > 0) {
-      console.log('Items seed is already done!');
+      console.log('--- Item already exists!');
       return;
     }
 
     for (const item of sample_items) {
       await ItemModel.create(item);
     }
-    console.log('Items seed is done!');
+    console.log('--- Adding new items is done!');
   }
 }
