@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
-import { TextField, Button, Stack } from '@mui/material'
+import { TextField, Button, Stack, InputAdornment, IconButton } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { register } from '../../services/userService'
 import classes from './register_form.module.css'
 import * as emailService from '../../services/emailService'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState('')
@@ -14,11 +16,16 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [msg, setMsg] = useState('')
-  const [emailSent, setEmailSent] = useState(false) // State to track if email is sent
+  const [emailSent, setEmailSent] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+  const handleClickShowPassword = () => setShowPassword(!showPassword)
+  const handleMouseDownPassword = () => setShowPassword(!showPassword)
 
   function handleSubmit (event) {
     event.preventDefault()
-
+    setIsSubmitting(true)
+    console.log('register submit!!!')
     const userData = {
       firstName,
       lastName,
@@ -146,7 +153,6 @@ const RegisterForm = () => {
                     value={email}
                     fullWidth
                     required
-                    // sx={{ mb: 2 }}
                     InputLabelProps={{
                       style: { color: 'aliceblue' } // Change label color here
                     }}
@@ -165,7 +171,7 @@ const RegisterForm = () => {
                 />)}
                 {!emailSent && (
                 <TextField
-                    type="password"
+                    type={showPassword ? 'text' : 'password'} // <-- This is where the magic happens
                     variant='outlined'
                     color='secondary'
                     label="Password"
@@ -180,7 +186,18 @@ const RegisterForm = () => {
                       classes: {
                         notchedOutline: classes.notchedOutline
                       },
-                      style: { color: 'aliceblue' }
+                      style: { color: 'aliceblue' },
+                      endAdornment: (
+                        <InputAdornment position="start">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                          >
+                            {showPassword ? <VisibilityOff style={{ color: 'white' }}/> : <Visibility style={{ color: 'white' }}/>}
+                          </IconButton>
+                        </InputAdornment>
+                      )
                     }}
                     sx={{
                       '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
@@ -188,8 +205,8 @@ const RegisterForm = () => {
                       },
                       mb: 2
                     }}
-                />)}
 
+                />)}
                 {error && <div className={classes.error_msg}><Alert severity="error">{error}</Alert></div>}
                 {msg && <div className={classes.success_msg}>
                   <Alert severity="info"><AlertTitle>Verify Your Email</AlertTitle>{msg}</Alert>
@@ -197,7 +214,17 @@ const RegisterForm = () => {
 
                 {!emailSent && (
                 <Stack spacing={1} direction="row" sx={{ marginTop: 1, marginBottom: 3 }}>
-                  <Button variant="outlined" sx={{ height: '50px', color: 'aliceblue', backgroundColor: '#0089cc', borderStyle: 'none', marginTop: '0.8rem' }} color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
+                  <Button variant="outlined" sx={{
+                    height: '50px',
+                    color: 'aliceblue',
+                    backgroundColor: '#0089cc',
+                    borderStyle: 'none',
+                    marginTop: '0.8rem',
+                    '&.Mui-disabled': {
+                      background: '#0089cc',
+                      color: '#74cdf9'
+                    }
+                  }} color="secondary" type="submit" disabled={isSubmitting} fullWidth>CREATE MY ACCOUNT</Button>
                 </Stack>)}
             </form>
             {!emailSent && (<div className={classes.already}>Already have an account? <Link to="/login"><span className={classes.login_here}>Login Here</span></Link></div>)}

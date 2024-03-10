@@ -13,32 +13,26 @@
   align-items: baseline;
   /* height: 100%; */
   height: 100vh;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
-.title {
-  color:aliceblue;
-  font-size: 1.5rem;
-  margin: 1rem;
-}
-
-.details {
-  /* border: 1px solid yellow; */
+.login_form {
+  /* border: 1px solid red; */
+  width: min(100%, 450px);
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: min(100%, 450px);
-  padding-bottom: 5%;
+  /* margin-top: 3rem; */
 }
 
-.details form {
+.header {
   /* border: 1px solid red; */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0.5rem;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: aliceblue;
 }
 
 .register, .register a:visited, .register a:link {
@@ -60,7 +54,6 @@
 }
 
 .login_button, .reload_button{
-  background-color: #0089cc;
   color: aliceblue;
   padding: 0.8rem;
   border-radius: 0.3rem;
@@ -69,8 +62,21 @@
   border-style: none;
 }
 
+
+
+.notchedOutline {
+  border-color:rgb(205, 205, 205) !important;
+}
+
 .error_msg,
 .success_msg {
-	padding: 0.5rem;
-	margin-top: 0.4rem;
+	margin: 0.2rem 0 1rem 0;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+   -webkit-box-shadow: 0 0 0 30px inset !important;
+   -webkit-text-fill-color: white !important;
 }
