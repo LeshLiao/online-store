@@ -43,3 +43,25 @@ input:-webkit-autofill:active{
    -webkit-text-fill-color: white !important;
 }
 
+.login_again_button{
+  background-color: #0089cc;
+  color: aliceblue;
+  padding: 0.8rem;
+  border-radius: 0.3rem;
+  margin: 1.1rem 0.5rem 1.5rem 0.5rem;
+  font-size: 1rem;
+  border-style: none;
+  /* width: min(100%, 450px); */
+  width: 300px;
+}
+
+.login_in_here{
+  color: white;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.login_in_here span{
+  font-size: 0.8rem;
+  text-decoration: underline;
+}

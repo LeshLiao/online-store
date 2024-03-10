@@ -81,7 +81,7 @@ router.post("/register", async (req, res) => {
     });
 
   } catch (error) {
-    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
+    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error (/register):" + error);
   }
 });
 
@@ -124,7 +124,7 @@ router.get("/:id/verify/:token", async (req, res) => {
     });
 
 		if (!token) {
-      return res.status(400).send({ message: "Invalid link" });
+      return res.status(400).send({ message: "Invalid link, can not find this token!" });
     }
 
     await UserModel.updateOne({ _id: user._id }, { verified: true, verifiedDate: new Date() });

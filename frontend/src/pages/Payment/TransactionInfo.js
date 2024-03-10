@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react'
-// import Price from '../../components/Price/Price'
 import classes from './transaction_info.module.css'
 import PropTypes from 'prop-types' // Import PropTypes
-import * as userService from '../../services/userService'
-import * as emailService from '../../services/emailService'
+import { useAuth } from '../../hooks/useAuth'
 import * as itemService from '../../services/itemService'
+import * as emailService from '../../services/emailService'
 
 export default function TransactionInfo ({ cart, paymentData, transactionId }) {
-  const [user] = useState(userService.getUser())
+  const { user } = useAuth()
   const [isDataWritten, setIsDataWritten] = useState(false)
 
   const getEmailMessage = () => {
     let message = ''
-    message += 'Transaction ID:' + transactionId + '\n\n'
     cart.items.forEach((item, index) => {
       message += `(${index + 1}) ${item.myItem.name}\nDownload link: ${item.myItem.downloadList[0].link}\n`
     })
@@ -20,11 +18,11 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
   }
 
   useEffect(() => {
-    if (!isDataWritten) {
+    if (user && !isDataWritten) {
       const hasEmailSent = sessionStorage.getItem('sentTransactionId')
       if (hasEmailSent !== transactionId) { // If email hasn't been sent
         console.log('Send email, transactionId=' + transactionId)
-        emailService.sendEmailToUser(user.firstName, user.email, getEmailMessage())
+        emailService.sendEmailOrder(user.firstName, user.email, getEmailMessage(), transactionId)
         sessionStorage.setItem('sentTransactionId', transactionId) // Store that email has been sent
 
         const val = itemService.getTransactionData(
@@ -50,7 +48,7 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
       }
       setIsDataWritten(true)
     }
-  }, [isDataWritten])
+  }, [user, isDataWritten])
 
   return (
     <>
@@ -80,7 +78,10 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
                         <div className={classes.item_name}>{item.myItem.name}</div>
                         {/* <Price price={item.myItem.price} /> */}
                       </div>
-                      <a href={item.myItem.downloadList[0].link} download="" className={classes.button_download}>Download</a>
+                      {item.myItem.downloadList[0].link
+                        ? <a href={item.myItem.downloadList[0].link} download="" className={classes.button_download}>Download</a>
+                        : <a href="/" download="" className={classes.button_download}>ERROR LINK</a>
+                      }
                     </div>
                   </li>
                 ))}

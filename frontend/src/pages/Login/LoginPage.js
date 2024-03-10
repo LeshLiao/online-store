@@ -38,7 +38,7 @@ export default function LoginPage () {
       setMsg('')
       console.log(response.firstName + ' , ' + response.email)
       console.log(getEmailMessage(response.uid, response.token))
-      emailService.sendEmailToUser(
+      emailService.sendEmailVerify(
         response.firstName,
         response.email,
         getEmailMessage(response.uid, response.token)
@@ -113,7 +113,7 @@ export default function LoginPage () {
             <div className={classes.create_account}>
               <span>{"Don't have an account?"}&nbsp;&nbsp;&nbsp;</span>
               <Link to={`/register${returnUrl ? '?returnUrl=' + returnUrl : ''}`}>
-                <strong>Create one</strong>
+                <strong>[ Create one ]</strong>
               </Link>
             </div>
             {/* <Link to='/' onClick={emptyCart}>

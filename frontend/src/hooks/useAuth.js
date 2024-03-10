@@ -30,8 +30,14 @@ export const AuthProvider = ({ children }) => {
     navigate('/')
   }
 
+  const clearUser = () => {
+    userService.removeUserItem()
+    setUser(null)
+    console.log('useAuth clearUser')
+  }
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, clearUser }}>
       {children}
     </AuthContext.Provider>
   )

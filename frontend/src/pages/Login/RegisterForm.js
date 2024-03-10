@@ -5,6 +5,7 @@ import { register } from '../../services/userService'
 import classes from './register_form.module.css'
 import * as emailService from '../../services/emailService'
 import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
 
 const RegisterForm = () => {
   const [firstName, setFirstName] = useState('')
@@ -35,9 +36,12 @@ const RegisterForm = () => {
     register(userData).then((response) => {
       setError('')
       setMsg('')
+      console.log('register response:')
       console.log(response)
-      console.log(getEmailMessage)
-      emailService.sendEmailToUser(
+      // console.log(getEmailMessage(response.data.uid, response.data.token))
+
+      // === send email ===
+      emailService.sendEmailVerify(
         firstName,
         email,
         getEmailMessage(response.data.uid, response.data.token)
@@ -62,7 +66,7 @@ const RegisterForm = () => {
       // } else {
       //   setError('DB error')
       // }
-      // console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`)
+      console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`)
     }, (error) => {
       console.log(error)
       setError(error.response.data)
@@ -187,13 +191,17 @@ const RegisterForm = () => {
                 />)}
 
                 {error && <div className={classes.error_msg}><Alert severity="error">{error}</Alert></div>}
-                {msg && <div className={classes.success_msg}><Alert severity="info">{msg}</Alert></div>}
+                {msg && <div className={classes.success_msg}>
+                  <Alert severity="info"><AlertTitle>Verify Your Email</AlertTitle>{msg}</Alert>
+                </div>}
+
                 {!emailSent && (
                 <Stack spacing={1} direction="row" sx={{ marginTop: 1, marginBottom: 3 }}>
                   <Button variant="outlined" sx={{ height: '50px', color: 'aliceblue', backgroundColor: '#0089cc', borderStyle: 'none', marginTop: '0.8rem' }} color="secondary" type="submit" fullWidth>CREATE MY ACCOUNT</Button>
                 </Stack>)}
             </form>
-            <div className={classes.already}>Already have an account? <Link to="/login"><span className={classes.login_here}>Login Here</span></Link></div>
+            {!emailSent && (<div className={classes.already}>Already have an account? <Link to="/login"><span className={classes.login_here}>Login Here</span></Link></div>)}
+            {emailSent && (<div className={classes.login_in_here}>Please Verify Your Email<br/><br/>If verification succeeds, <Link to="/login"><span className={classes.login_here}>Log in Here</span></Link></div>)}
         </React.Fragment>
   )
 }
