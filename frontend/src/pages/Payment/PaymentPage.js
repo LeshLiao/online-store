@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import MyPaypalButton from '../../components/MyPaypalButton/MyPaypalButton'
+import HandlePaypalButton from '../../components/HandlePaypalButton/HandlePaypalButton'
 import { usePayment } from '../../context/PaymentContext'
 import classes from './payment_page.module.css'
 import { toast } from 'react-toastify'
@@ -44,7 +44,7 @@ export default function PaymentPage () {
             <span>If you&apos;re not completely happy with your purchase, contact our PaletteX Guides, 24/7/365, and we&apos;ll make it right.</span>
           </div>
           <div className={classes.button_container}>
-            <MyPaypalButton total_amount={paymentValue} />
+            <HandlePaypalButton total_amount={paymentValue} />
           </div>
         </div>
       </div>

@@ -9,11 +9,11 @@ import {
   usePayPalScriptReducer
 } from '@paypal/react-paypal-js'
 
-export default function MyPaypalButton (obj) {
+export default function HandlePaypalButton (obj) {
   let paypalClientId = 'AVy5AdpDkb3sg9FaXabV4YJCcJNHS0g8N-TmP_-GMi13TIHEpyI973XNe-GLBZX5zEYnm6-lA2pR4l1V'
   let baseUrl = 'https://online-store-service.onrender.com'
 
-  const paypalSandboxMode = true
+  const paypalSandboxMode = false
   const localhostMode = false
 
   const sandBoxClientId = 'AQMg4knitBn2NwW8ZpxYw7hrKy437qHv_rsWVy6sP7b2_yQErnOmX2jlSKZCrx3S5Byjf0IMPBvghH9U'
