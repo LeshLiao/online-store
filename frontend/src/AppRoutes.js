@@ -12,6 +12,7 @@ import EmailVerify from './pages/Login/EmailVerify'
 import NewIn from './pages/NewIn/NewIn'
 import StaticPhoto from './pages/StaticPhoto/StaticPhoto'
 import LivePhoto from './pages/LivePhoto/LivePhoto'
+import Account from './pages/Login/Account'
 
 export default function AppRoutes () {
   return (
@@ -28,6 +29,7 @@ export default function AppRoutes () {
         <Route path="/new" element={<NewIn/>} />
         <Route path="/static" element={<StaticPhoto/>} />
         <Route path="/live" element={<LivePhoto/>} />
+        <Route path="/account" element={<Account/>} />
       </Routes>
     </PaymentProvider>
   )

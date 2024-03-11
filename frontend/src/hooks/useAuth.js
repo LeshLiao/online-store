@@ -1,6 +1,5 @@
 import React, { useState, createContext, useContext } from 'react'
 import * as userService from '../services/userService'
-import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
@@ -26,7 +25,6 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     userService.removeUserItem()
     setUser(null)
-    toast.info('Logout Successful!')
     navigate('/')
   }
 

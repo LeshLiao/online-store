@@ -5,7 +5,7 @@ export const TransactionSchema = new Schema(
     transactionId: { type: String, required: true, unique: true },
     email: { type: String, required: true },
     firstName: { type: String, required: true },
-    lastName: { type: String, required: true },
+    lastName: { type: String },
     detail: { type: Object },
     payment: { type: String, required: true },
     paymentData: { type: Object },

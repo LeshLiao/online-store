@@ -26,6 +26,7 @@ const RegisterForm = () => {
     event.preventDefault()
     setIsSubmitting(true)
     console.log('register submit!!!')
+    setLastName('') // Remove LastName in register form.
     const userData = {
       firstName,
       lastName,
@@ -118,7 +119,7 @@ const RegisterForm = () => {
                         }}
 
                     />
-                    <TextField
+                    {/* <TextField
                         type="text"
                         variant='outlined'
                         color='secondary'
@@ -141,7 +142,7 @@ const RegisterForm = () => {
                             borderColor: 'aliceblue' // Change the focused border color
                           }
                         }}
-                    />
+                    /> */}
                 </Stack>)}
                 {!emailSent && (
                 <TextField

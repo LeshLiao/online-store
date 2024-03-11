@@ -4,7 +4,7 @@ import './Navbar.css'
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import AccountIcon from '@mui/icons-material/AccountCircleRounded'
 import CartIcon from '@mui/icons-material/ShoppingCartRounded'
-import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+// import ExitToAppIcon from '@mui/icons-material/ExitToApp'
 import FaceIcon from '@mui/icons-material/Face'
 import { useAuth } from '../../hooks/useAuth'
 
@@ -12,11 +12,7 @@ function Navbar () {
   const [click, setClick] = useState(false)
   const closeMoMenu = () => setClick(false)
   const scrollToTop = () => { window.scroll(0, 0) }
-  const { user, logout } = useAuth()
-  const logoutAndCloseMenu = () => {
-    logout()
-    closeMoMenu()
-  }
+  const { user } = useAuth()
 
   useEffect(() => {
     if (click) {
@@ -51,7 +47,7 @@ function Navbar () {
               <MenuRoundedIcon fontSize='medium'/>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
-           { user ? <div className='desktop_username'><Link to="/profile"><FaceIcon/></Link></div> : <div></div>}
+           { user ? <div className='desktop_username'><Link to="/account"><FaceIcon/></Link></div> : <div></div>}
         </div>
         <div className='center-container'>
           {/* Mobile */}
@@ -66,27 +62,13 @@ function Navbar () {
             {/* <li className='nav-item'><Link to='/frames' className='nav-links' onClick={closeMoMenu}>Frames</Link></li> */}
             {/* <li className='nav-item'><Link to='/about'className='nav-links' onClick={closeMoMenu}>About</Link></li> */}
             <li className='account-icon-mobile'>
-              {
-                user
-                  ? <div>
-                      <div><Link to="/profile">{user.name}</Link></div>
-                      {/* <a href="/#" onClick={logout}><ExitToAppIcon/></a> */}
-                      <a href="/#" onClick={logoutAndCloseMenu}><ExitToAppIcon/></a>
-                    </div>
-                  : <Link to='/login' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link>
-              }
+                <Link to='/account' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link>
             </li>
           </ul>
         </div>
         <div className='right-container'>
           <div className='login_container'>
-            {
-              user
-                ? <div className='desktop_exit_btn'>
-                    <a href="/#" onClick={logout}><ExitToAppIcon/></a>
-                  </div>
-                : <Link to='/login' className='account-icon-desktop' onClick={closeMoMenu}><AccountIcon /></Link>
-            }
+            <Link to='/account' className='account-icon-desktop' onClick={closeMoMenu}><AccountIcon /></Link>
           </div>
           <Link to='/cart' className='cart-icon' onClick={closeMoMenu}><CartIcon /></Link>
         </div>

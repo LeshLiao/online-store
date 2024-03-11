@@ -1,0 +1,54 @@
+.top_container {
+  /* border: 2px dashed yellow ; */
+  width: 100%;
+  height: 2.7rem;
+}
+
+.container {
+  /* border: 1px solid green; */
+  color: aliceblue;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  width: 100%;
+  height: 100vh;
+  margin-top: 1rem;
+}
+
+
+.header {
+  /* border: 1px solid red; */
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 1rem 0 1rem 0;
+  color: aliceblue;
+}
+
+.content {
+  /* border: 1px solid red; */
+  width: min(100%, 450px);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.first_name_box, .email_box, .logout_box {
+  /* border: 1px solid red; */
+  width: min(100%, 450px);
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+
+.first_name_label, .email_label, .logout_label {
+  color: aliceblue;
+  font-weight: bold;
+}
+.first_name_value, .email_value {
+  color: aliceblue;
+}
