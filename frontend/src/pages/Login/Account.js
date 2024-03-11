@@ -25,14 +25,18 @@ export default function Account () {
         <div className={classes.container}>
           <div className={classes.content}>
             <div className={classes.header}>Account</div>
-            <div className={classes.first_name_box}>
-              <div className={classes.first_name_label}>First Name:</div>
-              <div className={classes.first_name_value}>{user.firstName}</div>
-            </div>
-            <div className={classes.email_box}>
-              <div className={classes.email_label}>Email: </div>
-              <div className={classes.email_value}>{user.email}</div>
-            </div>
+            {user.firstName && (
+              <div className={classes.first_name_box}>
+                <div className={classes.first_name_label}>First Name:</div>
+                <div className={classes.first_name_value}>{user.firstName}</div>
+              </div>
+            )}
+            {user.email && (
+              <div className={classes.email_box}>
+                <div className={classes.email_label}>Email: </div>
+                <div className={classes.email_value}>{user.email}</div>
+              </div>
+            )}
             <div className={classes.logout_box}>
               <div className={classes.logout_label}>Logout </div>
               <a href="/#" onClick={logoutAndCloseMenu}><ExitToAppIcon fontSize="large" style={{ color: '#56caf5' }}/></a>
