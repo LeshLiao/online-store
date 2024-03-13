@@ -20,7 +20,7 @@ export default function Frame ({ item, index }) {
     setTimeout(() => {
       setTempImage(imgUrl)
       setIsClicking(false)
-    }, 3000)
+    }, 2900)
   }
 
   const navigate = useNavigate()
