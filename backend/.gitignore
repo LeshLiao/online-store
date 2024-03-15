@@ -1,3 +1,4 @@
 node_modules
 .env
 /src/test/mock-data-05-ignore.js
+/src/test/private

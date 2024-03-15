@@ -27,3 +27,4 @@ yarn-error.log*
 
 # test data set
 /src/test/mock-data-03-ignore.js
+/src/test/private

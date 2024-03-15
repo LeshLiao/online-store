@@ -1,25 +1,23 @@
 import axios from 'axios'
 
-// Mobile Debug
-// import * as mockModule from '../test/mock-data-03-ignore.js'
-// const readMockData = true
+import * as mockModule from '../test/private/OnlineStoreRawData/static.js' // Mobile Debug
+const readMockData = false // Mobile Debug
 
 export const getAllItems = async () => {
-  // if (readMockData) { return mockModule.sampleGetAllItems }
+  if (readMockData) { return mockModule.getStaticItems }
 
   const { data } = await axios.get('/api/items')
   return data
 }
 
-export const getAllLive = async () => {
-  // if (readMockData) { return mockModule.sampleGetAllLive }
-
-  const { data } = await axios.get('/api/items/photoType/live')
-  return data
-}
+// export const getAllLive = async () => {
+//   if (readMockData) { return mockModule.sampleGetAllLive }
+//   const { data } = await axios.get('/api/items/photoType/live')
+//   return data
+// }
 
 export const getAllStatic = async () => {
-  // if (readMockData) { return mockModule.sampleGetAllStatic }
+  if (readMockData) { return mockModule.getStaticItems }
 
   const { data } = await axios.get('/api/items/photoType/static')
   return data
@@ -42,6 +40,15 @@ export const getAllTagsItems = async () => {
 
 export const getAllByTag = async tag => {
   if (tag === 'All') return getAllItems()
+  const { data } = await axios.get('/api/items/tag/' + tag)
+  return data
+}
+
+export const getItemsByTag = async tag => {
+  if (readMockData) {
+    return mockModule.getStaticItems.filter((item) => item.tags.includes(tag))
+  }
+
   const { data } = await axios.get('/api/items/tag/' + tag)
   return data
 }

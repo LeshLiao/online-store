@@ -40,10 +40,11 @@ async function seedUsers() {
 async function initItems() {
   let importMockData = false;
 
-  let sampleGetAllItems;
+  let rawData;
   if (importMockData) {
-    const module = await import('../test/mock-data-05-ignore.js');
-    sampleGetAllItems = module.sampleGetAllItems;
+    const module = await import('../test/private/OnlineStoreRawData/static.js');
+
+    rawData = module.getStaticItems;
 
     const items = await ItemModel.countDocuments();
     if (items > 0) {
@@ -51,7 +52,8 @@ async function initItems() {
       return;
     }
 
-    for (const item of sampleGetAllItems) {
+
+    for (const item of rawData) {
       await ItemModel.create(item);
     }
     console.log('--- Adding new items is done!');

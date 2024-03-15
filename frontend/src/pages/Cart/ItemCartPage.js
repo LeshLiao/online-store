@@ -19,7 +19,7 @@ export default function ItemCartPage () {
     if (user) {
       navigate('/payment')
     } else {
-      toast.info('Please Login')
+      toast.info('Please login to continue')
       navigate('/login?returnUrl=/payment')
     }
   }

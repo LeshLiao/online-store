@@ -10,9 +10,9 @@ import ItemCartPage from './pages/Cart/ItemCartPage'
 import RegisterPage from './pages/Login/RegisterPage'
 import EmailVerify from './pages/Login/EmailVerify'
 import NewIn from './pages/NewIn/NewIn'
-import StaticPhoto from './pages/StaticPhoto/StaticPhoto'
-import LivePhoto from './pages/LivePhoto/LivePhoto'
 import Account from './pages/Login/Account'
+import Landscape from './pages/Catalog/Landscape/Landscape'
+import City from './pages/Catalog/City/City'
 
 export default function AppRoutes () {
   return (
@@ -27,8 +27,8 @@ export default function AppRoutes () {
         <Route path='/register' element={<RegisterPage/>}/>
         <Route path="/users/:id/verify/:token" element={<EmailVerify/>} />
         <Route path="/new" element={<NewIn/>} />
-        <Route path="/static" element={<StaticPhoto/>} />
-        <Route path="/live" element={<LivePhoto/>} />
+        <Route path="/city" element={<City/>} />
+        <Route path="/landscape" element={<Landscape/>} />
         <Route path="/account" element={<Account/>} />
       </Routes>
     </PaymentProvider>

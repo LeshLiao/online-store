@@ -55,10 +55,10 @@ function Navbar () {
           {/* Desktop */}
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
             {/* <li className='nav-item'><Link to='/new' className='nav-links' onClick={closeMoMenu}>New In</Link></li> */}
-            <li className='nav-item'><Link to='/live' className='nav-links' onClick={closeMoMenu}>LIVE PHOTO</Link></li>
+            <li className='nav-item'><Link to='/landscape' className='nav-links' onClick={closeMoMenu}>LANDSCAPE</Link></li>
             {/* <li className='nav-item'><Link to='/gallery' className='nav-links' onClick={closeMoMenu}>Gallery</Link></li> */}
             <Link to='/' className='navbar-desktop-logo' onClick={() => { closeMoMenu(); scrollToTop() }}>PaletteX</Link>
-            <li className='nav-item'><Link to='/static' className='nav-links' onClick={closeMoMenu}>STATIC PHOTO</Link></li>
+            <li className='nav-item'><Link to='/city' className='nav-links' onClick={closeMoMenu}>CITY VIEWS</Link></li>
             {/* <li className='nav-item'><Link to='/frames' className='nav-links' onClick={closeMoMenu}>Frames</Link></li> */}
             {/* <li className='nav-item'><Link to='/about'className='nav-links' onClick={closeMoMenu}>About</Link></li> */}
             <li className='account-icon-mobile'>
