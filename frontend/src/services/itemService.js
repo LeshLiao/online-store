@@ -1,7 +1,12 @@
 import axios from 'axios'
 
-import * as mockModule from '../test/private/OnlineStoreRawData/static.js' // Mobile Debug
 const readMockData = false // Mobile Debug
+
+let mockModule
+if (readMockData) {
+  // Comment this
+  // mockModule = await import('../test/private/OnlineStoreRawData/static.js') // Mobile Debug
+}
 
 export const getAllItems = async () => {
   if (readMockData) { return mockModule.getStaticItems }
