@@ -24,6 +24,9 @@ const RegisterForm = () => {
 
   function handleSubmit (event) {
     event.preventDefault()
+
+    if (!checkPassword(password)) return
+
     setIsSubmitting(true)
     console.log('register submit!!!')
     setLastName('') // Remove LastName in register form.
@@ -74,12 +77,21 @@ const RegisterForm = () => {
       // } else {
       //   setError('DB error')
       // }
-      console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`)
+      // console.log(`http://localhost:3000/users/${response.data.uid}/verify/${response.data.token}`)
     }, (error) => {
       console.log(error)
       setError(error.response.data)
       setMsg('')
+      setIsSubmitting(false)
     })
+  }
+
+  function checkPassword (pwd) {
+    if (pwd.length < 8) {
+      setError('Passwords must have at least 8 characters.')
+      return false
+    }
+    return true
   }
 
   return (
