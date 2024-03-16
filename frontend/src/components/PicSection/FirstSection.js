@@ -9,9 +9,9 @@ export class FirstSection extends Component {
           <div className={classes.image}>
             <img src="/images/section/ios17.png" />
           </div>
-          <div className={classes.title}>Built for iOS 17</div>
+          <div className={classes.title}>Artful Screens<br/> Unique Themes & Inspiration</div>
           <div className={classes.content}>
-            All new wallpaper app built for iOS 17, full of new features. Live Wallpapers, Depth Mode, Shuffle Mode, Wallpapers for every Focus mode.
+            Transform your screen into a canvas of individuality and inspiration with our exclusive themes and wallpapers.
           </div>
           <div className={classes.line}>
             {/* <img src="/images/section/line.png" /> */}

@@ -9,8 +9,28 @@ import FirstSection from '../../components/PicSection/FirstSection'
 export default function HomePage () {
   const [items, setItems] = useState([])
 
+  // useEffect(() => {
+  //   getAllItems().then(items => setItems(items))
+  // }, [])
+
+  // useEffect(() => {
+  //   getAllItems()
+  //     .then(items => {
+  //       // Sort items by createdAt in descending order
+  //       items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  //       setItems(items)
+  //     })
+  //     .catch(error => console.error('Error fetching items:', error))
+  // }, [])
+
   useEffect(() => {
-    getAllItems().then(items => setItems(items))
+    getAllItems()
+      .then(items => {
+        // Sort items by itemId in descending order
+        items.sort((a, b) => b.itemId.localeCompare(a.itemId))
+        setItems(items)
+      })
+      .catch(error => console.error('Error fetching items:', error))
   }, [])
 
   useEffect(() => {
