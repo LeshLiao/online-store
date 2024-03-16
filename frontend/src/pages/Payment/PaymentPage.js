@@ -41,7 +41,9 @@ export default function PaymentPage () {
           </div>
           <div className={classes.description}>
             <span><strong>Satisfaction Guaranteed</strong></span><br></br>
-            <span>If you&apos;re not completely happy with your purchase, contact our PaletteX Guides, 24/7/365, and we&apos;ll make it right.</span>
+            <span>If you&apos;re not completely happy with your purchase, contact our PaletteX Guides, 24/7/365, and we&apos;ll make it right.</span><br></br><br></br>
+
+            <span><strong>This is a digital product, and we will send the digital file to your email.</strong></span><br></br>
           </div>
           <div className={classes.button_container}>
             <HandlePaypalButton total_amount={paymentValue} />

@@ -44,7 +44,7 @@ app.use(
     "https://react-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app",
     "https://online-store-hxxg.onrender.com",
     "https://online-store-frontend-cloud-run-service-jeeuicbmuq-uc.a.run.app",
-    "https://online-store-gilt-nu.vercel.app"],
+    "https://online-store-nu-dusky.vercel.app"],
   })
 );
 
