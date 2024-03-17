@@ -7,6 +7,11 @@
 .main {
   width: 100%;
   height: 100vh;
+  /* border: 1px solid yellow; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 video {
@@ -17,10 +22,10 @@ video {
 }
 
 .content {
-  /* border: 1px solid red; */
+  border: 1px solid red;
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 85vh;
   top: 0;
   display: flex;
   flex-direction: column;
@@ -29,30 +34,37 @@ video {
   Color: white;
 }
 
-.hero {
-  background-image: url("../../img/hero02.png");
+.hero_img {
+  background-image: url("../../img/hero07.jpg");
   background-position: center;
   background-repeat: no-repeat;
   /* height: 816px; */
   height: 100vh;
   background-size: cover;
-  /* border: 1px solid red; */
+  /* opacity: 50%; */
+  border: 1px solid red;
 }
 
-.its_time_to_text {
-  padding-top: 1rem;
-  font-size: 1rem;
-  font-weight:500;
+.one_text {
+  font-size: 1.2rem;
+  /* font-weight:500; */
+  text-shadow: 1px 0 rgb(56, 56, 56);
 }
 
-.change_your_text {
-  font-size: 1.8rem;
-  font-weight:600;
+.two_text {
+  font-size: 1.2rem;
+  /* font-weight:600; */
+  text-shadow: 1px 0 rgb(56, 56, 56);
 }
 
-.wallpaper_text {
-  font-size: 1rem;
-  font-weight:500;
+.three_text {
+  font-size: 1.2rem;
+  /* font-weight:500; */
+  text-shadow: 1px 0 rgb(56, 56, 56);
+}
+
+.smart_phone {
+  width: 300px;
 }
 
 @media screen and (max-width: 960px) {
@@ -63,18 +75,21 @@ video {
   video {
     height: 90vh;
   }
-
+  .hero_img {
+    height: 90vh;
+  }
   .content {
     /* height: 90vh; */
   }
 
   .its_time_to_text {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding-top: 0rem;
   }
 
   .wallpaper_text {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     padding-bottom: 3.2rem;
   }
+
 }

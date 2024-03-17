@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import './Hero.css'
-import videoBg from '../../img/video/vllo.mp4'
+import classes from './hero.module.css'
+// import videoBg from '../../img/video/vllo.mp4'
 
 export class Hero extends Component {
   render () {
     return (
-      <div className="main">
-        <video src={videoBg} autoPlay loop muted playsInline/>
-        <div className="content">
-          <div className='its_time_to_text'>IT&apos;S TIME TO</div><br/>
-          <div className='change_your_text'>CHANGE</div><br/>
-          <div className="wallpaper_text">WALLPAPER</div>
-        </div>
-        {/* <div className='hero'></div> */}
+      <div className={classes.main}>
+        {/* <video src={videoBg} autoPlay loop muted playsInline/> */}
+        {/* <div className={classes.content}>
+          <div className={classes.one_text}>Discover Endless</div><br/>
+          <div className={classes.two_text}>Possibilities with</div><br/>
+          <div className={classes.three_text}>Wallpaper</div>
+        </div> */}
+        {/* <div className={classes.hero_img}></div> */}
+        <img className={classes.smart_phone} src="/images/section/WALLPAPER.jpg"/>
       </div>
     )
   }

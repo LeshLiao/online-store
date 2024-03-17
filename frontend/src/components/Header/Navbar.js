@@ -5,14 +5,14 @@ import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import AccountIcon from '@mui/icons-material/AccountCircleRounded'
 import CartIcon from '@mui/icons-material/ShoppingCartRounded'
 // import ExitToAppIcon from '@mui/icons-material/ExitToApp'
-import FaceIcon from '@mui/icons-material/Face'
-import { useAuth } from '../../hooks/useAuth'
+// import FaceIcon from '@mui/icons-material/Face'
+// import { useAuth } from '../../hooks/useAuth'
 
 function Navbar () {
   const [click, setClick] = useState(false)
   const closeMoMenu = () => setClick(false)
   const scrollToTop = () => { window.scroll(0, 0) }
-  const { user } = useAuth()
+  // const { user } = useAuth()
 
   useEffect(() => {
     if (click) {
@@ -47,7 +47,7 @@ function Navbar () {
               <MenuRoundedIcon fontSize='medium'/>
               <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
           </div>
-           { user ? <div className='desktop_username'><Link to="/account"><FaceIcon/></Link></div> : <div></div>}
+          <div></div>
         </div>
         <div className='center-container'>
           {/* Mobile */}

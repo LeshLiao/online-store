@@ -33,13 +33,6 @@ export default function HomePage () {
       .catch(error => console.error('Error fetching items:', error))
   }, [])
 
-  // useEffect(() => {
-  //   const _mtm = window._mtm = window._mtm || []
-  //   _mtm.push({ 'mtm.startTime': (new Date().getTime()), event: 'mtm.Start' })
-  //   const d = document; const g = d.createElement('script'); const s = d.getElementsByTagName('script')[0]
-  //   g.async = true; g.src = 'https://cdn.matomo.cloud/palettex.matomo.cloud/container_NLwgPkl8.js'; s.parentNode.insertBefore(g, s)
-  // }, [])
-
   return (
     <div className={classes.container}>
       <Hero></Hero>
