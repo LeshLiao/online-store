@@ -4,15 +4,22 @@ import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 const AuthContext = createContext(null)
+const AUTH_KEY = 'user'
+const EMPTY_AUTH = null
 
-export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(userService.getUser())
+export default function AuthProvider ({ children }) {
+  const initAuth = getAuthFromLocalStorage()
+  const [user, setUser] = useState(initAuth)
+  function getAuthFromLocalStorage () {
+    const storedAuth = localStorage.getItem(AUTH_KEY)
+    return storedAuth ? JSON.parse(storedAuth) : EMPTY_AUTH
+  }
 
   const login = async (email, password) => {
     try {
       const response = await userService.login(email, password)
       if (!response.needVerified) {
-        userService.addUserItem(response)
+        localStorage.setItem(AUTH_KEY, JSON.stringify(response.token))
         setUser(response.token)
       }
       return response
