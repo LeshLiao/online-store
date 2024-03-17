@@ -35,7 +35,7 @@ video {
 }
 
 .hero_img {
-  background-image: url("../../img/hero07.jpg");
+  /* background-image: url("../../img/hero07.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
   /* height: 816px; */
