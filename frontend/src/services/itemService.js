@@ -3,9 +3,12 @@ import axios from 'axios'
 const readMockData = false // Mobile Debug
 
 let mockModule
+let mockData
+
 if (readMockData) {
   // Comment this
   // mockModule = await import('../test/private/OnlineStoreRawData/static.js') // Mobile Debug
+  // mockData = await import('../test/private/OnlineStoreRawData/mock-data.js') // Mobile Debug
 }
 
 export const getAllItems = async () => {
@@ -29,6 +32,8 @@ export const getAllStatic = async () => {
 }
 
 export const getItemById = async itemId => {
+  if (readMockData) return mockData.getOneItem
+
   const { data } = await axios.get('/api/items/' + itemId)
   return data
 }
