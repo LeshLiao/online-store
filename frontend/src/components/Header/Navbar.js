@@ -70,7 +70,7 @@ function Navbar () {
           <div className='login_container'>
             <Link to='/account' className='account-icon-desktop' onClick={closeMoMenu}><AccountIcon /></Link>
           </div>
-          <Link to='/cart/view' className='cart-icon' onClick={closeMoMenu}><CartIcon /></Link>
+          <Link to='/cart' className='cart-icon' onClick={closeMoMenu}><CartIcon /></Link>
         </div>
       </nav>
     </>

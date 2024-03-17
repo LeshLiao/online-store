@@ -30,7 +30,7 @@ export default function Header () {
   //           }
 
   //           <li>
-  //             <Link to="/cart/view">
+  //             <Link to="/cart">
   //               Cart&nbsp;
   //               {cart.totalCount > 0 && <span className={classes.cart_count}>{cart.totalCount}</span>}
   //             </Link>

@@ -29,7 +29,7 @@ export default function Frame ({ item, index }) {
       toast.info('You have already put this item!')
     } else {
       addToCart(item)
-      navigate('/cart/' + item.itemId)
+      navigate('/cart')
     }
   }
 
