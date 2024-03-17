@@ -241,7 +241,9 @@ const RegisterForm = () => {
                 </Stack>)}
             </form>
             {!emailSent && (<div className={classes.already}>Already have an account? <Link to="/login"><span className={classes.login_here}>Login Here</span></Link></div>)}
-            {emailSent && (<div className={classes.login_in_here}>Please Verify Your Email<br/><br/>If verification succeeds, <Link to="/login"><span className={classes.login_here}>Log in Here</span></Link></div>)}
+            {emailSent && (<div className={classes.login_in_here}><br/><strong>Please Verify Your Email</strong><br/><br/>If verification succeeds, <Link to="/login"><span className={classes.login_here}>Log in Here</span></Link><br/><br/>
+            <div className={classes.hint_msg}>If you haven&apos;t received the email after a few minutes, be sure to check your junk mail.</div>
+            </div>)}
         </React.Fragment>
   )
 }
