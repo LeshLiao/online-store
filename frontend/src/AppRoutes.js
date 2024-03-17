@@ -20,7 +20,7 @@ export default function AppRoutes () {
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/item/:index" element={<ItemPage/>}/>
-        <Route path="/cart" element={<ItemCartPage/>}/>
+        <Route path="/cart/:id" element={<ItemCartPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/payment" element={<PaymentPage/>}/>
         <Route path='/success' element={<PaymentSuccessful/>}/>
