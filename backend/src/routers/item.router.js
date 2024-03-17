@@ -18,7 +18,8 @@ router.get(
   '/:itemId',
   handler(async (req, res) => {
     const { itemId } = req.params;
-    const item = await ItemModel.findById(itemId);
+    // const item = await ItemModel.findById(itemId);
+    const item = await ItemModel.findOne({ itemId });
     res.send(item);
   })
 );

@@ -14,7 +14,7 @@ export default function PaymentPage () {
     if (!paymentValue) {
       toast.info('Payment Error, please try again!')
       console.log('paymentValue error,navigate to /cart!')
-      navigate('/cart')
+      navigate('/cart/view')
     }
   }, [paymentValue])
 

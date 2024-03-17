@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import classes from './frame.module.css'
-// import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import Price from '../Price/Price'
 import { useCart } from '../../hooks/useCart'
-import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function Frame ({ item, index }) {
@@ -23,13 +22,17 @@ export default function Frame ({ item, index }) {
     }, 2900)
   }
 
+  const downloadClick = () => {
+    navigate('/download/' + item.itemId)
+  }
+
   const navigate = useNavigate()
   const handleAddToCart = () => {
     if (checkItemIsExist(item)) {
       toast.info('You have already put this item!')
     } else {
       addToCart(item)
-      navigate('/cart')
+      navigate('/cart/' + item.itemId)
     }
   }
 
@@ -47,7 +50,7 @@ export default function Frame ({ item, index }) {
                 ? <div>
                     <div className={classes.free_text}>Free</div>
                     <a href={item.downloadList[0].link} download="" className={classes.download_link}>
-                      <img className={classes.download_icon} src="/images/icon/cloud_download.png"/>
+                      <img className={classes.download_icon} onClick={downloadClick} src="/images/icon/cloud_download.png"/>
                     </a>
                   </div>
 

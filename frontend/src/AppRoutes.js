@@ -13,6 +13,7 @@ import NewIn from './pages/NewIn/NewIn'
 import Account from './pages/Login/Account'
 import Landscape from './pages/Catalog/Landscape/Landscape'
 import City from './pages/Catalog/City/City'
+import Download from './pages/Item/Download'
 
 export default function AppRoutes () {
   return (
@@ -20,7 +21,8 @@ export default function AppRoutes () {
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/item/:index" element={<ItemPage/>}/>
-        <Route path="/cart" element={<ItemCartPage/>}/>
+        <Route path="/cart/:id" element={<ItemCartPage/>}/>
+        <Route path="/download/:id" element={<Download/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/payment" element={<PaymentPage/>}/>
         <Route path='/success' element={<PaymentSuccessful/>}/>

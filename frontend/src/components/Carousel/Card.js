@@ -24,7 +24,7 @@ function Card ({ itemImage, item }) {
       toast.info('You have already put this item!')
     } else {
       addToCart(item)
-      navigate('/cart')
+      navigate('/cart/view')
     }
   }
 
