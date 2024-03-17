@@ -22,8 +22,14 @@ export default function Frame ({ item, index }) {
     }, 2900)
   }
 
-  const downloadClick = () => {
-    navigate('/download/' + item.itemId)
+  const downloadClick = (event) => {
+    event.preventDefault() // Prevent default behavior of anchor tag
+    const downloadUrl = event.currentTarget.parentElement.getAttribute('href')
+    navigate('/download/' + item.itemId) // Navigate first
+
+    setTimeout(() => {
+      window.open(downloadUrl, '_blank')
+    }, 500)
   }
 
   const navigate = useNavigate()
