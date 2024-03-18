@@ -23,13 +23,9 @@ export default function Frame ({ item, index }) {
   }
 
   const downloadClick = (event) => {
-    event.preventDefault() // Prevent default behavior of anchor tag
-    const downloadUrl = event.currentTarget.parentElement.getAttribute('href')
-    navigate('/download/' + item.itemId) // Navigate first
-
-    setTimeout(() => {
-      window.open(downloadUrl, '_blank')
-    }, 500)
+    event.preventDefault()
+    const downloadLink = item.downloadList[0].link
+    navigate('/download/' + item.itemId, { state: { downloadLink } })
   }
 
   const navigate = useNavigate()
@@ -55,9 +51,9 @@ export default function Frame ({ item, index }) {
               {item.freeDownload
                 ? <div>
                     <div className={classes.free_text}>Free</div>
-                    <a href={item.downloadList[0].link} download="" className={classes.download_link}>
+                    {/* <a href={item.downloadList[0].link} download="" className={classes.download_link}> */}
                       <img className={classes.download_icon} onClick={downloadClick} src="/images/icon/cloud_download.png"/>
-                    </a>
+                    {/* </a> */}
                   </div>
 
                 : <div>
@@ -72,7 +68,6 @@ export default function Frame ({ item, index }) {
   )
 }
 
-// Add PropTypes validation for the 'item' prop
 Frame.propTypes = {
   item: PropTypes.shape({
     itemId: PropTypes.string.isRequired,
@@ -89,7 +84,6 @@ Frame.propTypes = {
         link: PropTypes.string.isRequired
       })
     ).isRequired
-    // Add other required or optional properties based on your actual data structure
   }).isRequired,
   index: PropTypes.number.isRequired
 }

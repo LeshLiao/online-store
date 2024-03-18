@@ -52,6 +52,10 @@
   width: 33px;
 }
 
+.download_icon:hover {
+  cursor: pointer;
+}
+
 .free_text {
   font-family: 'Philosopher', sans-serif;
   font-size: 0.9rem;

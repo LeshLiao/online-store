@@ -1,13 +1,20 @@
 import React, { useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useLocation } from 'react-router-dom'
 import classes from './download.module.css'
-
 export default function Download () {
   const { id } = useParams()
+  const location = useLocation()
+  const downloadLink = location.state?.downloadLink || null
+
+  function runDownload () {
+    document.getElementById('download_button').click()
+  }
 
   useEffect(() => {
-    console.log('id=' + id)
     window.scrollTo(0, 0)
+    setTimeout(() => {
+      if (downloadLink) { runDownload() }
+    }, 1000)
   }, [])
 
   return (
@@ -19,17 +26,17 @@ export default function Download () {
       <div className={classes.cute_container}>
         <img className={classes.add_cart} src="/images/icon/happy_ya.png"/>
       </div>
-      {/* <div className={classes.hint_msg}>If you have not downloaded it</div> */}
+      <div className={classes.hint_msg}>If you have not downloaded it</div>
+      { downloadLink && (
       <div className={classes.download_container}>
-          {/* <a href={item.downloadList[0].link} download="" className={classes.download_link}> */}
-          {/* <a href='' download="" className={classes.download_link}> */}
-            {/* <div className={classes.download_again}>Download It Again</div> */}
-          {/* </a> */}
-          {/* <a href={item.downloadList[0].link} download="" className={classes.download_link}> */}
-          {/* <a href='' download="" className={classes.download_link}> */}
-            {/* <img className={classes.download_icon} src="/images/icon/cloud_download.png" alt="Download" /> */}
-          {/* </a> */}
+          <a href={downloadLink} download="" className={classes.download_link}>
+            <div className={classes.download_again}>Download It Again</div>
+          </a>
+          <a href={downloadLink} download="" className={classes.download_link} id='download_button'>
+            <img className={classes.download_icon} src="/images/icon/cloud_download.png" alt={`download_img_${id}`} />
+          </a>
       </div>
+      )}
       <div className={classes.go_back}>
         <Link to='/'>
           Back to PaletteX
