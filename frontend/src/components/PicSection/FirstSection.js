@@ -9,9 +9,9 @@ export class FirstSection extends Component {
           <div className={classes.image}>
             <img src="/images/section/ios17.png" />
           </div>
-          <div className={classes.title}>Artful Screens<br/> Unique Themes & Inspiration</div>
+          <div className={classes.title}>Experience the Power of Pattern</div>
           <div className={classes.content}>
-            Transform your screen into a canvas of individuality and inspiration with our exclusive themes and wallpapers.
+            Transform your screen into a canvas of individuality and inspiration with wallpapers.
           </div>
           <div className={classes.line}>
             {/* <img src="/images/section/line.png" /> */}

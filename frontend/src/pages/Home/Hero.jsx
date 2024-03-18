@@ -14,6 +14,9 @@ export class Hero extends Component {
         </div> */}
         {/* <div className={classes.hero_img}></div> */}
         <img className={classes.smart_phone} src="/images/section/WALLPAPER.jpg"/>
+        {/* <img className={classes.smart_phone} src="/images/section/smartphone.jpg"/> */}
+        <div className={classes.title_1}>Personalize Your Smartphone</div>
+        <div className={classes.title_2}>With Wallpapers</div>
       </div>
     )
   }
