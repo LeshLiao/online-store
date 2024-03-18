@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import classes from './download.module.css'
-// import AdsComponent from '../../components/GoogleAdSense/AdsComponent'
+import AdsComponent from '../../components/GoogleAdSense/AdsComponent'
 export default function Download () {
   const { id } = useParams()
   const location = useLocation()
@@ -39,7 +39,7 @@ export default function Download () {
       </div>
       )}
       <div className={classes.googleAdSense}>
-        {/* <AdsComponent dataAdSlot='X7XXXXXX5X' /> */}
+        <AdsComponent dataAdSlot='1369223650' />
       </div>
       <div className={classes.go_back}>
         <Link to='/'>

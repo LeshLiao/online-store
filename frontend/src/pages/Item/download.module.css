@@ -52,3 +52,9 @@
   text-align: center;
   margin: 1.5rem;
 }
+
+.googleAdSense {
+  border: 1px dashed rgb(217, 217, 217);
+  /* width: 100px; */
+  /* height: 100px; */
+}
