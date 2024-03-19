@@ -15,7 +15,7 @@ export default function Download () {
     window.scrollTo(0, 0)
     setTimeout(() => {
       if (downloadLink) { runDownload() }
-    }, 1000)
+    }, 500)
   }, [])
 
   return (
@@ -26,6 +26,9 @@ export default function Download () {
 
       <div className={classes.cute_container}>
         <img className={classes.add_cart} src="/images/icon/happy_ya.png"/>
+      </div>
+      <div className={classes.empty_box}>
+
       </div>
       <div className={classes.hint_msg}>If you have not downloaded it</div>
       { downloadLink && (
