@@ -7,7 +7,8 @@ import { useCart } from '../../hooks/useCart'
 import { toast } from 'react-toastify'
 
 export default function Frame ({ item, index }) {
-  const imgUrl = `/images/items/${item.itemId}/${item.thumbnail}`
+  // check google drive or firebase url
+  const imgUrl = (item.thumbnail.includes('firebasestorage')) ? item.thumbnail : `/images/items/${item.itemId}/${item.thumbnail}`
   const [tempImage, setTempImage] = useState(imgUrl)
   const [isClicking, setIsClicking] = useState(false)
   const { addToCart, checkItemIsExist } = useCart()
@@ -25,7 +26,8 @@ export default function Frame ({ item, index }) {
   const downloadClick = (event) => {
     event.preventDefault()
     const downloadLink = item.downloadList[0].link
-    navigate('/download/' + item.itemId, { state: { downloadLink } })
+    const downloadName = item.downloadList[0].name ?? 'wallpaper.jpg'
+    navigate('/download/' + item.itemId, { state: { downloadLink, downloadName } })
   }
 
   const navigate = useNavigate()
@@ -79,8 +81,8 @@ Frame.propTypes = {
     photoType: PropTypes.string.isRequired,
     downloadList: PropTypes.arrayOf(
       PropTypes.shape({
-        size: PropTypes.string.isRequired,
-        ext: PropTypes.string.isRequired,
+        dimensions: PropTypes.string,
+        name: PropTypes.string,
         link: PropTypes.string.isRequired
       })
     ).isRequired

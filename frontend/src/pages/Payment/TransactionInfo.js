@@ -104,8 +104,8 @@ TransactionInfo.propTypes = {
           price: PropTypes.number.isRequired,
           downloadList: PropTypes.arrayOf(
             PropTypes.shape({
-              size: PropTypes.string.isRequired,
-              ext: PropTypes.string.isRequired,
+              dimensions: PropTypes.string,
+              name: PropTypes.string,
               link: PropTypes.string.isRequired
             })
           ).isRequired

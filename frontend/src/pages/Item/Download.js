@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
 import classes from './download.module.css'
 import AdsComponent from '../../components/GoogleAdSense/AdsComponent'
@@ -6,17 +6,42 @@ export default function Download () {
   const { id } = useParams()
   const location = useLocation()
   const downloadLink = location.state?.downloadLink || null
+  const downloadName = location.state?.downloadName || null
+  const isFirstRun = useRef(true)
 
   function runDownload () {
     document.getElementById('download_button').click()
   }
 
+  // for firebase
+  function download (url, filename) {
+    const xhr = new XMLHttpRequest()
+    xhr.responseType = 'blob'
+    xhr.onload = function () {
+      const a = document.createElement('a')
+      a.href = window.URL.createObjectURL(xhr.response)
+      a.download = filename // Name the file anything you'd like.
+      a.style.display = 'none'
+      document.body.appendChild(a)
+      a.click()
+    }
+    xhr.open('GET', url)
+    xhr.send()
+  }
+
   useEffect(() => {
-    window.scrollTo(0, 0)
-    setTimeout(() => {
-      if (downloadLink) { runDownload() }
-    }, 500)
-  }, [])
+    if (isFirstRun.current) {
+      isFirstRun.current = false
+      window.scrollTo(0, 0)
+      setTimeout(() => {
+        if (downloadLink && downloadLink.includes('firebasestorage')) {
+          download(downloadLink, downloadName)
+        } else {
+          runDownload()
+        }
+      }, 500)
+    }
+  }, [downloadLink, downloadName])
 
   return (
   <>

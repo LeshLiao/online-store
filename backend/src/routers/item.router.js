@@ -83,4 +83,38 @@ router.post("/transaction", async (req, res) => {
   }
 });
 
+// add a item
+router.post("/", async (req, res) => {
+  const { itemId, name, price, freeDownload, stars, photoType, tags, sizeOptions, thumbnail, preview, imageList, downloadList } = req.body;
+
+  try {
+    const isExist = await ItemModel.findOne({ itemId });
+
+    if (isExist) {
+      res.status(BAD_REQUEST).send(`itemId Exists: ${itemId}`);
+      return;
+    }
+
+    await ItemModel.create({
+      itemId: itemId,
+      name: name,
+      price: price,
+      freeDownload: freeDownload,
+      stars: stars,
+      photoType: photoType,
+      tags: tags,
+      sizeOptions: sizeOptions,
+      thumbnail: thumbnail,
+      preview: preview,
+      imageList: imageList,
+      downloadList: downloadList,
+    });
+    res.status(OK_REQUEST).send("Add a item Successful");
+  } catch (error) {
+    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
+  }
+});
+
+
+
 export default router;

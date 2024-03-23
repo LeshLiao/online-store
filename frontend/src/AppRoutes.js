@@ -14,6 +14,7 @@ import Account from './pages/Login/Account'
 import Landscape from './pages/Catalog/Landscape/Landscape'
 import City from './pages/Catalog/City/City'
 import Download from './pages/Item/Download'
+import UploadImage from './pages/Admin/UploadImage'
 
 export default function AppRoutes () {
   return (
@@ -32,6 +33,7 @@ export default function AppRoutes () {
         <Route path="/city" element={<City/>} />
         <Route path="/landscape" element={<Landscape/>} />
         <Route path="/account" element={<Account/>} />
+        <Route path="/upload" element={<UploadImage/>} />
       </Routes>
     </PaymentProvider>
   )
