@@ -9,10 +9,6 @@
   color: aliceblue;
 }
 
-img {
-  width: 200px;
-}
-
-input {
+.container input {
   color: rgb(128, 116, 173);
 }
