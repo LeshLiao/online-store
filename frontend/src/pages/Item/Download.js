@@ -52,6 +52,9 @@ export default function Download () {
       <div className={classes.cute_container}>
         <img className={classes.add_cart} src="/images/icon/happy_ya.png"/>
       </div>
+      <div className={classes.googleAdSense}>
+        <AdsComponent dataAdSlot='1369223650' />
+      </div>
       <div className={classes.empty_box}>
 
       </div>
@@ -66,9 +69,6 @@ export default function Download () {
           </a>
       </div>
       )}
-      <div className={classes.googleAdSense}>
-        <AdsComponent dataAdSlot='1369223650' />
-      </div>
       <div className={classes.go_back}>
         <Link to='/'>
           Back to PaletteX
