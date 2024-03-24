@@ -10,35 +10,35 @@ export default function Download () {
   const isFirstRun = useRef(true)
 
   function runDownload () {
-    document.getElementById('download_button').click()
-  }
-
-  // for firebase
-  function download (url, filename) {
-    const xhr = new XMLHttpRequest()
-    xhr.responseType = 'blob'
-    xhr.onload = function () {
-      const a = document.createElement('a')
-      a.href = window.URL.createObjectURL(xhr.response)
-      a.download = filename // Name the file anything you'd like.
-      a.style.display = 'none'
-      document.body.appendChild(a)
-      a.click()
+    if (downloadLink && downloadLink.includes('firebasestorage')) {
+      // Firebase storage
+      const xhr = new XMLHttpRequest()
+      xhr.responseType = 'blob'
+      xhr.onload = function () {
+        const a = document.createElement('a')
+        a.href = window.URL.createObjectURL(xhr.response)
+        a.download = downloadName // Name the file anything you'd like.
+        a.style.display = 'none'
+        document.body.appendChild(a)
+        a.click()
+      }
+      xhr.open('GET', downloadLink)
+      xhr.send()
+    } else {
+      // Google
+      const link = document.createElement('a')
+      link.id = 'hidden_download_button'
+      link.href = downloadLink
+      link.click()
     }
-    xhr.open('GET', url)
-    xhr.send()
   }
 
   useEffect(() => {
-    if (isFirstRun.current) {
+    if (isFirstRun.current && downloadLink && downloadName) {
       isFirstRun.current = false
       window.scrollTo(0, 0)
       setTimeout(() => {
-        if (downloadLink && downloadLink.includes('firebasestorage')) {
-          download(downloadLink, downloadName)
-        } else {
-          runDownload()
-        }
+        runDownload()
       }, 500)
     }
   }, [downloadLink, downloadName])
@@ -60,13 +60,9 @@ export default function Download () {
       </div>
       <div className={classes.hint_msg}>If you have not downloaded it</div>
       { downloadLink && (
-      <div className={classes.download_container}>
-          <a href={downloadLink} download="" className={classes.download_link}>
-            <div className={classes.download_again}>Download It Again</div>
-          </a>
-          <a href={downloadLink} download="" className={classes.download_link} id='download_button'>
-            <img className={classes.download_icon} src="/images/icon/cloud_download.png" alt={`download_img_${id}`} />
-          </a>
+      <div className={classes.download_container} onClick={() => runDownload()}>
+        <div className={classes.download_again}>Download It Again</div>
+        <img className={classes.download_icon} src="/images/icon/cloud_download.png" alt={`download_img_${id}`} />
       </div>
       )}
       <div className={classes.go_back}>
