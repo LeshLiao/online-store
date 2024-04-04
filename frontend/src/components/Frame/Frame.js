@@ -12,8 +12,11 @@ export default function Frame ({ item, index }) {
   const [tempImage, setTempImage] = useState(imgUrl)
   const [isClicking, setIsClicking] = useState(false)
   const { addToCart, checkItemIsExist } = useCart()
+  // const [overlayVisible, setOverlayVisible] = useState(false)
 
   const clickImage = () => {
+    // setOverlayVisible(!overlayVisible)
+
     if (isClicking || !item.preview) return
     setIsClicking(true)
     setTempImage(`/images/items/${item.itemId}/${item.preview}`)
@@ -46,6 +49,7 @@ export default function Frame ({ item, index }) {
           <div className={classes.left_container}>
             {/* <Link to={`/item/${index}`}> */}
               <img className={classes.image} onClick={clickImage} src={tempImage} alt="item-pic"/>
+              {/* <img className={classes.overlayImage} src="/images/section/lock_text.png" alt="overlay-pic" onClick={clickImage}/> */}
             {/* </Link> */}
           </div>
             {/* <div className={classes.text}>{`${item.name}`}</div> */}
