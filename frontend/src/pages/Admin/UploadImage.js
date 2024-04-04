@@ -147,52 +147,77 @@ export default function UploadImage () {
   return (
     <>
       <div className={classes.top_container}></div>
+
       <div className={classes.container}>
-        <h1>Upload Item</h1>
+      <div className={classes.form_container}>
 
-        Type:<select name="photoType" value={allValues.photoType} onChange={changeHandler}>
-          <option value="static">Static</option>
-          <option value="live">Live</option>
-        </select><br/><br/>
+        <h2>Upload Item</h2>
+        <div className={classes.row}>
+          <label>Type:</label>
+          <select name="photoType" value={allValues.photoType} onChange={changeHandler} style={{ width: '143px' }}>
+            <option value="static">Static</option>
+            <option value="live">Live</option>
+          </select>
+        </div>
 
-        Thumbnail
-        <input type="file" onChange={(event) => setThumbnailImage(event.target.files[0])} /><br/>
-        Download Image
-        <input type="file" onChange={(event) => setDownloadImage(event.target.files[0])} />
-        Dimensions <input name="itemId" value={dimensions} onChange={e => setDimensions(e.target.value)}/><br/>
+        <div className={classes.row}>
+          <label>Thumbnail</label>
+          <input type="file" onChange={(event) => setThumbnailImage(event.target.files[0])} />
+        </div>
+
+        <div className={classes.row}>
+          <label>Download Image</label>
+          {/* Dimensions */}
+          <input name="itemId" value={dimensions} onChange={e => setDimensions(e.target.value)}/>
+          <input type="file" onChange={(event) => setDownloadImage(event.target.files[0])} />
+        </div>
 
         {allValues.photoType === 'live' && (
-          <>
-            Download Video (For Live Photo)
+          <div className={classes.row}>
+            <label>Download Video (For Live Photo)</label>
             <input type="file" onChange={(event) => setDownloadVideo(event.target.files[0])} />
-          </>
+          </div>
         )}
 
-        <br/><br/>
-        itemId
-        <input name="itemId" onChange={changeHandler}/>
-        <br/>
-        name
-        <input name="name" onChange={changeHandler}/>
-        <br/>
-        price
-        <input name="price" value={allValues.price} onChange={changeHandler}/>
-        <br/>
-        freeDownload:<select name="freeDownload" value={allValues.freeDownload} onChange={changeHandler}>
-          <option value="false">false</option>
-          <option value="true">true</option>
-        </select>
-        <br/>
-        tags
-        <input name="tags" value={allValues.tags} onChange={setTagsToList}/>
-        EX: Landscape,Anime
-        <br/><br/>
-        <button onClick={uploadImage}>Upload image</button><br/><br/>
+        <div className={classes.row}>
+          <label>itemId</label>
+          <input name="itemId" onChange={changeHandler}/>
+        </div>
 
-        {msg && <div className={classes.info_msg}>
-            <Alert severity="info"><AlertTitle>Status</AlertTitle>{msg}</Alert>
-            <button className={classes.reload_button} onClick={refreshPage}>Add Another Item</button>
-        </div>}
+        <div className={classes.row}>
+          <label>name</label>
+          <input name="name" onChange={changeHandler}/>
+        </div>
+
+        <div className={classes.row}>
+          <label>price</label>
+          <input name="price" value={allValues.price} onChange={changeHandler}/>
+        </div>
+
+        <div className={classes.row}>
+          <label>freeDownload</label>
+          <select name="freeDownload" value={allValues.freeDownload} onChange={changeHandler} style={{ width: '143px' }}>
+            <option value="false">false</option>
+            <option value="true">true</option>
+          </select>
+        </div>
+
+        <div className={classes.row}>
+          <label>tags</label>EX: Landscape,Anime
+          <input name="tags" value={allValues.tags} onChange={setTagsToList}/>
+        </div>
+
+        <div className={classes.row}>
+          <div className={classes.info_container}>
+            {msg && <div className={classes.info_msg}>
+                <Alert severity="info"><AlertTitle>Status</AlertTitle>{msg}</Alert>
+                <button className={classes.reload_button} onClick={refreshPage}>Add Another Item</button>
+            </div>}
+          </div>
+          <button className={classes.uploadButton} onClick={uploadImage}>Upload image</button>
+        </div>
+
+      </div>
       </div>
   </>
   )
