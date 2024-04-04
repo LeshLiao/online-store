@@ -10,15 +10,13 @@ import Alert from '@mui/material/Alert'
 export default function UploadImage () {
   const isMounted = useRef(false) // Ref to track if component is mounted
   const isAdded = useRef(false)
-
   const [thumbnailImage, setThumbnailImage] = useState(null)
   const [downloadImage, setDownloadImage] = useState(null)
   const [downloadVideo, setDownloadVideo] = useState(null)
-
   const [dimensions, setDimensions] = useState('1440x2560')
   const imageListRef = ref(storage, 'images/')
   const [msg, setMsg] = useState('')
-
+  const [uploadSuccess, setUploadSuccess] = useState(false)
   const [allValues, setAllValues] = useState({
     itemId: '',
     name: '',
@@ -45,30 +43,47 @@ export default function UploadImage () {
 
   const setTagsToList = e => {
     const tagsString = e.target.value
-    // Split the input string by comma
-    const array = tagsString.split(',')
+    const array = tagsString.split(',') // Split the input string by comma
     const trimmedArray = array.map(item => item.trim())
     setAllValues(prevState => ({ ...prevState, tags: trimmedArray }))
   }
 
-  const uploadImage = () => {
-    if (!thumbnailImage || !downloadImage) {
-      alert('Please choose thumbnail image and download image')
-      return
+  const validateInputs = () => {
+    let errorsMsg = ''
+    if (!thumbnailImage) {
+      errorsMsg += 'thumbnailImage is invalid!\n'
     }
-
+    if (!downloadImage) {
+      errorsMsg += 'downloadImage is invalid!\n'
+    }
     if (allValues.photoType === 'live' && !downloadVideo) {
-      alert('Please choose live photo video')
+      errorsMsg += 'downloadVideo is invalid!\n'
+    }
+    if (!allValues.itemId.trim()) {
+      errorsMsg += 'itemId is invalid!\n'
+    }
+    if (!allValues.name.trim()) {
+      errorsMsg += 'name is invalid!\n'
+    }
+    if (!allValues.price) {
+      errorsMsg += 'price is invalid!\n'
+    }
+    if (allValues.tags.length === 0) {
+      errorsMsg += 'tags is invalid!\n'
+    }
+    if (!dimensions.trim()) {
+      errorsMsg += 'dimensions is invalid!\n'
+    }
+    return errorsMsg
+  }
+
+  const startUpload = () => {
+    const errorMsg = validateInputs()
+    if (errorMsg !== '') {
+      setMsg(errorMsg)
       return
     }
-    const imageRef = ref(storage, `images/items/${allValues.itemId}/${v4() + thumbnailImage.name}`)
-    setMsg('upload thumbnail...')
-    uploadBytes(imageRef, thumbnailImage).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        setAllValues(prevState => ({ ...prevState, thumbnail: url }))
-        uploadDownloadImage()
-      })
-    })
+    uploadDownloadImage()
   }
 
   const uploadDownloadImage = () => {
@@ -81,7 +96,7 @@ export default function UploadImage () {
           downloadList: [...prevState.downloadList,
             { dimensions, name: downloadImage.name, link: url }]
         }))
-        uploadDownloadVideo()
+        if (allValues.photoType === 'live') { uploadDownloadVideo() } else uploadThumbnail()
       })
     })
   }
@@ -98,30 +113,38 @@ export default function UploadImage () {
           downloadList: [...prevState.downloadList,
             { dimensions, name: downloadImage.name, link: url }]
         }))
+        uploadThumbnail()
+      })
+    })
+  }
+
+  const uploadThumbnail = () => {
+    const imageRef = ref(storage, `images/items/${allValues.itemId}/${v4() + thumbnailImage.name}`)
+    setMsg('upload thumbnail...')
+    uploadBytes(imageRef, thumbnailImage).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        setAllValues(prevState => ({ ...prevState, thumbnail: url }))
       })
     })
   }
 
   useEffect(() => {
-    if (!isAdded.current && allValues.thumbnail && allValues.downloadList.length > 0) {
-      if (allValues.photoType === 'live' && allValues.downloadList.length < 2) {
-        setMsg('live image or photo...')
-        return
-      }
+    if (!isAdded.current && allValues.thumbnail) {
       setMsg('saveToDb...')
       console.log(allValues)
       add(allValues).then((response) => {
-        console.log('add item response:')
         console.log(response)
         isAdded.current = true
-        setMsg('Done:' + response)
+        setMsg('Done: ' + response)
+        setUploadSuccess(true)
       }, (error) => {
-        console.log('add item error:')
         console.log(error)
-        setMsg('Error:' + error.response.data)
+        setMsg('Error: ' + error.response.data)
+        setUploadSuccess(false)
+        setAllValues(prevState => ({ ...prevState, thumbnail: '' }))
       })
     }
-  }, [allValues.thumbnail, allValues.downloadList])
+  }, [allValues.thumbnail])
 
   useEffect(() => {
     if (!isMounted.current) {
@@ -168,7 +191,7 @@ export default function UploadImage () {
         <div className={classes.row}>
           <label>Download Image</label>
           {/* Dimensions */}
-          <input name="itemId" value={dimensions} onChange={e => setDimensions(e.target.value)}/>
+          <input name="dimensions" value={dimensions} onChange={e => setDimensions(e.target.value)}/>
           <input type="file" onChange={(event) => setDownloadImage(event.target.files[0])} />
         </div>
 
@@ -211,12 +234,16 @@ export default function UploadImage () {
           <div className={classes.info_container}>
             {msg && <div className={classes.info_msg}>
                 <Alert severity="info"><AlertTitle>Status</AlertTitle>{msg}</Alert>
-                <button className={classes.reload_button} onClick={refreshPage}>Add Another Item</button>
+            </div>}
+            {uploadSuccess && <div className={classes.info_msg}>
+              <button className={classes.reload_button} onClick={refreshPage}>Add Another Item</button>
             </div>}
           </div>
-          <button className={classes.uploadButton} onClick={uploadImage}>Upload image</button>
+          {uploadSuccess
+            ? <button disabled className={classes.uploadButton} onClick={refreshPage}>Upload image</button>
+            : <button className={classes.uploadButton} onClick={startUpload}>Upload image</button>
+            }
         </div>
-
       </div>
       </div>
   </>

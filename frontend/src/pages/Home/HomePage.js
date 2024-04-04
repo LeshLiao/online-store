@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import classes from './homePage.module.css'
-import { getAllItems } from '../../services/itemService'
+import { getAllStatic } from '../../services/itemService'
 import Hero from './Hero'
 // import PicSection from '../../components/PicSection/PicSection'
 import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails'
@@ -24,7 +24,7 @@ export default function HomePage () {
   // }, [])
 
   useEffect(() => {
-    getAllItems()
+    getAllStatic()
       .then(items => {
         // Sort items by itemId in descending order
         items.sort((a, b) => b.itemId.localeCompare(a.itemId))

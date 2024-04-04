@@ -43,6 +43,11 @@
   height: 35px;
 }
 
+.uploadButton:disabled{
+  background-color: #3c3c3c;
+  color: #6d6d6d;
+}
+
 .reload_button {
   background-color: #0089cc;
   color: aliceblue;
