@@ -183,12 +183,12 @@ export default function UploadImage () {
           </select>
         </div>
 
-        <div className={classes.row}>
+        <div className={classes.file}>
           <label>Thumbnail</label>
           <input type="file" onChange={(event) => setThumbnailImage(event.target.files[0])} />
         </div>
 
-        <div className={classes.row}>
+        <div className={classes.file}>
           <label>Download Image</label>
           {/* Dimensions */}
           <input name="dimensions" value={dimensions} onChange={e => setDimensions(e.target.value)}/>
@@ -196,7 +196,7 @@ export default function UploadImage () {
         </div>
 
         {allValues.photoType === 'live' && (
-          <div className={classes.row}>
+          <div className={classes.file}>
             <label>Download Video (For Live Photo)</label>
             <input type="file" onChange={(event) => setDownloadVideo(event.target.files[0])} />
           </div>

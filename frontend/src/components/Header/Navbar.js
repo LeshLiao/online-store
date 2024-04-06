@@ -54,12 +54,12 @@ function Navbar () {
           <Link to='/' className='navbar-mobile-logo' onClick={() => { closeMoMenu(); scrollToTop() }}>PaletteX</Link>
           {/* Desktop */}
           <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-            {/* <li className='nav-item'><Link to='/new' className='nav-links' onClick={closeMoMenu}>New In</Link></li> */}
+            <li className='nav-item'><Link to='/painting' className='nav-links' onClick={closeMoMenu}>PAINTING</Link></li>
             <li className='nav-item'><Link to='/landscape' className='nav-links' onClick={closeMoMenu}>LANDSCAPE</Link></li>
             {/* <li className='nav-item'><Link to='/gallery' className='nav-links' onClick={closeMoMenu}>Gallery</Link></li> */}
             <Link to='/' className='navbar-desktop-logo' onClick={() => { closeMoMenu(); scrollToTop() }}>PaletteX</Link>
             <li className='nav-item'><Link to='/city' className='nav-links' onClick={closeMoMenu}>CITY VIEWS</Link></li>
-            {/* <li className='nav-item'><Link to='/frames' className='nav-links' onClick={closeMoMenu}>Frames</Link></li> */}
+            <li className='nav-item'><Link to='/help' className='nav-links' onClick={closeMoMenu}>HELP CENTER</Link></li>
             {/* <li className='nav-item'><Link to='/about'className='nav-links' onClick={closeMoMenu}>About</Link></li> */}
             <li className='account-icon-mobile'>
                 <Link to='/account' className='account-icon-mobile-link' onClick={closeMoMenu}><AccountIcon /></Link>
