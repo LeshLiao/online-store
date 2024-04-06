@@ -11,9 +11,9 @@
   /* border: 1px solid blue; */
   width: 85%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   list-style-type: none;
-  column-gap: 3rem;
+  /* column-gap: 3rem; */
   grid-row-gap: 3rem;
 }
 

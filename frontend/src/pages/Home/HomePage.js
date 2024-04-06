@@ -5,6 +5,7 @@ import Hero from './Hero'
 // import PicSection from '../../components/PicSection/PicSection'
 import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails'
 import FirstSection from '../../components/PicSection/FirstSection'
+import SetPhoto from '../HelpCenter/SetPhoto'
 
 export default function HomePage () {
   const [items, setItems] = useState([])
@@ -28,7 +29,9 @@ export default function HomePage () {
       .then(items => {
         // Sort items by itemId in descending order
         items.sort((a, b) => b.itemId.localeCompare(a.itemId))
-        setItems(items)
+        // Get only the first 12 items
+        const firstNineItems = items.slice(0, 12)
+        setItems(firstNineItems)
       })
       .catch(error => console.error('Error fetching items:', error))
   }, [])
@@ -39,6 +42,7 @@ export default function HomePage () {
       <FirstSection/>
       {/* <PicSection/> */}
       <PaintingThumbnails items={items}/>
+      <SetPhoto/>
     </div>
   )
 }

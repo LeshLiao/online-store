@@ -67,8 +67,8 @@
 
 .add_cart {
   /* border: 1px solid green; */
-  margin: 0 5px 0 0;
-  width: 40px;
+  /* margin: 0 5px 0 0; */
+  width: 33px;
 }
 
 .add_cart:hover {
@@ -77,7 +77,7 @@
 
 .price {
   /* border: 1px solid green; */
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   margin: 0px 0px 10px 0px;
   font-weight: bold;
   color: #ffdd00;
