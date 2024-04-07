@@ -8,7 +8,12 @@ export default function Landscape () {
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    getItemsByTag('Landscape').then(items => setItems(items))
+    getItemsByTag('Landscape')
+      .then(items => {
+        const staticItems = items.filter(item => item.photoType === 'static')
+        setItems(staticItems)
+      })
+      .catch(error => console.error('Error fetching items:', error))
   }, [])
 
   return (

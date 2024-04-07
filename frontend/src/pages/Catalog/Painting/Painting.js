@@ -8,7 +8,12 @@ export default function City () {
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    getItemsByTag('Painting').then(items => setItems(items))
+    getItemsByTag('Painting')
+      .then(items => {
+        const staticItems = items.filter(item => item.photoType === 'static')
+        setItems(staticItems)
+      })
+      .catch(error => console.error('Error fetching items:', error))
   }, [])
 
   return (
