@@ -43,15 +43,12 @@ export default function ItemCartPage () {
             {cart.items.map(item => (
               <li key={item.myItem.itemId}>
                 <div className={classes.left_block}>
-                  {item.myItem && item.myItem.thumbnail
+                  {item && item.myItem && item.myItem.thumbnail
                     ? (
-                      <img
-                        src={`/images/items/${item.myItem.itemId}/${item.myItem.thumbnail}`}
-                        alt={item.myItem.name}
-                      />
+                    <img src={item.myItem.thumbnail.includes('firebasestorage') ? item.myItem.thumbnail : `/images/items/${item.myItem.itemId}/${item.myItem.thumbnail}`} alt={item.myItem.name} />
                       )
                     : (
-                      <span>Image Not Found</span>
+                    <span>Image Not Found</span>
                       )}
                 </div>
                 <div className={classes.right_block}>

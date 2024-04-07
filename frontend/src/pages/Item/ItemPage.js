@@ -30,8 +30,7 @@ export default function ItemPage () {
   useEffect(() => {
     const updatedPhones = items.map(item => ({
       key: uuidv4(),
-      content: <Card itemImage={`/images/items/${item.itemId}/${item.thumbnail}`}
-                     item={item}/>
+      content: <Card itemImage={item.thumbnail.includes('firebasestorage') ? item.thumbnail : `/images/items/${item.itemId}/${item.thumbnail}`} item={item}/>
     }))
     setPhones(updatedPhones)
   }, [items])
