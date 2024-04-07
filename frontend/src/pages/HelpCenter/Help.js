@@ -1,5 +1,6 @@
 import React from 'react'
 import classes from './help.module.css'
+import AdsComponent from '../../components/GoogleAdSense/AdsComponent'
 // import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails'
 // import { getAllLive } from '../../services/itemService'
 
@@ -56,6 +57,9 @@ export default function Help () {
             <li>Exit the Settings app by pressing the Home button or using the swipe-up gesture (on iPhones without a physical Home button) to return to the home screen. You will now be able to enjoy your newly set wallpaper as you navigate through your iPhone&apos;s interface.</li>
           </ul>
         </div>
+      </div>
+      <div className={classes.googleAdSense}>
+        <AdsComponent dataAdSlot='5241169412' format='autorelaxed'/>
       </div>
     </div>
   )

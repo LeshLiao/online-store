@@ -55,6 +55,12 @@ h3 {
   align-items: center;
 }
 
+.googleAdSense {
+  border: 1px dashed rgb(217, 217, 217);
+  margin: 5rem;
+  /* width: 100px; */
+  /* height: 100px; */
+}
 
 @media screen and (max-width: 960px) {
   .content li{

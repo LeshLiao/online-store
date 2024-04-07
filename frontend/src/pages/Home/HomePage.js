@@ -6,7 +6,7 @@ import Hero from './Hero'
 import PaintingThumbnails from '../../components/Thumbnails/PaintingThumbnails'
 import FirstSection from '../../components/PicSection/FirstSection'
 import SetPhoto from '../HelpCenter/SetPhoto'
-import AdsArticle from '../../components/GoogleAdSense/AdsArticle'
+import AdsComponent from '../../components/GoogleAdSense/AdsComponent'
 
 export default function HomePage () {
   const [items, setItems] = useState([])
@@ -44,7 +44,7 @@ export default function HomePage () {
       {/* <PicSection/> */}
       <PaintingThumbnails items={items}/>
       <div className={classes.googleAdSense}>
-        <AdsArticle dataAdSlot='6052839586'/>
+        <AdsComponent dataAdSlot='6052839586' format='in-article'/>
       </div>
       <SetPhoto/>
     </div>
