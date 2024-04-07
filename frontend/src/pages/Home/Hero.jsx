@@ -12,11 +12,9 @@ export class Hero extends Component {
           <div className={classes.two_text}>Possibilities with</div><br/>
           <div className={classes.three_text}>Wallpaper</div>
         </div> */}
-        {/* <div className={classes.hero_img}></div> */}
-        <img className={classes.smart_phone} src="/images/section/WALLPAPER.jpg"/>
-        {/* <img className={classes.smart_phone} src="/images/section/smartphone.jpg"/> */}
-        <div className={classes.title_1}>Personalize Your Smartphone</div>
-        <div className={classes.title_2}>With Wallpapers</div>
+        <img className={`${classes.smart_phone} ${classes.fadeInImg}`} src="/images/section/WALLPAPER.jpg" alt="Wallpaper"/>
+        <div className={`${classes.title_1} ${classes.fadeInTitle}`}>Personalize Your Smartphone</div>
+        <div className={`${classes.title_2} ${classes.fadeInTitle}`}>With Wallpapers</div>
       </div>
     )
   }
