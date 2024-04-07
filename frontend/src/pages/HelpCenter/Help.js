@@ -29,27 +29,27 @@ export default function Help () {
 
             </li>
             <li>
-              3. Within the Wallpaper menu, you will encounter several choices, including &quot;Choose a New Wallpaper&quot; and &quot;Choose a New Dynamic Wallpaper.&quot; Select the option that aligns with your preference by tapping on it.
+              3. Within the Wallpaper menu, you will encounter several choices, including &quot;Add New Wallpaper&quot; and &quot;Customize&quot; Select the option that aligns with your preference by tapping on it.
               <img className={classes.instruction_img} src='/images/section/help_center/03.jpg' alt="Wallpaper3" />
             </li>
 
-            <li>4. Browse through the available wallpaper options displayed on your screen. You can swipe left or right to view additional wallpapers. Take your time to explore the various categories and styles available.
+            <li>4. Explore the array of wallpaper options presented on your screen. Swipe left or right to browse through additional wallpapers, and take your time delving into the diverse categories and styles available. Additionally, you have the option to select &quot;Photos&quot; from your photo library.
             <img className={classes.instruction_img} src='/images/section/help_center/04.jpg' alt="Wallpaper4" />
             </li>
 
-            <li>5. Once you&apos;ve found a wallpaper that catches your eye, tap on it to preview it in full screen. You can further customize the wallpaper&apos;s appearance by adjusting its position, size, and scale using intuitive touch gestures such as pinching and zooming.
+            <li>5. Once you&apos;ve found a wallpaper that catches your eye, tap on it to preview it in full screen. You can further customize the wallpaper&apos;s appearance by adjusting its position, size, and scale using intuitive touch gestures such as pinching and zooming. When satisfied, simply press the &quot;Add&quot; button to apply your changes.
             <img className={classes.instruction_img} src='/images/section/help_center/06.jpg' alt="Wallpaper6" />
             </li>
 
-            <li>6. After making any desired adjustments, tap on the &quot;Done&quot; button located at the bottom of the screen to proceed to the next step.
+            <li>6. After making any desired adjustments, proceed to the next step by tapping either the &quot;Set as Wallpaper Pair&quot; or &quot;Customize Home Screen&quot; button.
             <img className={classes.instruction_img} src='/images/section/help_center/07.jpg' alt="Wallpaper7" />
             </li>
 
-            <li>7. At this point, you will be presented with the option to set the wallpaper for either the Home Screen, Lock Screen, or Both. Choose the appropriate option based on your preferences by tapping on the corresponding selection.
+            <li>7. At this point, you have the option to click &quot;Blur&quot; to cancel if desired, or to adjust colors and gradients on the Home Screen. Select the appropriate option based on your preferences by tapping the corresponding selection. Afterward, tap &quot;Done&quot; to proceed.
             <img className={classes.instruction_img} src='/images/section/help_center/08.jpg' alt="Wallpaper8" />
             </li>
 
-            <li>8. Once you&apos;ve made your selection, the chosen wallpaper will be applied to the designated screen(s) on your iPhone. You will see a confirmation message indicating that the wallpaper has been successfully set.
+            <li>8. Once you&apos;ve made your selection, the chosen wallpaper will be applied to the designated screen(s) on your iPhone. You will see a &quot;CURRENT&quot; indicating that the wallpaper has been successfully set.
             <img className={classes.instruction_img} src='/images/section/help_center/09.jpg' alt="Wallpaper9" />
             </li>
 
