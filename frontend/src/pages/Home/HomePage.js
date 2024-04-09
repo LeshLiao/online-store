@@ -47,11 +47,11 @@ export default function HomePage () {
       <div className={classes.googleAdSense}>
         <AdsComponent dataAdSlot='6052839586' format='in-article'/>
       </div>
-      <SetPhoto/>
+      <Article/>
       <div className={classes.googleAdSense}>
         <AdsComponent dataAdSlot='3677193343' format='in-article'/>
       </div>
-      <Article/>
+      <SetPhoto/>
     </div>
   )
 }
