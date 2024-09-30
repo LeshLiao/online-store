@@ -45,11 +45,11 @@ export default function HomePage () {
       {/* <PicSection/> */}
       <PaintingThumbnails items={items}/>
       <div className={classes.googleAdSense}>
-        <AdsComponent dataAdSlot='6052839586' format='in-article'/>
+        <AdsComponent dataAdSlot='7522632993' format='in-article'/>
       </div>
       <Article/>
       <div className={classes.googleAdSense}>
-        <AdsComponent dataAdSlot='3677193343' format='in-article'/>
+        <AdsComponent dataAdSlot='6442916238' format='in-article'/>
       </div>
       <SetPhoto/>
     </div>

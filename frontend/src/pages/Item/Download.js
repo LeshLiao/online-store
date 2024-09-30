@@ -53,7 +53,7 @@ export default function Download () {
         <img className={classes.add_cart} src="/images/icon/happy_ya.png"/>
       </div>
       <div className={classes.googleAdSense}>
-        <AdsComponent dataAdSlot='1369223650' format='auto'/>
+        <AdsComponent dataAdSlot='1162669398' format='auto'/>
       </div>
       <div className={classes.empty_box}>
 

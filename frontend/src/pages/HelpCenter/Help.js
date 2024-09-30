@@ -59,7 +59,7 @@ export default function Help () {
         </div>
       </div>
       <div className={classes.googleAdSense}>
-        <AdsComponent dataAdSlot='5241169412' format='autorelaxed'/>
+        <AdsComponent dataAdSlot='4704897962' format='autorelaxed'/>
       </div>
     </div>
   )
