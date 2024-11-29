@@ -115,6 +115,62 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.get(
+  '/catalogs/:name',
+  handler(async (req, res) => {
+    const { name } = req.params;
 
+    try {
+      console.log('Entering /catalogs route, name=' + name);
+
+      const catalogs = [
+        {
+          id: 0,
+          key: "Wallpapers",
+          title: "Wallpapers",
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Fall.jpeg?alt=media&token=d7d90309-c950-40ca-92aa-cbae24e38212",
+          width: 80,
+          height: 100,
+        },
+        {
+          id: 1,
+          key: "Anime",
+          title: "Anime",
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Fanime.jpeg?alt=media&token=93edafa7-273b-481f-9963-14917aa07157",
+          width: 80,
+          height: 100,
+        },
+        {
+          id: 2,
+          key: "City",
+          title: "City",
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Fcity.jpeg?alt=media&token=4f22eee5-ac9d-45b2-963f-dc1a331cc2cc",
+          width: 80,
+          height: 100,
+        },
+        {
+          id: 3,
+          key: "Painting",
+          title: "Painting",
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Fpainting.jpeg?alt=media&token=e3d01014-a0be-45f2-a818-6fbadd3f78af",
+          width: 80,
+          height: 100,
+        },
+        {
+          id: 4,
+          key: "Landscape",
+          title: "Landscape",
+          photoUrl: "https://fastly.picsum.photos/id/724/300/300.jpg?hmac=yb92HcgCyjUq6a4tVG35Cxb76qXP-xfTu9y3B7a1LQ0",
+          width: 80,
+          height: 100,
+        },
+      ];
+      res.status(200).json(catalogs);
+    } catch (error) {
+      console.error('Error in /catalogs route:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  })
+);
 
 export default router;
