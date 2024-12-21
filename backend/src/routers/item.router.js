@@ -184,7 +184,7 @@ router.get(
       const settings =
         {
           version: 1,
-          adsLevel: 3
+          adsLevel: 0
         }
       ;
 
