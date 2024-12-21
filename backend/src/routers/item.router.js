@@ -173,4 +173,27 @@ router.get(
   })
 );
 
+router.get(
+  '/settings/:name',
+  handler(async (req, res) => {
+    const { name } = req.params;
+
+    try {
+      console.log('Entering /settings route, name=' + name);
+
+      const settings = [
+        {
+          version: 1,
+          adsLevel: 3
+        }
+      ];
+
+      res.status(200).json(settings);
+    } catch (error) {
+      console.error('Error in /settings route:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  })
+);
+
 export default router;
