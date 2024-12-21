@@ -181,12 +181,12 @@ router.get(
     try {
       console.log('Entering /settings route, name=' + name);
 
-      const settings = [
+      const settings =
         {
           version: 1,
           adsLevel: 3
         }
-      ];
+      ;
 
       res.status(200).json(settings);
     } catch (error) {
