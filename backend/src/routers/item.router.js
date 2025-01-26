@@ -199,14 +199,15 @@ router.get(
 
 // add a log event
 router.post("/log", async (req, res) => {
-  const { itemId, eventType, userDevice, userCountry } = req.body;
+  const { itemId, eventType, manufacturer, model, country } = req.body;
 
   try {
     await LogModel.create({
       itemId: itemId,
       eventType: eventType,
-      userDevice: userDevice,
-      userCountry: userCountry,
+      manufacturer: manufacturer,
+      model: model,
+      country: country,
     });
     res.status(OK_REQUEST).send("Add a log event Successful_" + itemId);
   } catch (error) {

@@ -4,8 +4,9 @@ export const LogSchema = new Schema(
   {
     itemId: { type: String, required: true },
     eventType: { type: String, required: true },
-    userDevice: { type: String, required: true },
-    userCountry: { type: String, required: true },
+    manufacturer: { type: String, required: true },
+    model: { type: String, required: true },
+    country: { type: String, required: true },
   },
   {
     toJSON: {
