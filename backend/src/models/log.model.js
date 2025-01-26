@@ -6,6 +6,8 @@ export const LogSchema = new Schema(
     eventType: { type: String, required: true },
     manufacturer: { type: String, required: true },
     model: { type: String, required: true },
+    release: { type: String, required: true },
+    sdk: { type: String, required: true },
     country: { type: String, required: true },
   },
   {
