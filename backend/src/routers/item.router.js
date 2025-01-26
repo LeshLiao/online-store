@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { ItemModel } from '../models/item.model.js';
+import { LogModel } from '../models/log.model.js';
 import { TransactionModel } from '../models/transaction.model.js';
 import { BAD_REQUEST, OK_REQUEST, SERVER_UNEXPECTED_ERROR } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
@@ -195,5 +196,22 @@ router.get(
     }
   })
 );
+
+// add a log event
+router.post("/log", async (req, res) => {
+  const { itemId, eventType, userDevice, userCountry } = req.body;
+
+  try {
+    await LogModel.create({
+      itemId: itemId,
+      eventType: eventType,
+      userDevice: userDevice,
+      userCountry: userCountry,
+    });
+    res.status(OK_REQUEST).send("Add a log event Successful_" + itemId);
+  } catch (error) {
+    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
+  }
+});
 
 export default router;
