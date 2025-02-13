@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 
 export default function Frame ({ item, index }) {
   // check google drive or firebase url
-  const imgUrl = (item.thumbnail.includes('firebasestorage')) ? item.thumbnail : `/images/items/${item.itemId}/${item.thumbnail}`
+  const imgUrl = (item.thumbnail.includes('https')) ? item.thumbnail : `/images/items/${item.itemId}/${item.thumbnail}`
   const [tempImage, setTempImage] = useState(imgUrl)
   const [isClicking, setIsClicking] = useState(false)
   const { addToCart, checkItemIsExist } = useCart()
