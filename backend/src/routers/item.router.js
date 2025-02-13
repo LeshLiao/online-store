@@ -84,11 +84,28 @@ router.post("/transaction", async (req, res) => {
   }
 });
 
-// add a item
+// add a item, if itemId is "", auto increment the max as a new itemId.
 router.post("/", async (req, res) => {
-  const { itemId, name, price, freeDownload, stars, photoType, tags, sizeOptions, thumbnail, preview, imageList, downloadList } = req.body;
+  let { itemId, name, price, freeDownload, stars, photoType, tags, sizeOptions, thumbnail, preview, imageList, downloadList } = req.body;
 
   try {
+    // If itemId is empty, generate a new one
+    if (!itemId) {
+      // Find the maximum itemId
+      const maxItem = await ItemModel.findOne({}, { itemId: 1 })
+        .sort({ itemId: -1 })  // Sort in descending order
+        .limit(1);
+
+      // If no items exist, start with "100000", else increment the max
+      if (!maxItem) {
+        itemId = "100000";
+      } else {
+        const currentMaxId = parseInt(maxItem.itemId);
+        itemId = (currentMaxId + 1).toString();
+      }
+    }
+
+    // Check if the generated/provided itemId already exists
     const isExist = await ItemModel.findOne({ itemId });
 
     if (isExist) {
@@ -97,20 +114,20 @@ router.post("/", async (req, res) => {
     }
 
     await ItemModel.create({
-      itemId: itemId,
-      name: name,
-      price: price,
-      freeDownload: freeDownload,
-      stars: stars,
-      photoType: photoType,
-      tags: tags,
-      sizeOptions: sizeOptions,
-      thumbnail: thumbnail,
-      preview: preview,
-      imageList: imageList,
-      downloadList: downloadList,
+      itemId,
+      name,
+      price,
+      freeDownload,
+      stars,
+      photoType,
+      tags,
+      sizeOptions,
+      thumbnail,
+      preview,
+      imageList,
+      downloadList,
     });
-    res.status(OK_REQUEST).send("Add a item Successful");
+    res.status(OK_REQUEST).send("Add a item Successful, itemId=" + itemId);
   } catch (error) {
     res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
   }
