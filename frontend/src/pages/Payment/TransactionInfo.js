@@ -65,7 +65,7 @@ export default function TransactionInfo ({ cart, paymentData, transactionId }) {
                       {item.myItem && item.myItem.thumbnail
                         ? (
                           <img
-                            src={item.myItem.thumbnail.includes('firebasestorage') ? item.myItem.thumbnail : `/images/items/${item.myItem.itemId}/${item.myItem.thumbnail}`}
+                            src={item.myItem.thumbnail.includes('https') ? item.myItem.thumbnail : `/images/items/${item.myItem.itemId}/${item.myItem.thumbnail}`}
                             alt={item.myItem.name}
                           />
                           )

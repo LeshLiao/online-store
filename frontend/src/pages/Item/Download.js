@@ -10,7 +10,13 @@ export default function Download () {
   const isFirstRun = useRef(true)
 
   function runDownload () {
-    if (downloadLink && downloadLink.includes('firebasestorage')) {
+    if (downloadLink.includes('drive.google')) { // Deprecated
+      // Google drive
+      const link = document.createElement('a')
+      link.id = 'hidden_download_button'
+      link.href = downloadLink
+      link.click()
+    } else {
       // Firebase storage
       const xhr = new XMLHttpRequest()
       xhr.responseType = 'blob'
@@ -24,12 +30,6 @@ export default function Download () {
       }
       xhr.open('GET', downloadLink)
       xhr.send()
-    } else {
-      // Google
-      const link = document.createElement('a')
-      link.id = 'hidden_download_button'
-      link.href = downloadLink
-      link.click()
     }
   }
 

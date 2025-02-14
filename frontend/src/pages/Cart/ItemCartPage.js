@@ -45,7 +45,7 @@ export default function ItemCartPage () {
                 <div className={classes.left_block}>
                   {item && item.myItem && item.myItem.thumbnail
                     ? (
-                    <img src={item.myItem.thumbnail.includes('firebasestorage') ? item.myItem.thumbnail : `/images/items/${item.myItem.itemId}/${item.myItem.thumbnail}`} alt={item.myItem.name} />
+                    <img src={item.myItem.thumbnail.includes('https') ? item.myItem.thumbnail : `/images/items/${item.myItem.itemId}/${item.myItem.thumbnail}`} alt={item.myItem.name} />
                       )
                     : (
                     <span>Image Not Found</span>
