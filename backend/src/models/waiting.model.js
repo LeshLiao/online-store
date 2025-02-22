@@ -4,6 +4,7 @@ export const WaitingSchema = new Schema(
   {
     numberId: { type: Number, required: true },
     source: { type: String, required: true },
+    note: { type: String, required: false },
     url: { type: String, required: true },
     priority: { type: Number, required: false },
     assign: { type: String, required: false },

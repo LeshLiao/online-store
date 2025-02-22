@@ -233,7 +233,7 @@ router.post("/log", async (req, res) => {
 
 // Add a URL to the waiting list
 router.post("/waiting", async (req, res) => {
-  const { source, url, priority, assign, status } = req.body;
+  const { source, note, url, priority, assign, status } = req.body;
 
   try {
     // Find the maximum numberId, increments by 1 each time
@@ -246,6 +246,7 @@ router.post("/waiting", async (req, res) => {
     await WaitingModel.create({
       numberId,
       source,
+      note,
       url,
       priority,
       assign,
