@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { ItemModel } from '../models/item.model.js';
 import { LogModel } from '../models/log.model.js';
+import { WaitingModel } from '../models/waiting.model.js';
 import { TransactionModel } from '../models/transaction.model.js';
 import { BAD_REQUEST, OK_REQUEST, SERVER_UNEXPECTED_ERROR } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
+import { generateItemId } from '../utility.js';
 
 const router = Router();
 
@@ -84,35 +86,29 @@ router.post("/transaction", async (req, res) => {
   }
 });
 
-// add a item, if itemId is "", auto increment the max as a new itemId.
-router.post("/", async (req, res) => {
+// Add a new item with auto-generated itemId if empty
+router.post('/', async (req, res) => {
   let { itemId, name, price, freeDownload, stars, photoType, tags, sizeOptions, thumbnail, preview, imageList, downloadList } = req.body;
 
   try {
-    // If itemId is empty, generate a new one
+    // Generate a new itemId if it's empty
     if (!itemId) {
-      // Find the maximum itemId
-      const maxItem = await ItemModel.findOne({}, { itemId: 1 })
-        .sort({ itemId: -1 })  // Sort in descending order
-        .limit(1);
+      let isExist = true;
+      let retries = 0;
+      const maxRetries = 3;
 
-      // If no items exist, start with "100000", else increment the max
-      if (!maxItem) {
-        itemId = "100000";
-      } else {
-        const currentMaxId = parseInt(maxItem.itemId);
-        itemId = (currentMaxId + 1).toString();
+      while (isExist && retries < maxRetries) {
+        itemId = generateItemId();
+        isExist = await ItemModel.exists({ itemId });
+        retries++;
+      }
+
+      if (isExist) {
+        return res.status(500).send('Failed to generate a unique itemId after 3 attempts.');
       }
     }
 
-    // Check if the generated/provided itemId already exists
-    const isExist = await ItemModel.findOne({ itemId });
-
-    if (isExist) {
-      res.status(BAD_REQUEST).send(`itemId Exists: ${itemId}`);
-      return;
-    }
-
+    // Create the item in MongoDB
     await ItemModel.create({
       itemId,
       name,
@@ -127,9 +123,10 @@ router.post("/", async (req, res) => {
       imageList,
       downloadList,
     });
-    res.status(OK_REQUEST).send("Add a item Successful, itemId=" + itemId);
+
+    res.status(200).send(`Add an item successful, itemId=${itemId}`);
   } catch (error) {
-    res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
+    res.status(500).send(`Server unexpected error: ${error}`);
   }
 });
 
@@ -233,5 +230,85 @@ router.post("/log", async (req, res) => {
     res.status(SERVER_UNEXPECTED_ERROR).send("Server unexpected error:" + error);
   }
 });
+
+// Add a URL to the waiting list
+router.post("/waiting", async (req, res) => {
+  const { source, url, priority, assign, status } = req.body;
+
+  try {
+    // Find the maximum numberId, increments by 1 each time
+    const maxItem = await WaitingModel.findOne({}, { numberId: 1 })
+      .sort({ numberId: -1 })
+      .limit(1);
+
+    let numberId = maxItem ? maxItem.numberId + 1 : 0;
+
+    await WaitingModel.create({
+      numberId,
+      source,
+      url,
+      priority,
+      assign,
+      status,
+    });
+
+    res.status(200).send(`Added a URL to the list successfully with numberId: ${numberId}`);
+  } catch (error) {
+    res.status(500).send(`Server unexpected error: ${error}`);
+  }
+});
+
+// Get a URL from the waiting list (FIFO)
+router.get(
+  '/waiting/:assign',
+  handler(async (req, res) => {
+    const { assign } = req.params;
+    try {
+      // Find and update the oldest entry with status ''
+      const minimumItem = await WaitingModel.findOneAndUpdate(
+        { status: '' }, // Filter for items with empty status
+        { $set: { status: 'in_process', assign: assign } }, // Update status and assign
+        { sort: { numberId: 1 }, new: true } // Sort by numberId ascending, return the updated document
+      );
+
+      if (!minimumItem) {
+        return res.status(404).send('No waiting items found.');
+      }
+
+      res.status(200).json(minimumItem);
+    } catch (error) {
+      res.status(500).send(`Server unexpected error: ${error}`);
+    }
+  })
+);
+
+// Patch an item to Completed
+router.patch(
+  '/waiting/:_id',
+  handler(async (req, res) => {
+    const { _id } = req.params; // Destructure _id from req.params
+    try {
+      // console.log('Patch /waiting route, _id=' + _id);
+
+      // Find the item by _id and update its status to 'Completed'
+      const item = await WaitingModel.findByIdAndUpdate(
+        _id, // The document's _id
+        { $set: { status: 'Completed' } }, // Update operation
+        { new: true } // Return the updated document
+      );
+
+      if (!item) {
+        // If no item is found, send a 404 response
+        return res.status(404).send(`Item with _id: ${_id} not found.`);
+      }
+
+      // Send the updated item as the response
+      res.status(200).json(item);
+    } catch (error) {
+      // Handle any errors that occur during the operation
+      res.status(500).send(`Server unexpected error: ${error}`);
+    }
+  })
+);
 
 export default router;
