@@ -127,12 +127,7 @@ router.post('/', async (req, res) => {
       downloadList,
     });
 
-    // Return a JSON response with the itemId
-    res.status(200).json({
-      success: true,
-      message: 'Add an item successful',
-      itemId: itemId
-    });
+    res.status(OK_REQUEST).send(itemId);
   } catch (error) {
     res.status(500).send(`Server unexpected error: ${error}`);
   }
