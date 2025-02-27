@@ -127,7 +127,12 @@ router.post('/', async (req, res) => {
       downloadList,
     });
 
-    res.status(200).send(`Add an item successful, itemId=${itemId}`);
+    // Return a JSON response with the itemId
+    res.status(200).json({
+      success: true,
+      message: 'Add an item successful',
+      itemId: itemId
+    });
   } catch (error) {
     res.status(500).send(`Server unexpected error: ${error}`);
   }
@@ -394,6 +399,108 @@ router.patch(
 
       // Handle any other errors that occur during the operation
       res.status(500).send(`Server unexpected error: ${error.message}`);
+    }
+  })
+);
+
+// Patch an item to redo, Delete image files, and reset waiting list item.
+router.patch(
+  '/waiting/redo/:_id',
+  handler(async (req, res) => {
+    const { _id } = req.params;
+    console.log(`Redo waiting, _id: ${_id}`);
+
+    try {
+      // Find the waiting item by _id
+      const waitingItem = await WaitingModel.findById(_id);
+
+      if (!waitingItem) {
+        return res.status(404).send(`Waiting item with _id: ${_id} not found.`);
+      }
+
+      // Get the itemId from the waiting item
+      const { itemId } = waitingItem;
+
+      // Only proceed with deletion if there's an itemId
+      if (itemId) {
+        // Find the item to get blob paths before deletion
+        const item = await ItemModel.findOne({ itemId });
+
+        if (item) {
+          // Array to track file deletion promises
+          const deletePromises = [];
+
+          // Check downloadList for files to delete
+          if (item.downloadList && item.downloadList.length > 0) {
+            for (const download of item.downloadList) {
+              // Delete thumbnail_blob if exists
+              if (download.thumbnail_blob) {
+                deletePromises.push(
+                  deleteFileFromStorage(download.thumbnail_blob)
+                    .then(success => {
+                      if (success) {
+                        console.log(`Redo: Deleted thumbnail: ${download.thumbnail_blob}`);
+                      }
+                    })
+                );
+              }
+
+              // Delete upscaled_blob if exists
+              if (download.upscaled_blob) {
+                deletePromises.push(
+                  deleteFileFromStorage(download.upscaled_blob)
+                    .then(success => {
+                      if (success) {
+                        console.log(`Redo: Deleted upscaled image: ${download.upscaled_blob}`);
+                      }
+                    })
+                );
+              }
+            }
+          }
+
+          // Wait for all file deletions to complete
+          await Promise.all(deletePromises);
+
+          // Delete the item from MongoDB
+          await ItemModel.deleteOne({ itemId });
+          console.log(`Redo: Deleted item with ID ${itemId} from database`);
+        } else {
+          console.log(`Redo: Item with ID ${itemId} not found in database, only resetting waiting item`);
+        }
+      }
+
+      // Create update object to reset the waiting item
+      const updateFields = {
+        itemUrl: "",
+        itemId: "",
+        priority: 1,
+        assign: "",
+        status: "",
+        review: false,
+        updatedAt: new Date()
+      };
+
+      // Update the waiting item to reset it for reprocessing
+      const updatedWaitingItem = await WaitingModel.findByIdAndUpdate(
+        _id,
+        { $set: updateFields },
+        { new: true }
+      );
+
+      res.status(200).json({
+        message: `Successfully reset waiting item for reprocessing`,
+        waitingItem: updatedWaitingItem
+      });
+    } catch (error) {
+      console.error('Error in redo operation:', error);
+
+      // Handle specific MongoDB errors
+      if (error.name === 'CastError') {
+        return res.status(400).send(`Invalid item ID format: ${_id}`);
+      }
+
+      res.status(500).send(`Server error during redo operation: ${error.message}`);
     }
   })
 );
