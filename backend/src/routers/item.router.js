@@ -5,7 +5,10 @@ import { WaitingModel } from '../models/waiting.model.js';
 import { TransactionModel } from '../models/transaction.model.js';
 import { BAD_REQUEST, OK_REQUEST, SERVER_UNEXPECTED_ERROR } from '../constants/httpStatus.js';
 import handler from 'express-async-handler';
-import { generateItemId } from '../utility.js';
+import { generateItemId, initializeFirebase, deleteFileFromStorage } from '../utility.js';
+
+// Initialize Firebase Storage
+const storage = initializeFirebase();
 
 const router = Router();
 
@@ -130,6 +133,62 @@ router.post('/', async (req, res) => {
   }
 });
 
+// DELETE an item by itemId
+router.delete('/:itemId', async (req, res) => {
+  const { itemId } = req.params;
+
+  try {
+    // Find the item first to get the blob paths
+    const item = await ItemModel.findOne({ itemId });
+
+    if (!item) {
+      return res.status(404).send(`Item with ID ${itemId} not found.`);
+    }
+
+    // Array to track file deletion promises
+    const deletePromises = [];
+
+    // Check downloadList for files to delete
+    if (item.downloadList && item.downloadList.length > 0) {
+      for (const download of item.downloadList) {
+        // Delete thumbnail_blob if exists
+        if (download.thumbnail_blob) {
+          deletePromises.push(
+            deleteFileFromStorage(download.thumbnail_blob)
+              .then(success => {
+                if (success) {
+                  console.log(`Deleted thumbnail: ${download.thumbnail_blob}`);
+                }
+              })
+          );
+        }
+
+        // Delete upscaled_blob if exists
+        if (download.upscaled_blob) {
+          deletePromises.push(
+            deleteFileFromStorage(download.upscaled_blob)
+              .then(success => {
+                if (success) {
+                  console.log(`Deleted upscaled image: ${download.upscaled_blob}`);
+                }
+              })
+          );
+        }
+      }
+    }
+
+    // Wait for all file deletions to complete
+    await Promise.all(deletePromises);
+
+    // Finally, delete the item from MongoDB
+    await ItemModel.deleteOne({ itemId });
+
+    res.status(200).send(`Successfully deleted item with ID ${itemId} and its associated files`);
+  } catch (error) {
+    console.error('Delete item error:', error);
+    res.status(500).send(`Server error while deleting item: ${error.message}`);
+  }
+});
 router.get(
   '/catalogs/:name',
   handler(async (req, res) => {
