@@ -233,7 +233,7 @@ router.post("/log", async (req, res) => {
 
 // Add a URL to the waiting list
 router.post("/waiting", async (req, res) => {
-  const { source, note, url, priority, assign, status } = req.body;
+  const { source, note, url, itemUrl, itemId, priority, assign, status, review } = req.body;
 
   try {
     // Find the maximum numberId, increments by 1 each time
@@ -248,9 +248,12 @@ router.post("/waiting", async (req, res) => {
       source,
       note,
       url,
+      itemUrl,
+      itemId,
       priority,
       assign,
       status,
+      review
     });
 
     res.status(200).send(`Added a URL to the list successfully with numberId: ${numberId}`);
@@ -288,13 +291,29 @@ router.patch(
   '/waiting/:_id',
   handler(async (req, res) => {
     const { _id } = req.params; // Destructure _id from req.params
+    const { itemUrl, itemId, priority, assign, status, review } = req.body;
+
     try {
       // console.log('Patch /waiting route, _id=' + _id);
 
-      // Find the item by _id and update its status to 'Completed'
+      // Create an update object with all the fields from req.body
+      const updateFields = {};
+
+      // Only include fields that are present in the request body
+      if (itemUrl !== undefined) updateFields.itemUrl = itemUrl;
+      if (itemId !== undefined) updateFields.itemId = itemId;
+      if (priority !== undefined) updateFields.priority = priority;
+      if (assign !== undefined) updateFields.assign = assign;
+      if (status !== undefined) updateFields.status = status;
+      if (review !== undefined) updateFields.review = review;
+
+      // Add a timestamp for when the item was last updated
+      updateFields.updatedAt = new Date();
+
+      // Find the item by _id and update its fields
       const item = await WaitingModel.findByIdAndUpdate(
         _id, // The document's _id
-        { $set: { status: 'Completed' } }, // Update operation
+        { $set: updateFields }, // Update operation with all fields
         { new: true } // Return the updated document
       );
 
@@ -306,8 +325,16 @@ router.patch(
       // Send the updated item as the response
       res.status(200).json(item);
     } catch (error) {
-      // Handle any errors that occur during the operation
-      res.status(500).send(`Server unexpected error: ${error}`);
+      // Log the error for debugging
+      console.error('Error updating waiting item:', error);
+
+      // Handle specific MongoDB errors
+      if (error.name === 'CastError') {
+        return res.status(400).send(`Invalid item ID format: ${_id}`);
+      }
+
+      // Handle any other errors that occur during the operation
+      res.status(500).send(`Server unexpected error: ${error.message}`);
     }
   })
 );
