@@ -327,11 +327,14 @@ router.get(
   handler(async (req, res) => {
     const { assign } = req.params;
     try {
-      // Find and update the oldest entry with status ''
+      // Find and update the entry with highest priority or oldest entry with status ''
       const minimumItem = await WaitingModel.findOneAndUpdate(
         { status: '' }, // Filter for items with empty status
         { $set: { status: 'in_process', assign: assign } }, // Update status and assign
-        { sort: { numberId: 1 }, new: true } // Sort by numberId ascending, return the updated document
+        {
+          sort: { priority: -1, numberId: 1 }, // Sort by priority descending (higher number = higher priority), then by numberId ascending
+          new: true
+        }
       );
 
       if (!minimumItem) {
