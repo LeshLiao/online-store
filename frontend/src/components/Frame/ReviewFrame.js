@@ -13,6 +13,7 @@ export default function ReviewFrame ({ item, index }) {
   const [isReviewing, setIsReviewing] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
+  const [showRedoConfirm, setShowRedoConfirm] = useState(false)
 
   useEffect(() => {
     setSourceImage(imgUrl)
@@ -21,12 +22,24 @@ export default function ReviewFrame ({ item, index }) {
 
   const navigate = useNavigate()
 
+  const confirmRedo = () => {
+    setShowRedoConfirm(true)
+  }
+
+  const cancelRedo = () => {
+    setShowRedoConfirm(false)
+  }
+
   const handleRedo = () => {
+    setShowRedoConfirm(false)
     redoWaitingItem(item._id)
-    // Sleep for one second (1500 milliseconds) then navigate
-    setTimeout(() => {
-      navigate('/review')
-    }, 1500)
+      .then(() => {
+        toast.success('Item has been reset for processing')
+        // Sleep for one second (1500 milliseconds) then navigate
+        setTimeout(() => {
+          navigate('/review')
+        }, 1500)
+      })
   }
 
   const confirmDelete = () => {
@@ -80,6 +93,28 @@ export default function ReviewFrame ({ item, index }) {
     ? '/images/icon/checked.png'
     : '/images/icon/unchecked.png'
 
+  // Determine status text and class based on item.status
+  const getStatusDisplay = () => {
+    if (item.status === 'in_process') {
+      return {
+        text: 'In Progress',
+        className: classes.status_in_progress
+      }
+    } else if (!item.status || item.status === '') {
+      return {
+        text: 'Not Started',
+        className: classes.status_not_started
+      }
+    } else {
+      return {
+        text: item.status,
+        className: ''
+      }
+    }
+  }
+
+  const statusDisplay = getStatusDisplay()
+
   return (
     <div className={classes.frame}>
       <div className={classes.main_container}>
@@ -104,7 +139,11 @@ export default function ReviewFrame ({ item, index }) {
               />
                 )
               : (
-              <div className={classes.empty_preview}></div>
+              <div className={classes.empty_preview}>
+                <div className={`${classes.status_text} ${statusDisplay.className}`}>
+                  {statusDisplay.text}
+                </div>
+              </div>
                 )}
           </div>
         </div>
@@ -120,10 +159,23 @@ export default function ReviewFrame ({ item, index }) {
         {showDeleteConfirm && (
           <div className={classes.confirm_overlay}>
             <div className={classes.confirm_dialog}>
-              <p>Deleting this item will remove its associated image from Firebase Storage and delete its entry from the waiting list. Are you sure you want to proceed? </p>
+              <p>Deleting this item will remove its associated image from Firebase Storage and delete its entry from the waiting list. Are you sure you want to proceed?</p>
               <div className={classes.confirm_buttons}>
                 <button className={classes.confirm_yes} onClick={handleDelete}>Yes</button>
                 <button className={classes.confirm_no} onClick={cancelDelete}>No</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Redo Confirmation Dialog */}
+        {showRedoConfirm && (
+          <div className={classes.confirm_overlay}>
+            <div className={classes.confirm_dialog}>
+              <p>This will reset the item and send it back for processing. Are you sure you want to proceed?</p>
+              <div className={classes.confirm_buttons}>
+                <button className={classes.confirm_yes} onClick={handleRedo}>Yes</button>
+                <button className={classes.confirm_no} onClick={cancelRedo}>No</button>
               </div>
             </div>
           </div>
@@ -143,7 +195,7 @@ export default function ReviewFrame ({ item, index }) {
             <div className={classes.free_text}></div>
             <img
               className={classes.download_icon}
-              onClick={confirmDelete} // Changed to confirmDelete instead of handleDelete
+              onClick={confirmDelete}
               src="/images/icon/edit-delete-symbolic.256x256.png"
               alt="delete"
             />
@@ -153,7 +205,7 @@ export default function ReviewFrame ({ item, index }) {
             <div className={classes.price}></div>
             <img
               className={classes.add_cart}
-              onClick={handleRedo}
+              onClick={confirmRedo} // Changed to confirmRedo instead of handleRedo
               src="/images/icon/reload.256x256.png"
               alt="reload"
             />
