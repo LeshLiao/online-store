@@ -200,7 +200,7 @@ router.get(
       const catalogs = [
         {
           id: 0,
-          key: "wallpapers",
+          key: "Wallpapers",
           title: "Wallpapers",
           photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Fall.jpeg?alt=media&token=d7d90309-c950-40ca-92aa-cbae24e38212",
           width: 80,
