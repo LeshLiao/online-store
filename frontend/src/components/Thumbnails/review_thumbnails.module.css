@@ -2,8 +2,44 @@
   margin-inline: auto;
   width: min(100%, 62.5rem);
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
+}
+
+.filter_container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.filter_label {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  margin-right: 0.5rem;
+}
+
+.filter_dropdown {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.filter_dropdown:hover {
+  border-color: #666;
+}
+
+.filter_dropdown:focus {
+  outline: none;
+  border-color: #3fe303;
 }
 
 .list {
@@ -27,6 +63,10 @@
   .container {
     margin: 0;
     width: 100%;
+  }
+
+  .filter_container {
+    padding: 0 0.5rem;
   }
 
   .list {
