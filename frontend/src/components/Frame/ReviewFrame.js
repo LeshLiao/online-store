@@ -14,11 +14,13 @@ export default function ReviewFrame ({ item, index }) {
   const [errorMessage, setErrorMessage] = useState('')
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [showRedoConfirm, setShowRedoConfirm] = useState(false)
+  const [isReviewed, setIsReviewed] = useState(item.review || false)
 
   useEffect(() => {
     setSourceImage(imgUrl)
     setPreviewImage(item.itemUrl)
-  }, [imgUrl, item.itemUrl])
+    setIsReviewed(item.review || false)
+  }, [imgUrl, item.itemUrl, item.review])
 
   const navigate = useNavigate()
 
@@ -60,6 +62,9 @@ export default function ReviewFrame ({ item, index }) {
   }
 
   const handleReview = async () => {
+    // If already reviewed or in progress, do nothing
+    if (isReviewed || isReviewing) return
+
     setIsReviewing(true)
     setErrorMessage('')
 
@@ -68,7 +73,9 @@ export default function ReviewFrame ({ item, index }) {
 
       if (result.success) {
         toast.success('Item marked as reviewed')
-        // Update the UI to show item is now reviewed
+        // Update local state to show item is now reviewed
+        setIsReviewed(true)
+        // Navigate after a delay
         setTimeout(() => navigate('/review'), 1000)
       } else {
         // Show error message
@@ -89,7 +96,7 @@ export default function ReviewFrame ({ item, index }) {
     }
   }
 
-  const reviewIcon = item.review
+  const reviewIcon = isReviewed
     ? '/images/icon/checked.png'
     : '/images/icon/unchecked.png'
 
@@ -114,6 +121,9 @@ export default function ReviewFrame ({ item, index }) {
   }
 
   const statusDisplay = getStatusDisplay()
+
+  // Determine button class based on review status and reviewing state
+  const reviewButtonClasses = `${classes.add_cart} ${isReviewing ? classes.disabled : ''}`
 
   return (
     <div className={classes.frame}>
@@ -185,10 +195,10 @@ export default function ReviewFrame ({ item, index }) {
           <div>
           <div className={classes.free_text}>[ {item.numberId} ]</div>
             <img
-              className={`${classes.add_cart} ${isReviewing ? classes.disabled : ''}`}
-              onClick={!isReviewing ? handleReview : undefined}
+              className={reviewButtonClasses}
+              onClick={!isReviewing && !isReviewed ? handleReview : undefined}
               src={reviewIcon}
-              alt={item.review ? 'checked' : 'unchecked'}
+              alt={isReviewed ? 'checked' : 'unchecked'}
             />
           </div>
           <div>
