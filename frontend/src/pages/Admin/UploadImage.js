@@ -6,8 +6,9 @@ import { v4 } from 'uuid'
 import { add } from '../../services/itemService'
 import AlertTitle from '@mui/material/AlertTitle'
 import Alert from '@mui/material/Alert'
+import withAdminAuth from './withAdminAuth'
 
-export default function UploadImage () {
+function UploadImage () {
   const isMounted = useRef(false) // Ref to track if component is mounted
   const isAdded = useRef(false)
   const [thumbnailImage, setThumbnailImage] = useState(null)
@@ -172,80 +173,83 @@ export default function UploadImage () {
       <div className={classes.top_container}></div>
 
       <div className={classes.container}>
-      <div className={classes.form_container}>
+        <div className={classes.form_container}>
 
-        <h2>Upload Item</h2>
-        <div className={classes.row}>
-          <label>Type:</label>
-          <select name="photoType" value={allValues.photoType} onChange={changeHandler} style={{ width: '143px' }}>
-            <option value="static">Static</option>
-            <option value="live">Live</option>
-          </select>
-        </div>
+          <h2>Upload Item</h2>
+          <div className={classes.row}>
+            <label>Type:</label>
+            <select name="photoType" value={allValues.photoType} onChange={changeHandler} style={{ width: '143px' }}>
+              <option value="static">Static</option>
+              <option value="live">Live</option>
+            </select>
+          </div>
 
-        <div className={classes.file}>
-          <label>Thumbnail</label>
-          <input type="file" onChange={(event) => setThumbnailImage(event.target.files[0])} />
-        </div>
-
-        <div className={classes.file}>
-          <label>Download Image</label>
-          {/* Dimensions */}
-          <input name="dimensions" value={dimensions} onChange={e => setDimensions(e.target.value)}/>
-          <input type="file" onChange={(event) => setDownloadImage(event.target.files[0])} />
-        </div>
-
-        {allValues.photoType === 'live' && (
           <div className={classes.file}>
-            <label>Download Video (For Live Photo)</label>
-            <input type="file" onChange={(event) => setDownloadVideo(event.target.files[0])} />
+            <label>Thumbnail</label>
+            <input type="file" onChange={(event) => setThumbnailImage(event.target.files[0])} />
           </div>
-        )}
 
-        <div className={classes.row}>
-          <label>itemId</label>
-          <input name="itemId" onChange={changeHandler}/>
-        </div>
+          <div className={classes.file}>
+            <label>Download Image</label>
+            {/* Dimensions */}
+            <input name="dimensions" value={dimensions} onChange={e => setDimensions(e.target.value)} />
+            <input type="file" onChange={(event) => setDownloadImage(event.target.files[0])} />
+          </div>
 
-        <div className={classes.row}>
-          <label>name</label>
-          <input name="name" onChange={changeHandler}/>
-        </div>
+          {allValues.photoType === 'live' && (
+            <div className={classes.file}>
+              <label>Download Video (For Live Photo)</label>
+              <input type="file" onChange={(event) => setDownloadVideo(event.target.files[0])} />
+            </div>
+          )}
 
-        <div className={classes.row}>
-          <label>price</label>
-          <input name="price" value={allValues.price} onChange={changeHandler}/>
-        </div>
+          <div className={classes.row}>
+            <label>itemId</label>
+            <input name="itemId" onChange={changeHandler} />
+          </div>
 
-        <div className={classes.row}>
-          <label>freeDownload</label>
-          <select name="freeDownload" value={allValues.freeDownload} onChange={changeHandler} style={{ width: '143px' }}>
-            <option value="false">false</option>
-            <option value="true">true</option>
-          </select>
-        </div>
+          <div className={classes.row}>
+            <label>name</label>
+            <input name="name" onChange={changeHandler} />
+          </div>
 
-        <div className={classes.row}>
-          <label>tags</label>EX: Landscape,Anime
-          <input name="tags" value={allValues.tags} onChange={setTagsToList}/>
-        </div>
+          <div className={classes.row}>
+            <label>price</label>
+            <input name="price" value={allValues.price} onChange={changeHandler} />
+          </div>
 
-        <div className={classes.row}>
-          <div className={classes.info_container}>
-            {msg && <div className={classes.info_msg}>
+          <div className={classes.row}>
+            <label>freeDownload</label>
+            <select name="freeDownload" value={allValues.freeDownload} onChange={changeHandler} style={{ width: '143px' }}>
+              <option value="false">false</option>
+              <option value="true">true</option>
+            </select>
+          </div>
+
+          <div className={classes.row}>
+            <label>tags</label>EX: Landscape,Anime
+            <input name="tags" value={allValues.tags} onChange={setTagsToList} />
+          </div>
+
+          <div className={classes.row}>
+            <div className={classes.info_container}>
+              {msg && <div className={classes.info_msg}>
                 <Alert severity="info"><AlertTitle>Status</AlertTitle>{msg}</Alert>
-            </div>}
-            {uploadSuccess && <div className={classes.info_msg}>
-              <button className={classes.reload_button} onClick={refreshPage}>Add Another Item</button>
-            </div>}
-          </div>
-          {uploadSuccess
-            ? <button disabled className={classes.uploadButton} onClick={refreshPage}>Upload image</button>
-            : <button className={classes.uploadButton} onClick={startUpload}>Upload image</button>
+              </div>}
+              {uploadSuccess && <div className={classes.info_msg}>
+                <button className={classes.reload_button} onClick={refreshPage}>Add Another Item</button>
+              </div>}
+            </div>
+            {uploadSuccess
+              ? <button disabled className={classes.uploadButton} onClick={refreshPage}>Upload image</button>
+              : <button className={classes.uploadButton} onClick={startUpload}>Upload image</button>
             }
+          </div>
         </div>
       </div>
-      </div>
-  </>
+    </>
   )
 }
+
+// Export the component wrapped with the HOC
+export default withAdminAuth(UploadImage)

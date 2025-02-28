@@ -37,6 +37,12 @@ export default function Account () {
                 <div className={classes.email_value}>{user.email}</div>
               </div>
             )}
+            {user.isAdmin && (
+              <div className={classes.role_box}>
+                <div className={classes.role_label}>Role:</div>
+                <div className={classes.role_value}>Administrator</div>
+              </div>
+            )}
             <div className={classes.logout_box}>
               <div className={classes.logout_label}>Logout </div>
               <a href="/#" onClick={logoutAndCloseMenu}><ExitToAppIcon fontSize="large" style={{ color: '#56caf5' }}/></a>
