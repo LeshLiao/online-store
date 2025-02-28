@@ -8,7 +8,7 @@ export default function Landscape () {
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    getItemsByTag('Landscape')
+    getItemsByTag('landscape')
       .then(items => {
         const staticItems = items.filter(item => item.photoType === 'static')
         setItems(staticItems)

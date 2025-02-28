@@ -8,7 +8,7 @@ export default function City () {
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    getItemsByTag('City')
+    getItemsByTag('city')
       .then(items => {
         const staticItems = items.filter(item => item.photoType === 'static')
         setItems(staticItems)
