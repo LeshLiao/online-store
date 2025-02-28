@@ -121,3 +121,48 @@ export function generateTransactionID () {
 // Example usage
 // const transactionID = generateTransactionID()
 // console.log(transactionID)
+
+export const getWaitingList = async tag => {
+  const { data } = await axios.get('/api/items/waiting/list/' + tag)
+  return data
+}
+
+export const redoWaitingItem = async id => {
+  const { data } = await axios.patch('/api/items/waiting/redo/' + id)
+  return data
+}
+
+export const deleteWaitingAndItem = async id => {
+  const { data } = await axios.patch('/api/items/waiting/delete/' + id)
+  return data
+}
+
+// Only showing the updated reviewWaitingItem function, rest of the file remains the same
+export const reviewWaitingItem = async id => {
+  try {
+    const { data } = await axios.patch('/api/items/waiting/reviewed/' + id)
+    return { success: true, data }
+  } catch (error) {
+    // Handle errors based on status code
+    if (error.response) {
+      // Server responded with an error status code
+      return {
+        success: false,
+        status: error.response.status,
+        message: error.response.data || 'An error occurred while reviewing the item'
+      }
+    } else if (error.request) {
+      // Request was made but no response
+      return {
+        success: false,
+        message: 'No response from server. Please check your connection.'
+      }
+    } else {
+      // Something else caused the error
+      return {
+        success: false,
+        message: error.message || 'Unknown error occurred'
+      }
+    }
+  }
+}

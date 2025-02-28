@@ -1,0 +1,203 @@
+.frame {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.main_container {
+  width: 100%;
+  max-width: 800px;
+  display: grid;
+  grid-template-columns: 6fr 1fr;
+  grid-gap: 10px;
+}
+
+/* Container for side-by-side images */
+.images_container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px; /* Space between the two images */
+  width: 100%;
+  height: 450px; /* Fixed height for desktop */
+}
+
+.image_wrapper {
+  flex: 1; /* Each wrapper takes equal space */
+  position: relative;
+  height: 100%;
+  border-radius: 0.7rem;
+  overflow: hidden;
+}
+
+.image {
+  margin: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.7rem;
+  border: 1px solid rgb(71, 71, 71);
+}
+
+/* Style for the empty preview placeholder */
+.empty_preview {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  border-radius: 0.7rem;
+  border: 1px solid rgb(71, 71, 71);
+}
+
+.right_container {
+  padding-top: 50px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.download_icon {
+  width: 33px;
+}
+
+.download_icon:hover {
+  cursor: pointer;
+}
+
+.free_text {
+  font-family: 'Philosopher', sans-serif;
+  font-size: 0.9rem;
+  margin: 0px 0px 10px 0px;
+  font-weight: bold;
+  color: #3fe303;
+  text-align: center;
+}
+
+.add_cart {
+  width: 33px;
+}
+
+.add_cart:hover {
+  cursor: pointer;
+}
+
+.price {
+  font-size: 0.7rem;
+  margin: 0px 0px 10px 0px;
+  font-weight: bold;
+  color: #ffdd00;
+  text-align: center;
+}
+
+.error_message {
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+  border: 1px solid #ff6b6b;
+  border-radius: 4px;
+  padding: 8px 12px;
+  margin: 10px 0;
+  font-size: 0.9rem;
+  text-align: center;
+  width: 100%;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+/* Add these styles to your review.frame.module.css file */
+
+.confirm_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.confirm_dialog {
+  background-color: #222;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 20px;
+  width: 300px;
+  max-width: 80%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.confirm_dialog p {
+  color: white;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.confirm_buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.confirm_yes,
+.confirm_no {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirm_yes {
+  background-color: #e53935;
+  color: white;
+}
+
+.confirm_yes:hover {
+  background-color: #c62828;
+}
+
+.confirm_no {
+  background-color: #424242;
+  color: white;
+}
+
+.confirm_no:hover {
+  background-color: #616161;
+}
+
+/* Mobile view adjustments */
+@media screen and (max-width: 960px) {
+  .main_container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .images_container {
+    flex-direction: row; /* Keep images side by side on mobile */
+    height: auto;
+    aspect-ratio: 16/9; /* Better aspect ratio for side-by-side on mobile */
+  }
+
+  .image_wrapper {
+    flex: 1;
+    height: 100%; /* Full height of container */
+  }
+
+  .right_container {
+    padding-top: 20px;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    gap: 20px;
+  }
+}

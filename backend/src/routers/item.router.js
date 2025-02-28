@@ -503,4 +503,140 @@ router.patch(
   })
 );
 
+// Patch an item to delete, Delete image files, and delete waiting list item.
+router.patch(
+  '/waiting/delete/:_id',
+  handler(async (req, res) => {
+    const { _id } = req.params;
+    console.log(`Delete waiting and item, _id: ${_id}`);
+
+    try {
+      // Find the waiting item by _id
+      const waitingItem = await WaitingModel.findById(_id);
+
+      if (!waitingItem) {
+        return res.status(404).send(`Waiting item with _id: ${_id} not found.`);
+      }
+
+      // Get the itemId from the waiting item
+      const { itemId } = waitingItem;
+
+      // Only proceed with deletion if there's an itemId
+      if (itemId) {
+        // Find the item to get blob paths before deletion
+        const item = await ItemModel.findOne({ itemId });
+
+        if (item) {
+          // Array to track file deletion promises
+          const deletePromises = [];
+
+          // Check downloadList for files to delete
+          if (item.downloadList && item.downloadList.length > 0) {
+            for (const download of item.downloadList) {
+              // Delete thumbnail_blob if exists
+              if (download.thumbnail_blob) {
+                deletePromises.push(
+                  deleteFileFromStorage(download.thumbnail_blob)
+                    .then(success => {
+                      if (success) {
+                        console.log(`Deleted: Deleted thumbnail: ${download.thumbnail_blob}`);
+                      }
+                    })
+                );
+              }
+
+              // Delete upscaled_blob if exists
+              if (download.upscaled_blob) {
+                deletePromises.push(
+                  deleteFileFromStorage(download.upscaled_blob)
+                    .then(success => {
+                      if (success) {
+                        console.log(`Deleted: Deleted upscaled image: ${download.upscaled_blob}`);
+                      }
+                    })
+                );
+              }
+            }
+          }
+
+          // Wait for all file deletions to complete
+          await Promise.all(deletePromises);
+
+          // Delete the item from MongoDB
+          await ItemModel.deleteOne({ itemId });
+          console.log(`Deleted: Deleted item with ID ${itemId} from database`);
+        } else {
+          console.log(`Deleted: Item with ID ${itemId} not found in database, only resetting waiting item`);
+        }
+      }
+
+
+      await WaitingModel.deleteOne({ _id });
+
+      res.status(200).json({
+        message: `Successfully delete:${_id}`
+      });
+    } catch (error) {
+      console.error('Error in delete operation:', error);
+
+      // Handle specific MongoDB errors
+      if (error.name === 'CastError') {
+        return res.status(400).send(`Invalid item ID format: ${_id}`);
+      }
+
+      res.status(500).send(`Server error during delete operation: ${error.message}`);
+    }
+  })
+);
+
+// Set review to true
+router.patch(
+  '/waiting/reviewed/:_id',
+  handler(async (req, res) => {
+    const { _id } = req.params;
+    console.error('review:'+_id);
+    try {
+      // First, find the item to check if itemId and itemUrl are not empty
+      const waitingItem = await WaitingModel.findById(_id);
+
+      if (!waitingItem) {
+        return res.status(404).send('No waiting item found.');
+      }
+
+      // Check if both itemId and itemUrl are not empty
+      if (!waitingItem.itemId || !waitingItem.itemUrl) {
+        return res.status(400).send('Cannot mark as reviewed: itemId or itemUrl is missing.');
+      }
+
+      // Update the item with review set to true
+      const reviewedItem = await WaitingModel.findOneAndUpdate(
+        { _id },
+        { $set: { review: true } },
+        { new: true } // Return the updated document
+      );
+
+      res.status(200).json(reviewedItem);
+
+    } catch (error) {
+      console.error('Error in review operation:', error);
+
+      // Handle specific MongoDB errors
+      if (error.name === 'CastError') {
+        return res.status(400).send(`Invalid item ID format: ${_id}`);
+      }
+
+      res.status(500).send(`Server error during review operation: ${error.message}`);
+    }
+  })
+);
+
+router.get(
+  '/waiting/list/all',
+  handler(async (req, res) => {
+    console.log("all_waiting_list hi");
+    const items = await WaitingModel.find({});
+    res.send(items);
+  })
+);
+
 export default router;

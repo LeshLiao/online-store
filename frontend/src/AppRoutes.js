@@ -17,6 +17,7 @@ import Download from './pages/Item/Download'
 import UploadImage from './pages/Admin/UploadImage'
 import Help from './pages/HelpCenter/Help'
 import Painting from './pages/Catalog/Painting/Painting'
+import Review from './pages/Catalog/Review/Review'
 import PrivacyPolicy from './pages/HelpCenter/PrivacyPolicy'
 
 export default function AppRoutes () {
@@ -39,6 +40,7 @@ export default function AppRoutes () {
         <Route path="/upload" element={<UploadImage/>} />
         <Route path="/help" element={<Help/>} />
         <Route path="/painting" element={<Painting/>} />
+        <Route path="/review" element={<Review/>} />
         <Route path="/policy" element={<PrivacyPolicy/>} />
       </Routes>
     </PaymentProvider>
