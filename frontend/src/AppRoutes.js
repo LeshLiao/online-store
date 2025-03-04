@@ -13,6 +13,7 @@ import NewIn from './pages/NewIn/NewIn'
 import Account from './pages/Login/Account'
 import Landscape from './pages/Catalog/Landscape/Landscape'
 import City from './pages/Catalog/City/City'
+import Apps from './pages/Apps/Apps'
 import Download from './pages/Item/Download'
 import UploadImage from './pages/Admin/UploadImage'
 import Help from './pages/HelpCenter/Help'
@@ -42,6 +43,7 @@ export default function AppRoutes () {
         <Route path="/painting" element={<Painting/>} />
         <Route path="/review" element={<Review/>} />
         <Route path="/policy" element={<PrivacyPolicy/>} />
+        <Route path="/apps" element={<Apps/>} />
       </Routes>
     </PaymentProvider>
   )
