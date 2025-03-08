@@ -189,6 +189,57 @@ router.delete('/:itemId', async (req, res) => {
     res.status(500).send(`Server error while deleting item: ${error.message}`);
   }
 });
+
+// Patch a specific field of an item
+router.patch(
+  '/patch_field/:itemId',
+  handler(async (req, res) => {
+    const { itemId } = req.params;
+    const updateData = req.body;
+
+    try {
+      // Validate that we have some data to update
+      if (!updateData || Object.keys(updateData).length === 0) {
+        return res.status(BAD_REQUEST).send('No update data provided');
+      }
+
+      // Find the item first to check if it exists
+      const existingItem = await ItemModel.findOne({ itemId });
+
+      if (!existingItem) {
+        return res.status(404).send(`Item with ID ${itemId} not found`);
+      }
+
+      // Update the specified field(s)
+      const updatedItem = await ItemModel.findOneAndUpdate(
+        { itemId },
+        { $set: updateData },
+        { new: true } // Return the updated document
+      );
+
+      // Log the update operation
+      console.log(`Updated field(s) for item ${itemId}:`, Object.keys(updateData));
+
+      res.status(OK_REQUEST).json({
+        success: true,
+        message: `Successfully updated field(s) for item ${itemId}`,
+        updatedItem
+      });
+    } catch (error) {
+      console.error(`Error updating field for item ${itemId}:`, error);
+
+      // Handle specific MongoDB errors
+      if (error.name === 'CastError') {
+        return res.status(BAD_REQUEST).send(`Invalid item ID format: ${itemId}`);
+      }
+
+      res.status(SERVER_UNEXPECTED_ERROR).send(`Server error during update: ${error.message}`);
+    }
+  })
+);
+
+
+// Wallpaper catalogs
 router.get(
   '/catalogs/:name',
   handler(async (req, res) => {
@@ -210,7 +261,7 @@ router.get(
           id: 1,
           key: "landscape",
           title: "Landscape",
-          photoUrl: "https://fastly.picsum.photos/id/724/300/300.jpg?hmac=yb92HcgCyjUq6a4tVG35Cxb76qXP-xfTu9y3B7a1LQ0",
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Flandscape.jpg?alt=media&token=69f10583-5980-4db0-8aba-8fa1bb68d070",
           width: 80,
           height: 100,
         },
