@@ -148,6 +148,23 @@ router.delete('/:itemId', async (req, res) => {
     // Array to track file deletion promises
     const deletePromises = [];
 
+    // Check imageList for files to delete
+    if (item.imageList && item.imageList.length > 0) {
+      for (const image of item.imageList) {
+        // Delete blob if exists
+        if (image.blob) {
+          deletePromises.push(
+            deleteFileFromStorage(image.blob)
+              .then(success => {
+                if (success) {
+                  console.log(`Deleted image: ${image.blob}`);
+                }
+              })
+          );
+        }
+      }
+    }
+
     // Check downloadList for files to delete
     if (item.downloadList && item.downloadList.length > 0) {
       for (const download of item.downloadList) {
@@ -487,6 +504,23 @@ router.patch(
           // Array to track file deletion promises
           const deletePromises = [];
 
+          // Check imageList for files to delete
+          if (item.imageList && item.imageList.length > 0) {
+            for (const image of item.imageList) {
+              // Delete blob if exists
+              if (image.blob) {
+                deletePromises.push(
+                  deleteFileFromStorage(image.blob)
+                    .then(success => {
+                      if (success) {
+                        console.log(`Deleted image: ${image.blob}`);
+                      }
+                    })
+                );
+              }
+            }
+          }
+
           // Check downloadList for files to delete
           if (item.downloadList && item.downloadList.length > 0) {
             for (const download of item.downloadList) {
@@ -588,6 +622,23 @@ router.patch(
         if (item) {
           // Array to track file deletion promises
           const deletePromises = [];
+
+          // Check imageList for files to delete
+          if (item.imageList && item.imageList.length > 0) {
+            for (const image of item.imageList) {
+              // Delete blob if exists
+              if (image.blob) {
+                deletePromises.push(
+                  deleteFileFromStorage(image.blob)
+                    .then(success => {
+                      if (success) {
+                        console.log(`Deleted image: ${image.blob}`);
+                      }
+                    })
+                );
+              }
+            }
+          }
 
           // Check downloadList for files to delete
           if (item.downloadList && item.downloadList.length > 0) {
