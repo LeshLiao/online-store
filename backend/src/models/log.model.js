@@ -3,6 +3,7 @@ import { model, Schema } from 'mongoose';
 export const LogSchema = new Schema(
   {
     itemId: { type: String, required: true },
+    appVersion: { type: String, required: false },
     eventType: { type: String, required: true },
     manufacturer: { type: String, required: true },
     model: { type: String, required: true },

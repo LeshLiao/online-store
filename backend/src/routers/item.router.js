@@ -348,11 +348,12 @@ router.get(
 
 // add a log event
 router.post("/log", async (req, res) => {
-  const { itemId, eventType, manufacturer, model, release, sdk, country } = req.body;
+  const { itemId, appVersion, eventType, manufacturer, model, release, sdk, country } = req.body;
 
   try {
     await LogModel.create({
       itemId: itemId,
+      appVersion: appVersion,
       eventType: eventType,
       manufacturer: manufacturer,
       model: model,
