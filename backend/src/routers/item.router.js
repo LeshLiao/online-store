@@ -59,6 +59,43 @@ router.get(
   })
 );
 
+router.get(
+  '/wallpapers/page',
+  handler(async (req, res) => {
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.pageSize) || 30;
+    const catalog = req.query.catalog || '';
+
+    try {
+      let query = {};
+
+      // Add catalog filter if specified
+      if (catalog && catalog !== 'Wallpapers') {
+        query = { photoType: catalog };
+      }
+
+      // Get total count for pagination
+      const totalItems = await ItemModel.countDocuments(query);
+
+      // Get items for current page
+      const items = await ItemModel.find(query)
+        .sort({ createdAt: -1 })
+        .skip((page - 1) * pageSize)
+        .limit(pageSize);
+
+      res.send({
+        items,
+        currentPage: page,
+        totalPages: Math.ceil(totalItems / pageSize),
+        totalItems,
+        hasMore: page * pageSize < totalItems
+      });
+    } catch (error) {
+      res.status(SERVER_UNEXPECTED_ERROR).send({ message: 'Error fetching wallpapers' });
+    }
+  })
+);
+
 router.post("/transaction", async (req, res) => {
   const { transactionId, email, firstName, lastName, detail, payment, paymentData, tax, totalPrice, totalCount, reserved} = req.body;
 
