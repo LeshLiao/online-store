@@ -70,8 +70,9 @@ router.get(
       let query = {};
 
       // Add catalog filter if specified
+      // Only checking if catalog matches any tag in the tags array
       if (catalog && catalog !== 'Wallpapers') {
-        query = { photoType: catalog };
+        query = { tags: catalog };  // Only match by tags
       }
 
       // Get total count for pagination
@@ -91,6 +92,7 @@ router.get(
         hasMore: page * pageSize < totalItems
       });
     } catch (error) {
+      console.error('Error fetching wallpapers:', error);
       res.status(SERVER_UNEXPECTED_ERROR).send({ message: 'Error fetching wallpapers' });
     }
   })
