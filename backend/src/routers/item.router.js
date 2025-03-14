@@ -60,6 +60,20 @@ router.get(
 );
 
 router.get(
+  '/wallpapers/popular',
+  handler(async (req, res) => {
+    const number = parseInt(req.query.number, 10) || 10; // Default to 10 if 'number' query param is not provided
+    try {
+      const items = await ItemModel.aggregate([{ $sample: { size: number } }]);
+      // MongoDB's $sample aggregation operator, which selects a specified number of random documents from a collection.
+      res.send(items);
+    } catch (error) {
+      res.status(500).send({ error: 'An error occurred while fetching items.' });
+    }
+  })
+);
+
+router.get(
   '/wallpapers/page',
   handler(async (req, res) => {
     const page = parseInt(req.query.page) || 1;
