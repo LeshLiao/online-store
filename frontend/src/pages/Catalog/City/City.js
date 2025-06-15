@@ -8,7 +8,7 @@ export default function City () {
   const [items, setItems] = useState([])
 
   useEffect(() => {
-    getItemsByTag('city')
+    getItemsByTag('minimalistic')
       .then(items => {
         const staticItems = items.filter(item => item.photoType === 'static')
         setItems(staticItems)
@@ -23,7 +23,7 @@ export default function City () {
       <div className={classes.hero}>
         <div className={classes.image_container}>
           <img className={classes.image} src='/images/section/city_iphone.png' alt="pic"/>
-          <div className={classes.title}>City Views</div>
+          <div className={classes.title}>Minimalistic</div>
         </div>
       </div>
       <div className={classes.item_container}>

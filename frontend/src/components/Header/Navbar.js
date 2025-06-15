@@ -57,11 +57,11 @@ function Navbar () {
           {/* Desktop */}
           {/* <ul className={click ? 'nav-menu active' : 'nav-menu'}> */}
           <ul className={click ? `${classes.nav_menu} ${classes.active}` : classes.nav_menu}>
-            <li className={classes.nav_item}><Link to='/painting' className={classes.nav_links} onClick={closeMoMenu}>PAINTING</Link></li>
+            <li className={classes.nav_item}><Link to='/painting' className={classes.nav_links} onClick={closeMoMenu}>ANIME</Link></li>
             <li className={classes.nav_item}><Link to='/landscape' className={classes.nav_links} onClick={closeMoMenu}>LANDSCAPE</Link></li>
             {/* <li className='nav-item'><Link to='/gallery' className='nav-links' onClick={closeMoMenu}>Gallery</Link></li> */}
             <Link to='/' className={classes.navbar_desktop_logo} onClick={() => { closeMoMenu(); scrollToTop() }}>PaletteX</Link>
-            <li className={classes.nav_item}><Link to='/city' className={classes.nav_links} onClick={closeMoMenu}>CITY VIEWS</Link></li>
+            <li className={classes.nav_item}><Link to='/city' className={classes.nav_links} onClick={closeMoMenu}>MINIMALISTIC</Link></li>
             <li className={classes.nav_item}><Link to='/help' className={classes.nav_links} onClick={closeMoMenu}>HELP CENTER</Link></li>
             {/* <li className='nav-item'><Link to='/about'className='nav-links' onClick={closeMoMenu}>About</Link></li> */}
             <li className={classes.account_icon_mobile}>
