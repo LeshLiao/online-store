@@ -308,6 +308,50 @@ router.patch(
   })
 );
 
+router.patch('/add_one_image_list_item/:itemId', async (req, res) => {
+  try {
+    const { itemId } = req.params;
+    const { imageList } = req.body;
+
+    if (!imageList) {
+      return res.status(400).send('imageList field is required in request body');
+    }
+
+    const item = await ItemModel.findOne({ itemId: itemId });
+
+    if (!item) {
+      return res.status(404).send('Item not found');
+    }
+
+    // Check if image type already exists (prevent duplicates)
+    const existingImageIndex = item.imageList.findIndex(
+      img => img.type === imageList.type
+    );
+
+    if (existingImageIndex !== -1) {
+      // Update existing image if type already exists
+      item.imageList[existingImageIndex] = imageList;
+      console.log(`Updated existing ${imageList.type} image for item ${itemId}`);
+    } else {
+      // Add new image to array
+      item.imageList.push(imageList);
+      console.log(`Added new ${imageList.type} image to item ${itemId}`);
+    }
+
+    await item.save();
+
+    res.status(200).send({
+      success: true,
+      message: 'Image item added successfully',
+      imageList: item.imageList
+    });
+
+  } catch (error) {
+    console.error('Error adding image list item:', error);
+    res.status(500).send('Error adding image list item: ' + error.message);
+  }
+});
+
 
 // Wallpaper catalogs
 router.get(
