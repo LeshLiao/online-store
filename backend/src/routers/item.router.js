@@ -522,6 +522,27 @@ router.get(
   })
 );
 
+// count how many status is empty
+router.get(
+  '/waiting/count/all',
+  handler(async (req, res) => {
+    try {
+      // Count items where status is empty ("")
+      const count = await WaitingModel.countDocuments({
+        status: ""
+      });
+
+      res.status(OK_REQUEST).json({
+        count: count,
+        message: `Found ${count} waiting items with empty status`
+      });
+    } catch (error) {
+      console.error('Error counting waiting items:', error);
+      res.status(SERVER_UNEXPECTED_ERROR).send(`Server error during count operation: ${error.message}`);
+    }
+  })
+);
+
 // Patch an item to Completed
 router.patch(
   '/waiting/:_id',
