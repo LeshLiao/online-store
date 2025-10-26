@@ -59,6 +59,82 @@
   width: 100%;
 }
 
+/* Add this to your review_thumbnails.module.css file */
+
+.filter_container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: #000000;
+  border-radius: 8px;
+  border: 1px solid #333;
+}
+
+.filter_row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter_label {
+  font-weight: 500;
+  min-width: 120px;
+  color: #e0e0e0;
+}
+
+.filter_dropdown {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  min-width: 180px;
+}
+
+.filter_dropdown:hover {
+  background-color: #333;
+  border-color: #555;
+}
+
+.filter_dropdown:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Style the dropdown options */
+.filter_dropdown option {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
+
+.result_count {
+  padding: 8px 8px 16px 8px;
+  background-color: #000000;
+  color: white;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.empty_space {
+  padding: 16px 0px 0px 0px;
+}
+
+.no_results {
+  text-align: center;
+  padding: 40px 20px;
+  color: #999;
+  font-size: 16px;
+  font-style: italic;
+}
+
 @media screen and (max-width: 960px) {
   .container {
     margin: 0;
