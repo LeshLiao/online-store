@@ -94,7 +94,7 @@ router.get(
 
       // Get items for current page
       const items = await ItemModel.find(query)
-        .sort({ createdAt: -1 })
+        .sort({ stars: -1, createdAt: -1 })
         .skip((page - 1) * pageSize)
         .limit(pageSize);
 
