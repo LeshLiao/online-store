@@ -420,6 +420,55 @@ router.get(
   })
 );
 
+// Wallpaper board carousel in Home Page
+router.get(
+  '/boards/:name',
+  handler(async (req, res) => {
+    const { name } = req.params;
+
+    try {
+      console.log('Entering /boards route, name=' + name);
+
+      const boards = [
+        {
+          id: 0,
+          key: "PaletteX",
+          title: "All",
+          action: "",
+          value: "",
+          photoUrl: "https://fastly.picsum.photos/id/199/500/260.jpg?hmac=Epdv8ZZRhRIzUO37oHOaL3lZPTpx-T84GoWGSdHBm94",
+          ratioWidth: 16,
+          ratioHeight: 6,
+        },
+        {
+          id: 1,
+          key: "PREMIUM",
+          title: "PREMIUM",
+          action: "POP_UP_PREMIUM",
+          value: "",
+          photoUrl: "https://fastly.picsum.photos/id/1064/500/260.jpg?hmac=YT9bO2fvE6OUrlBDOLF5a1Og_RH3SNLHQsk1MziIhvs",
+          ratioWidth: 16,
+          ratioHeight: 6,
+        },
+        {
+          id: 2,
+          key: "HALLOWEEN",
+          title: "HALLOWEEN",
+          action: "NAVIGATION_HALLOWEEN",
+          value: "",
+          photoUrl: "https://fastly.picsum.photos/id/353/500/260.jpg?hmac=xZ0Gla7rXIWkan1dVE0b5-TmWi5Nj1jU5MV64ad1czU",
+          ratioWidth: 16,
+          ratioHeight: 6,
+        }
+      ];
+      res.status(200).json(boards);
+    } catch (error) {
+      console.error('Error in /boards route:', error);
+      res.status(500).send('Internal Server Error');
+    }
+  })
+);
+
 router.get(
   '/settings/:name',
   handler(async (req, res) => {
