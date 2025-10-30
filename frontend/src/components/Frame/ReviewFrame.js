@@ -3,10 +3,9 @@ import classes from './review.frame.module.css'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { redoWaitingItem, deleteWaitingAndItem, reviewWaitingItem } from '../../services/itemService'
-import { toast } from 'react-toastify' // Make sure you have react-toastify installed
+import { toast } from 'react-toastify'
 
 export default function ReviewFrame ({ item, index }) {
-  // check google drive or firebase url
   const imgUrl = item.url
   const [sourceImage, setSourceImage] = useState(imgUrl)
   const [previewImage, setPreviewImage] = useState(item.itemUrl)
@@ -15,12 +14,45 @@ export default function ReviewFrame ({ item, index }) {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [showRedoConfirm, setShowRedoConfirm] = useState(false)
   const [isReviewed, setIsReviewed] = useState(item.review || false)
+  const [elapsedTime, setElapsedTime] = useState('')
+
+  // Function to calculate elapsed time
+  const calculateElapsedTime = (updatedAt) => {
+    if (!updatedAt) return ''
+
+    const now = new Date()
+    const updated = new Date(updatedAt)
+    const diffMs = now - updated
+    const diffMinutes = Math.floor(diffMs / (1000 * 60))
+    const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+    if (diffMinutes < 1) {
+      return 'Just now'
+    } else if (diffMinutes < 60) {
+      return `${diffMinutes}m`
+    } else if (diffHours < 24) {
+      return `${diffHours}h`
+    } else {
+      return `${diffDays}d`
+    }
+  }
 
   useEffect(() => {
     setSourceImage(imgUrl)
     setPreviewImage(item.itemUrl)
     setIsReviewed(item.review || false)
-  }, [imgUrl, item.itemUrl, item.review])
+
+    // Calculate initial elapsed time
+    setElapsedTime(calculateElapsedTime(item.updatedAt))
+
+    // Update elapsed time every minute
+    const interval = setInterval(() => {
+      setElapsedTime(calculateElapsedTime(item.updatedAt))
+    }, 60000) // Update every 60 seconds
+
+    return () => clearInterval(interval)
+  }, [imgUrl, item.itemUrl, item.review, item.updatedAt])
 
   const navigate = useNavigate()
 
@@ -37,7 +69,6 @@ export default function ReviewFrame ({ item, index }) {
     redoWaitingItem(item._id)
       .then(() => {
         toast.success('Item has been reset for processing')
-        // Sleep for one second (1500 milliseconds) then navigate
         setTimeout(() => {
           navigate('/review')
         }, 1500)
@@ -62,7 +93,6 @@ export default function ReviewFrame ({ item, index }) {
   }
 
   const handleReview = async () => {
-    // If already reviewed or in progress, do nothing
     if (isReviewed || isReviewing) return
 
     setIsReviewing(true)
@@ -73,16 +103,12 @@ export default function ReviewFrame ({ item, index }) {
 
       if (result.success) {
         toast.success('Item marked as reviewed')
-        // Update local state to show item is now reviewed
         setIsReviewed(true)
-        // Navigate after a delay
         setTimeout(() => navigate('/review'), 1000)
       } else {
-        // Show error message
         setErrorMessage(result.message)
 
         if (result.status === 400) {
-          // This is the specific error we want to show in the UI
           toast.error('Cannot mark as reviewed: itemId or itemUrl is missing.')
         } else {
           toast.error(result.message || 'Failed to review item')
@@ -104,7 +130,7 @@ export default function ReviewFrame ({ item, index }) {
   const getStatusDisplay = () => {
     if (item.status === 'in_process') {
       return {
-        text: 'In Progress',
+        text: `In Progress${elapsedTime ? ` (${elapsedTime})` : ''}`,
         className: classes.status_in_progress
       }
     } else if (!item.status || item.status === '') {
@@ -122,14 +148,12 @@ export default function ReviewFrame ({ item, index }) {
 
   const statusDisplay = getStatusDisplay()
 
-  // Determine button class based on review status and reviewing state
   const reviewButtonClasses = `${classes.add_cart} ${isReviewing ? classes.disabled : ''}`
 
   return (
     <div className={classes.frame}>
       <div className={classes.main_container}>
         <div className={classes.images_container}>
-          {/* Source Image - Left Side */}
           <div className={classes.image_wrapper}>
             <img
               className={classes.image}
@@ -138,7 +162,6 @@ export default function ReviewFrame ({ item, index }) {
             />
           </div>
 
-          {/* Preview Image - Right Side */}
           <div className={classes.image_wrapper}>
             {previewImage
               ? (
@@ -158,14 +181,12 @@ export default function ReviewFrame ({ item, index }) {
           </div>
         </div>
 
-        {/* Error message display */}
         {errorMessage && (
           <div className={classes.error_message}>
             {errorMessage}
           </div>
         )}
 
-        {/* Delete Confirmation Dialog */}
         {showDeleteConfirm && (
           <div className={classes.confirm_overlay}>
             <div className={classes.confirm_dialog}>
@@ -178,7 +199,6 @@ export default function ReviewFrame ({ item, index }) {
           </div>
         )}
 
-        {/* Redo Confirmation Dialog */}
         {showRedoConfirm && (
           <div className={classes.confirm_overlay}>
             <div className={classes.confirm_dialog}>
@@ -215,7 +235,7 @@ export default function ReviewFrame ({ item, index }) {
             <div className={classes.price}></div>
             <img
               className={classes.add_cart}
-              onClick={confirmRedo} // Changed to confirmRedo instead of handleRedo
+              onClick={confirmRedo}
               src="/images/icon/reload.256x256.png"
               alt="reload"
             />
@@ -238,7 +258,8 @@ ReviewFrame.propTypes = {
     status: PropTypes.string,
     itemId: PropTypes.string,
     itemUrl: PropTypes.string,
-    review: PropTypes.bool
+    review: PropTypes.bool,
+    updatedAt: PropTypes.string
   }).isRequired,
   index: PropTypes.number
 }
