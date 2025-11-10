@@ -446,7 +446,7 @@ router.get(
           title: "HALLOWEEN",
           action: "NAVIGATION_HALLOWEEN",
           value: "",
-          photoUrl: "https://fastly.picsum.photos/id/1064/500/260.jpg?hmac=YT9bO2fvE6OUrlBDOLF5a1Og_RH3SNLHQsk1MziIhvs",
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Fhalloween.jpg?alt=media&token=28e707f2-c650-4129-8827-02823811a3f2",
           ratioWidth: 16,
           ratioHeight: 6,
         },
@@ -456,7 +456,7 @@ router.get(
           title: "CHRISTMAS",
           action: "NAVIGATION_CHRISTMAS",
           value: "",
-          photoUrl: "https://fastly.picsum.photos/id/353/500/260.jpg?hmac=xZ0Gla7rXIWkan1dVE0b5-TmWi5Nj1jU5MV64ad1czU",
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Fchristmas.jpg?alt=media&token=65a8d20d-c68f-4ef7-93fd-d06e5840ca31",
           ratioWidth: 16,
           ratioHeight: 6,
         }
