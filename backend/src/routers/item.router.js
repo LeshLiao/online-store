@@ -436,7 +436,7 @@ router.get(
           title: "All",
           action: "",
           value: "",
-          photoUrl: "https://fastly.picsum.photos/id/199/500/260.jpg?hmac=Epdv8ZZRhRIzUO37oHOaL3lZPTpx-T84GoWGSdHBm94",
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/palettex-37930.appspot.com/o/images%2Flayout%2Fbeach001.jpg?alt=media&token=415a96eb-9421-4225-bdcb-0cdc6c6555ab",
           ratioWidth: 16,
           ratioHeight: 6,
         },
